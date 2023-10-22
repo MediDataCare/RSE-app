@@ -1,8 +1,25 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+//@import url('https://fonts.bunny.net/css?family=Nunito');
 
 // Variables
-@import 'variables';
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+
+body {
+    color: var(--secondary-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+html {
+    font-size: 0.95rem;
+}
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
