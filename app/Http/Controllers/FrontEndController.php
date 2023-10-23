@@ -12,4 +12,9 @@ class FrontEndController extends Controller
 
         return view('frontend.entities.form');
     }
+
+    public function UsersForm(){
+
+        return view('frontend.users.form');
+    }
 }
