@@ -20,3 +20,6 @@ Route::get('/', function () {
 
 Route::get('/entitie/form', [FrontEndController::class, 'EntitiesForm']);
 Route::get('/user/form', [FrontEndController::class, 'UsersForm']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
