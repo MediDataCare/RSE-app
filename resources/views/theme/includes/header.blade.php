@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top" data-scrollto-offset="0">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+        <a href="/" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>MediData<span>Care+</span></h1>
@@ -12,6 +12,8 @@
 
             <li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
+                <li><a href="/user/form">User</a></li>
+                <li><a href="/entitie/form">Entitie</a></li>
                 <li><a href="index.html" class="active">Home 1 - index.html</a></li>
                 <li><a href="index-2.html">Home 2 - index-2.html</a></li>
                 <li><a href="index-3.html">Home 3 - index-3.html</a></li>

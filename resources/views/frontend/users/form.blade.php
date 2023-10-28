@@ -1,3 +1,5 @@
+@extends('theme.master')
+@section('content') 
 <div>
     @vite(['resources/js/app.js', 'resources/sass/app.scss'])
     <div class="container-fluid mt-5">
@@ -70,3 +72,4 @@
         </div>
     </div>
 </div>
+@stop
