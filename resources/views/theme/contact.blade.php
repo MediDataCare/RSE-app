@@ -1,7 +1,7 @@
 @extends('theme.master')
 @section('content')
   <main id="main">
-    <section id="contact" class="contact">
+    <section id="contact" class="contact mt-5">
       <div class="container">
 
         <div class="section-header">
