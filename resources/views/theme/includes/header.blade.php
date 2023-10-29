@@ -11,7 +11,7 @@
         <nav id="navbar" class="navbar ">
            
         <ul>
-            <a class="btn-getstarted scrollto" href="index.html#about">Login <i class="fas fa-user"></i></a>
+            <a class="btn-getstarted scrollto" href="/login">Login <i class="fas fa-user"></i></a>
             <li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
                 <li><a href="/user/form">User</a></li>
@@ -23,7 +23,7 @@
             </ul>
             </li>
 
-            <li><a class="nav-link scrollto" href="index.html#about">Sobre Nós</a></li>
+            <li><a class="nav-link scrollto" href="/about">Sobre Nós</a></li>
             <li><a class="nav-link scrollto" href="index.html#services">Projeto - MediDataCare</a></li>
             <!-- 
             <li><a class="nav-link scrollto" href="index.html#portfolio">Portfolio</a></li>
@@ -70,7 +70,7 @@
                 <li><a href="#">Drop Down 4</a></li>
             </ul>
             </li>-->
-            <li><a class="nav-link scrollto" href="index.html#contact">Contactos</a></li>
+            <li><a class="nav-link scrollto" href="/contact">Contactos</a></li>
             
             <!--<li><a class="btn-getstarted scrollto" href="index.html#about">Login <i class="fas fa-user"></i></a></li>-->
         </ul>

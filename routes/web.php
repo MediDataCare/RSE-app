@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/contact', function () {
+    return view('theme.contact');
+});
+
+Route::get('/about', function () {
+    return view('theme.about');
+});
+
 Route::get('/entitie/form', [FrontEndController::class, 'EntitiesForm']);
 Route::get('/user/form', [FrontEndController::class, 'UsersForm']);
 Auth::routes();
