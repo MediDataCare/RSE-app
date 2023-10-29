@@ -1,8 +1,8 @@
 @extends('theme.master')
 @section('content')
-
-<section id="about" class="about">
-    <div class="container" data-aos="fade-up">
+  <main id="main">
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
 
       <div class="section-header">
         <h2>Sobre Nós</h2>
@@ -108,5 +108,5 @@
 
     </div>
   </section>
-
+  </main>
 @stop
