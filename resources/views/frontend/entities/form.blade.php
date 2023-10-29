@@ -1,7 +1,10 @@
-@extends('layouts.app')
+@extends('theme.master')
+
 @section('content')
-    <div>
-        <livewire:entitie-form
-        />
+    <div class="container-fluid">
+        <div class="container py-5">
+            <livewire:entitie-form
+            />
+        </div>
     </div>
 @endsection

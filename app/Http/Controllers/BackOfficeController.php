@@ -21,4 +21,8 @@ class BackOfficeController extends Controller
         return view('backend.exam_type.exam_type', ['examType' => $examType, 'action' => 'show']);
     }
 
+    public function home(){
+        return view('backend.home');
+    }
+
 }

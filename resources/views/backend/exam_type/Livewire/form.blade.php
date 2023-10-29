@@ -1,4 +1,5 @@
 <div>
+    @dd()
     <div class="container-fluid mt-5">
         <div class="container">
             <x-form-input action="create"
@@ -76,9 +77,9 @@
             <div class="row row-cols-1 row-cols-sm-2">
                 <div class="col">
                     <div class="w-100 text-center mt-5">
-                        <button class="btn btn-primary">
+                        <a class="btn btn-primary" href="{{route('exame-type-index')}}">
                             {{ 'Cancel' }}
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="col">

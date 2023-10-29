@@ -1,7 +1,10 @@
 @extends('theme.master')
+
 @section('content')
-    <div>
-        <livewire:user-form
-        />
+    <div class="container-fluid">
+        <div class="container py-5">
+            <livewire:user-form
+            />
+        </div>
     </div>
 @endsection

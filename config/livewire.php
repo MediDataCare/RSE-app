@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => 'http://localhost/RSE-app/public/',
+    'asset_url' => 'http://localhost:8000',
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'app_url' => 'http://localhost/RSE-app/public',
+    'app_url' => 'http://localhost:8000',
 
     /*
     |--------------------------------------------------------------------------
