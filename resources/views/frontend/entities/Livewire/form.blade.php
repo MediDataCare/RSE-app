@@ -1,7 +1,10 @@
 <div>
     <div class="container-fluid mt-5">
         <div class="container">
-            <h5 class="text-center">Criar estudo</h5>
+            <div class="section-header">
+                <h2>Criar estudo</h2>
+                <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores adipisci aliquam.</p>
+            </div>
             <x-form class="mt-5 pb-5" method="POST">
                 <x-form-input action="create"
                               name="name"
@@ -87,10 +90,11 @@
                 @endforeach
                 </tbody>
             </table>
-
-            <button class="btn btn-primary" wire:click="storeStudy">
-                <span>Guardar</span>
-            </button>
+            <div class="text-center">
+                <button class="btn btn-primary" wire:click="storeStudy">
+                    <span>Guardar</span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
