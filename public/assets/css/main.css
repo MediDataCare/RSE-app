@@ -44,9 +44,13 @@ Alterado Por Gonçalo Santos, Se gostarem Adicionar Classe no CSS e Retirar da B
   scroll-behavior: smooth;
 }
 
+.footer-info a{
+  color: var(--color-links);
+}
+
 a {
   color: var(--color-links);
-  text-decoration: none;
+  text-decoration: none!important;
 }
 
 a:hover {
