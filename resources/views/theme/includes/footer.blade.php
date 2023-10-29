@@ -64,7 +64,7 @@
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-            Desenvolvido por <a href="#">MediDataCare - ISEC</a>
+            Desenvolvido por <a href="/about">MediDataCare - ISEC</a>
           </div>
         </div>
 
