@@ -44,7 +44,6 @@ Route::group([
     Route::get('/exam-type/', [BackOfficeController::class, 'indexExameType'])->name('exam-type-index');
     Route::get('/exam-type/create', [BackOfficeController::class, 'createExamType'])->name('exam-type-create');
 });
-
 //Route::middleware(['CheckAuthBO'])->group(function () {
 //    Route::get('/private', [BackOfficeController::class, 'home']);
 //    Route::get('/private/exam-type/', [BackOfficeController::class, 'indexExamType'])->name('exam-type-index');
