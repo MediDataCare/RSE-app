@@ -17,7 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/contact', function () {
+    return view('theme.contact');
+});
+
+Route::get('/about', function () {
+    return view('theme.about');
 });
 
 Route::get('/entitie/form', [FrontEndController::class, 'entitiesForm']);
