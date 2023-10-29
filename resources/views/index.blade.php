@@ -1,5 +1,18 @@
 @extends('theme.master')
-@section('content') 
+@section('content')
+  <section id="hero-animated" class="hero-animated d-flex align-items-center">
+    <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
+      <img src="{{asset('assets/img/t3/coracao_svg.svg')}}" class="img-fluid animated">
+      <h2>Bem-Vindo à MediData<span>Care<i class="fas fa-plus-circle"></i></span></h2>
+      <p>Partilhe os seus dados clínicos em troca de compensação monetária e ajude a contribuir para o futuro da Medicina</p>
+      <div class="d-flex">
+        <a href="#about" class="btn-get-started scrollto">Saber mais</a>
+        <!--<a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>-->
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
     <!-- ======= Featured Services Section ======= -->
     <section id="featured-services" class="featured-services">
       <div class="container">
@@ -1180,4 +1193,5 @@
 
       </div>
     </section>< !-- End Contact Section -->
+  </main><!-- End #main -->
 @stop

@@ -11,8 +11,8 @@
                 Rua Pedro Nunes – Quinta da Nora <br>
                 3030-199 Coimbra<br>
                 Latitude 40°11’33.6″N | Longitude  8°24’41.8″W<br><br>
-                <strong>Telefone:</strong> +351 239 790 200<br>
-                <strong>Email:</strong> secretariado@isec.pt<br>
+                <strong>Telefone:</strong><a href="tel:+351239790200"> +351 239 790 200</a><br>
+                <strong>Email:</strong><a href="mailto:secretariado@isec.pt"> secretariado@isec.pt</a><br>
               </p>
             </div>
           </div>
@@ -20,8 +20,8 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/about">Sobre Nós</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Projeto - MediDataCare</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Área Reservada</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
@@ -64,7 +64,7 @@
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-            Desenvolvido por <a href="#">MediDataCare - ISEC</a>
+            Desenvolvido por <a href="/about">MediDataCare - ISEC</a>
           </div>
         </div>
 
