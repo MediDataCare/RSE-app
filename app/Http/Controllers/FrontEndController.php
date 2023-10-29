@@ -8,13 +8,21 @@ class FrontEndController extends Controller
 {
 
 
-    public function EntitiesForm(){
+    public function entitiesForm(){
 
         return view('frontend.entities.form');
     }
 
-    public function UsersForm(){
+    public function entitiesProfile(){
+        return view('frontend.entities.profile');
+    }
+
+    public function usersForm(){
 
         return view('frontend.users.form');
+    }
+
+    public function userProfile(){
+        return view('frontend.users.profile');
     }
 }

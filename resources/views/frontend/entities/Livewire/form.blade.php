@@ -1,14 +1,14 @@
 <div>
-    @vite(['resources/js/app.js', 'resources/sass/app.scss'])
     <div class="container-fluid mt-5">
         <div class="container">
             <h5 class="text-center">Criar estudo</h5>
             <x-form class="mt-5 pb-5" method="POST">
                 <x-form-input action="create"
                               name="name"
-                              :label="'Nome'"
-                              :placeholder="'Nome'"
+                              :label="'Title'"
+                              :placeholder="'Title'"
                               class="'form-control mb-2'"
+                              wire:model.lazy="inputs.title"
                 />
 
                 <x-form-textarea
@@ -17,14 +17,16 @@
                     :label="'Descrição'"
                     :placeholder="'Descrição'"
                     class="'form-control mb-2'"
+                    wire:model.lazy="inputs.description"
                 />
 
                 <x-form-input action="create"
                               name="duration"
                               type="number"
-                              :label="'Duração'"
-                              :placeholder="'Duração'"
+                              :label="'Duração (dias)'"
+                              :placeholder="'Duração (dias)'"
                               class="'form-control mb-2'"
+                              wire:model.lazy="inputs.duration"
                 />
 
             </x-form>
@@ -33,50 +35,25 @@
                 <div class="col">
                     <x-form-select name="dataType"
                                    :placeholder="'Tipo de dados'"
-                                   :options="['data1' => 'Tipo de dados 1', 'data2' => 'Tipo de dados 2', 'data3' => 'Tipo de dados 3']"
+                                   :options="$examsTypeOptions"
                                    icon="chevron-down"
+                                   wire:model.lazy="filters.exam_type_id"
                     />
                 </div>
                 <div class="col">
-                    <x-form-select name="dataType"
+                    <x-form-select name="age"
                                    :placeholder="'Faixa etária'"
-                                   :options="['data1' => 'Faixa etária 1', 'data2' => 'Faixa etária 2', 'data3' => 'Faixa etária 3']"
+                                   :options="['young' => '0-19', 'adult' => '20-59', 'old' => '>60']"
                                    icon="chevron-down"
-                    />
-                </div>
-                <div class="col">
-                    <x-form-select name="distrito"
-                                   :placeholder="'Distrito'"
-                                   :options="['data1' => 'distrito 1', 'data2' => 'distrito 2', 'data3' => 'distrito 3']"
-                                   icon="chevron-down"
+                                   wire:model.lazy="filters.age"
                     />
                 </div>
                 <div class="col">
                     <x-form-select name="sexo"
                                    :placeholder="'Sexo'"
-                                   :options="['data1' => 'sexo 1', 'data2' => 'sexo 2', 'data3' => 'sexo 3']"
+                                   :options="['male' => 'Masculino', 'female' => 'Feminino', 'other' => 'Outro']"
                                    icon="chevron-down"
-                    />
-                </div>
-                <div class="col">
-                    <x-form-select name="historial"
-                                   :placeholder="'Historial médico'"
-                                   :options="['data1' => 'Tipo de dados 1', 'data2' => 'Tipo de dados 2', 'data3' => 'Tipo de dados 3']"
-                                   icon="chevron-down"
-                    />
-                </div>
-                <div class="col">
-                    <x-form-select name="avc"
-                                   :placeholder="'AVC'"
-                                   :options="['data1' => 'Sim', 'data2' => 'Não']"
-                                   icon="chevron-down"
-                    />
-                </div>
-                <div class="col">
-                    <x-form-select name="diabetes"
-                                   :placeholder="'Diabetes'"
-                                   :options="['data1' => 'Sim', 'data2' => 'Não']"
-                                   icon="chevron-down"
+                                   wire:model.lazy="filters.sex"
                     />
                 </div>
             </div>
@@ -84,33 +61,36 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col"></th>
+                    {{--                    <th scope="col"></th>--}}
                     <th scope="col">Tipo de dado</th>
                     <th scope="col">Idade (anos)</th>
                     <th scope="col">sexo</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">[ ]</th>
-                    <td>Analise ao sangue</td>
-                    <td>20</td>
-                    <td>Masculino</td>
-                </tr>
-                <tr>
-                    <th scope="row">[ ]</th>
-                    <td>Analise à urina</td>
-                    <td>18</td>
-                    <td>Feminino</td>
-                </tr>
-                <tr>
-                    <th scope="row">[ ]</th>
-                    <td>Analises ao sangue</td>
-                    <td>50</td>
-                    <td>Feminino</td>
-                </tr>
+                @foreach($allExams ?? [] as $exam)
+                    @php
+                        $sexText = '-';
+                        $sexCode = data_get($exam->examOwner(), 'parameters.sex');
+                            if($sexCode == 'male')
+                                $sexText = 'Masculino';
+                            if($sexCode == 'female')
+                                $sexText = 'Feminino';
+                            if($sexCode == 'other')
+                                $sexText = 'Outro';
+                    @endphp
+                    <tr>
+                        <td>{{data_get($exam->examType()->first(), 'title', '-')}}</td>
+                        <td>{{data_get($exam->examOwner(), 'parameters.age', '-')}}</td>
+                        <td>{{$sexText}}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
+
+            <button class="btn btn-primary" wire:click="storeStudy">
+                <span>Guardar</span>
+            </button>
         </div>
     </div>
 </div>

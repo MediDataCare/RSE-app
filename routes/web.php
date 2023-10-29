@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BackOfficeController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/entitie/form', [FrontEndController::class, 'EntitiesForm']);
-Route::get('/user/form', [FrontEndController::class, 'UsersForm']);
+Route::get('/entitie/form', [FrontEndController::class, 'entitiesForm']);
+Route::get('/entitie/profile', [FrontEndController::class, 'entitiesProfile']);
+Route::get('/user/form', [FrontEndController::class, 'usersForm']);
+Route::get('/user/profile', [FrontEndController::class, 'userProfile']);
+Route::get('/private/exam-type/create', [BackOfficeController::class, 'createExamType']);
+Route::get('/private/exam-type/{id}', [BackOfficeController::class, 'showExameType']);
+Route::get('/private/exam-type/', [BackOfficeController::class, 'indexExameType']);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+

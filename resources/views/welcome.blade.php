@@ -5,11 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        @vite(['resources/js/app.js', 'resources/sass/app.scss'])
 
         <!-- Fonts -->
+        @livewireStyles
 
     </head>
     <body class="antialiased">
+
+
+    @livewireScripts
 
     </body>
 </html>

@@ -64,10 +64,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //Passa a role no data. Se a role for igual a entitie então o estado é peding. Se for user o estado é accepted.
+        //E guarda essa role no "data" => ['role' => data['role']
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'parameters' => [
+                'sex' => data_get($data, 'sex'),
+                'age' => data_get($data, (int)'age'),
+            ]
         ]);
     }
 }
