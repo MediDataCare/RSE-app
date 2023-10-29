@@ -9,6 +9,34 @@
 /**
 * Check out variables.css for easy customization of colors, typography, and other repetitive properties
 */
+/*
+
+
+/*--------------------------------------------------------------
+# CSS Alterado/Adicionado no Tema
+--------------------------------------------------------------
+Alterado Por Gonçalo Santos, Se gostarem Adicionar Classe no CSS e Retirar da Blade  */
+
+.fa-plus-circle {
+  color: #0ea2bd;
+  /* Change the color to your preferred medical theme color */
+  font-size: 25px;
+  /*animation: beat 1.2s infinite alternate;
+   Add the beat animation */
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(0.7);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -219,7 +247,7 @@ section {
 
 .header.sticked {
   background: var(--color-white);
-  box-shadow: 0px 2px 20px rgba(var(--color-secondary-rgb), 0.1);
+  box-shadow: 0px 2px 20px rgba(var(--color-secondary-rgb), 0.8);
 }
 
 .header .logo img {
@@ -228,10 +256,11 @@ section {
 }
 
 .header .logo h1 {
-  font-size: 32px;
+  font-size: 25px;
   font-weight: 300;
   color: var(--color-secondary);
   font-family: var(--font-secondary);
+  margin-top: 4px;
 }
 
 .header .logo h1 span {
@@ -248,6 +277,7 @@ section {
   border-radius: 4px;
   transition: 0.3s;
   font-family: var(--font-secondary);
+  margin-right: 15px;;
 }
 
 .header .btn-getstarted:hover,
@@ -573,8 +603,14 @@ section {
   font-family: var(--font-secondary);
 }
 
+
 .hero-animated h2 span {
   color: var(--color-primary);
+}
+
+.hero-animated h2 span i{
+  color: var(--color-primary);
+  font-size: 45px;
 }
 
 .hero-animated p {
@@ -650,12 +686,17 @@ section {
 
 @media (max-width: 640px) {
   .hero-animated h2 {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .hero-animated p {
     font-size: 18px;
     margin-bottom: 30px;
+  }
+
+  .hero-animated h2 span i{
+    color: var(--color-primary);
+    font-size: 25px;
   }
 
   .hero-animated .btn-get-started,
@@ -3031,12 +3072,14 @@ section {
   margin: 0 0 20px 0;
   padding: 2px 0 2px 0;
   line-height: 1;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--color-white);
+  font-family: var(--font-secondary);
 }
 
 .footer .footer-content .footer-info h3 span {
   color: var(--color-primary);
+  font-weight: 500;
 }
 
 .footer .footer-content .footer-info p {

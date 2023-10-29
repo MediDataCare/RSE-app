@@ -9,16 +9,16 @@
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-activity icon"></i></div>
-              <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <h4><a href="" class="stretched-link">Medicina</a></h4>
+              <p>Ajudar os profissionais de saúde a atingirem o seu máximo potencial investigação médica, de modo a possibilitar uma melhoria na qualidade de vida.</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
             <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-              <h4><a href="" class="stretched-link">Sed ut perspici</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <div class="icon"><i class="fas fa-hospital-user icon"></i></div>
+              <h4><a href="" class="stretched-link">Inovador</a></h4>
+              <p>Serviço inovador e diferenciador aos utentes permite progressos na investigação médica e compensa os que contribuem.</p>
             </div>
           </div><!-- End Service Item -->
 
@@ -43,7 +43,7 @@
       </div>
     </section><!-- End Featured Services Section -->
 
-    <!-- ======= About Section ======= -->
+     <!-- ======= About Section ======= 
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
@@ -63,14 +63,14 @@
           <div class="col-lg-7">
             <h3 class="pt-0 pt-lg-5">Neque officiis dolore maiores et exercitationem quae est seda lidera pat claero</h3>
 
-            <!-- Tabs -->
+            < !-- Tabs 
             <ul class="nav nav-pills mb-3">
               <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1">Saepe fuga</a></li>
               <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Voluptates</a></li>
               <li><a class="nav-link" data-bs-toggle="pill" href="#tab3">Corrupti</a></li>
-            </ul><!-- End Tabs -->
+            </ul>< !-- End Tabs 
 
-            <!-- Tab Content -->
+            < !-- Tab Content 
             <div class="tab-content">
 
               <div class="tab-pane fade show active" id="tab1">
@@ -95,7 +95,7 @@
                 </div>
                 <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim quaerat. Vero error error voluptatem eum.</p>
 
-              </div><!-- End Tab 1 Content -->
+              </div>< !-- End Tab 1 Content 
 
               <div class="tab-pane fade show" id="tab2">
 
@@ -119,7 +119,7 @@
                 </div>
                 <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim quaerat. Vero error error voluptatem eum.</p>
 
-              </div><!-- End Tab 2 Content -->
+              </div>< !-- End Tab 2 Content 
 
               <div class="tab-pane fade show" id="tab3">
 
@@ -143,7 +143,7 @@
                 </div>
                 <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim quaerat. Vero error error voluptatem eum.</p>
 
-              </div><!-- End Tab 3 Content -->
+              </div>< !-- End Tab 3 Content 
 
             </div>
 
@@ -152,27 +152,7 @@
         </div>
 
       </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-      <div class="container" data-aos="zoom-out">
-
-        <div class="clients-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Clients Section -->
+    </section>< !-- End About Section -->
 
     <!-- ======= Call To Action Section ======= -->
     <section id="cta" class="cta">
@@ -188,7 +168,7 @@
 
           <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
             <div class="img">
-              <img src="assets/img/cta.jpg" alt="" class="img-fluid">
+              <img src="assets/img/t3/analise.jpg" alt="" class="img-fluid">
             </div>
           </div>
 
@@ -196,6 +176,26 @@
 
       </div>
     </section><!-- End Call To Action Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container" data-aos="zoom-out">
+
+        <div class="clients-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="assets/img/t3/MediDataCareLogo.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/t3/isec.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/t3/MediDataCareLogo.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/t3/isec.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/t3/MediDataCareLogo.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/t3/isec.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/t3/MediDataCareLogo.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/t3/isec.png" class="img-fluid" alt=""></div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
 
     <!-- ======= On Focus Section ======= -->
     <section id="onfocus" class="onfocus">
@@ -433,7 +433,7 @@
       </div>
     </section><!-- End Features Section -->
 
-    <!-- ======= Services Section ======= -->
+    <!-- ======= Services Section ======= 
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">
 
@@ -459,7 +459,7 @@
                 <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis.</p>
               </div>
             </div>
-          </div><!-- End Service Item -->
+          </div>< !-- End Service Item -- >
 
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
             <div class="service-item">
@@ -476,7 +476,7 @@
                 <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
               </div>
             </div>
-          </div><!-- End Service Item -->
+          </div><! -- End Service Item -- >
 
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
             <div class="service-item">
@@ -493,7 +493,7 @@
                 <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
               </div>
             </div>
-          </div><!-- End Service Item -->
+          </div><! -- End Service Item -- >
 
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
             <div class="service-item">
@@ -511,7 +511,7 @@
                 <a href="#" class="stretched-link"></a>
               </div>
             </div>
-          </div><!-- End Service Item -->
+          </div><! -- End Service Item -- >
 
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
             <div class="service-item">
@@ -529,7 +529,7 @@
                 <a href="#" class="stretched-link"></a>
               </div>
             </div>
-          </div><!-- End Service Item -->
+          </div><! -- End Service Item -- >
 
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
             <div class="service-item">
@@ -547,14 +547,14 @@
                 <a href="#" class="stretched-link"></a>
               </div>
             </div>
-          </div><!-- End Service Item -->
+          </div><! -- End Service Item -- > 
 
         </div>
 
       </div>
-    </section><!-- End Services Section -->
+    </section><! -- End Services Section -- >
 
-    <!-- ======= Testimonials Section ======= -->
+    <! -- ======= Testimonials Section ======= -- >
     <section id="testimonials" class="testimonials">
       <div class="container" data-aos="fade-up">
 
@@ -575,7 +575,7 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div><! -- End testimonial item - ->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -591,7 +591,7 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div><! -- End testimonial item -- >
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -607,7 +607,7 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div><! -- End testimonial item -- >
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -623,7 +623,7 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>< !-- End testimonial item -- >
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -639,16 +639,16 @@
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>< !-- End testimonial item -- >
 
           </div>
           <div class="swiper-pagination"></div>
         </div>
 
       </div>
-    </section><!-- End Testimonials Section -->
+    </section> !-- End Testimonials Section -->
 
-    <!-- ======= Pricing Section ======= -->
+    <!-- ======= Pricing Section ======= -- >
     <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
 
@@ -680,7 +680,7 @@
               </div>
 
             </div>
-          </div><!-- End Pricing Item -->
+          </div>< !-- End Pricing Item -- >
 
           <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="400">
             <div class="pricing-item featured">
@@ -705,7 +705,7 @@
               </div>
 
             </div>
-          </div><!-- End Pricing Item -->
+          </div><! -- End Pricing Item -- >
 
           <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="600">
             <div class="pricing-item">
@@ -728,13 +728,13 @@
               </div>
 
             </div>
-          </div><!-- End Pricing Item -->
+          </div><! -- End Pricing Item -- >
 
         </div>
 
       </div>
-    </section><!-- End Pricing Section -->
-
+    </section>< !-- End Pricing Section -->
+  
     <!-- ======= F.A.Q Section ======= -->
     <section id="faq" class="faq">
       <div class="container-fluid" data-aos="fade-up">
@@ -744,10 +744,7 @@
           <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 
             <div class="content px-xl-5">
-              <h3>Frequently Asked <strong>Questions</strong></h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-              </p>
+              <h3><strong>Perguntas </strong>Mais Frequentes</h3>
             </div>
 
             <div class="accordion accordion-flush px-xl-5" id="faqlist">
@@ -756,12 +753,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Non consectetur a erat nam at lectus urna duis?
+                    Qualquer pessoa pode comprar as informações pessoais dos utilizadores?
                   </button>
                 </h3>
                 <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                    Não, apenas Entidades Certificadas é que podem criar Estudos e posteriormente adquirir um conjunto de dados. A validação da Certificação da Entidade é realizada durante o processo de inscrição na plataforma e cada Estudo tem de ser devidamente justificado para que possa ser Aprovado. 
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -827,13 +824,13 @@
 
           </div>
 
-          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/faq.jpg");'>&nbsp;</div>
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/t3/faq.jpg");'>&nbsp;</div>
         </div>
 
       </div>
     </section><!-- End F.A.Q Section -->
 
-    <!-- ======= Portfolio Section ======= -->
+    <!-- ======= Portfolio Section ======= -- >
     <section id="portfolio" class="portfolio" data-aos="fade-up">
 
       <div class="container">
@@ -855,8 +852,8 @@
             <li data-filter=".filter-product">Product</li>
             <li data-filter=".filter-branding">Branding</li>
             <li data-filter=".filter-books">Books</li>
-          </ul><!-- End Portfolio Filters -->
-
+          </ul><!- -  End Portfolio Filters -- >
+ 
           <div class="row g-0 portfolio-container">
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
@@ -866,7 +863,7 @@
                 <a href="assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div><! -- End Portfolio Item -- >
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
               <img src="assets/img/portfolio/product-1.jpg" class="img-fluid" alt="">
@@ -875,7 +872,7 @@
                 <a href="assets/img/portfolio/product-1.jpg" title="Product 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div><! -- End Portfolio Item -- >
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
               <img src="assets/img/portfolio/branding-1.jpg" class="img-fluid" alt="">
@@ -884,7 +881,7 @@
                 <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div><!- - End Portfolio Item -- >
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
               <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="">
@@ -893,7 +890,7 @@
                 <a href="assets/img/portfolio/books-1.jpg" title="Branding 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div><! -- End Portfolio Item -- >
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
               <img src="assets/img/portfolio/app-2.jpg" class="img-fluid" alt="">
@@ -902,7 +899,7 @@
                 <a href="assets/img/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div><! -- End Portfolio Item - ->
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
               <img src="assets/img/portfolio/product-2.jpg" class="img-fluid" alt="">
@@ -911,7 +908,7 @@
                 <a href="assets/img/portfolio/product-2.jpg" title="Product 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div><! -- End Portfolio Item - ->
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
               <img src="assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
@@ -920,7 +917,7 @@
                 <a href="assets/img/portfolio/branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div><! -- End Portfolio Item - ->
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
               <img src="assets/img/portfolio/books-2.jpg" class="img-fluid" alt="">
@@ -929,7 +926,7 @@
                 <a href="assets/img/portfolio/books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div><!- - End Portfolio Item - ->
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
               <img src="assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
@@ -938,7 +935,7 @@
                 <a href="assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div><! -- End Portfolio Item -- >
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
               <img src="assets/img/portfolio/product-3.jpg" class="img-fluid" alt="">
@@ -947,7 +944,7 @@
                 <a href="assets/img/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>< !-- End Portfolio Item -- >
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
               <img src="assets/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
@@ -956,7 +953,7 @@
                 <a href="assets/img/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>< !-- End Portfolio Item -- >
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
               <img src="assets/img/portfolio/books-3.jpg" class="img-fluid" alt="">
@@ -965,16 +962,16 @@
                 <a href="assets/img/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>< !-- End Portfolio Item -- >
 
-          </div><!-- End Portfolio Container -->
+          </div>< !-- End Portfolio Container -- >
 
         </div>
 
       </div>
-    </section><!-- End Portfolio Section -->
+    </section>< !-- End Portfolio Section -->
 
-    <!-- ======= Team Section ======= -->
+    <!-- ======= Team Section ======= -- >
     <section id="team" class="team">
       <div class="container" data-aos="fade-up">
 
@@ -1001,7 +998,7 @@
                 <span>Chief Executive Officer</span>
               </div>
             </div>
-          </div><!-- End Team Member -->
+          </div>< !-- End Team Member -- >
 
           <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="400">
             <div class="team-member">
@@ -1019,7 +1016,7 @@
                 <span>Product Manager</span>
               </div>
             </div>
-          </div><!-- End Team Member -->
+          </div>< !-- End Team Member - ->
 
           <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="600">
             <div class="team-member">
@@ -1037,12 +1034,12 @@
                 <span>CTO</span>
               </div>
             </div>
-          </div><!-- End Team Member -->
+          </div>< !-- End Team Member - ->
 
         </div>
 
       </div>
-    </section><!-- End Team Section -->
+    </section><! -- End Team Section -->
 
     <!-- ======= Recent Blog Posts Section ======= -->
     <section id="recent-blog-posts" class="recent-blog-posts">
@@ -1101,7 +1098,7 @@
 
     </section><!-- End Recent Blog Posts Section -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Contact Section ======= -- >
     <section id="contact" class="contact">
       <div class="container">
 
@@ -1114,7 +1111,7 @@
 
       <div class="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
-      </div><!-- End Google Maps -->
+      </div>< !-- End Google Maps -- >
 
       <div class="container">
 
@@ -1132,7 +1129,7 @@
                   <h4>Location:</h4>
                   <p>A108 Adam Street, New York, NY 535022</p>
                 </div>
-              </div><!-- End Info Item -->
+              </div>< !-- End Info Item -- >
 
               <div class="info-item d-flex">
                 <i class="bi bi-envelope flex-shrink-0"></i>
@@ -1140,7 +1137,7 @@
                   <h4>Email:</h4>
                   <p>info@example.com</p>
                 </div>
-              </div><!-- End Info Item -->
+              </div>< !-- End Info Item - ->
 
               <div class="info-item d-flex">
                 <i class="bi bi-phone flex-shrink-0"></i>
@@ -1148,7 +1145,7 @@
                   <h4>Call:</h4>
                   <p>+1 5589 55488 55</p>
                 </div>
-              </div><!-- End Info Item -->
+              </div>< !-- End Info Item  -- >
 
             </div>
 
@@ -1177,10 +1174,10 @@
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
-          </div><!-- End Contact Form -->
+          </div>< !-- End Contact Form -- >
 
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section>< !-- End Contact Section -->
 @stop

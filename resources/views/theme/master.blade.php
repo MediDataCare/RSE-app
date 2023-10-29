@@ -5,13 +5,17 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>HeroBiz Bootstrap Template - Home 1</title>
+  <title>MediDataCare - O Futuro da Medicina!</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
+  <link href="{{asset('assets/img/t3/icon.ico')}}" rel="icon">
   <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,16 +55,16 @@
 
   <!-- ======= Header ======= -->
     @include('theme.includes.header')
-  <!-- End Header -->
+  <!-- End Header --> 
 
   <section id="hero-animated" class="hero-animated d-flex align-items-center">
     <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
-      <img src="{{asset('assets/img/hero-carousel/hero-carousel-3.svg')}}" class="img-fluid animated">
-      <h2>Welcome to <span>HeroBiz</span></h2>
-      <p>Et voluptate esse accusantium accusamus natus reiciendis quidem voluptates similique aut.</p>
+      <img src="{{asset('assets/img/t3/coracao_svg.svg')}}" class="img-fluid animated">
+      <h2>Bem-Vindo à MediData<span>Care<i class="fas fa-plus-circle"></i></span></h2>
+      <p>Partilhe os seus dados clínicos em troca de compensação monetária e ajude a contribuir para o futuro da Medicina</p>
       <div class="d-flex">
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
-        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+        <a href="#about" class="btn-get-started scrollto">Saber mais</a>
+        <!--<a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>-->
       </div>
     </div>
   </section>
