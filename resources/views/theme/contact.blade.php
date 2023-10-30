@@ -5,8 +5,8 @@
       <div class="container">
 
         <div class="section-header">
-          <h2>Contate-nos</h2>
-          <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores adipisci aliquam.</p>
+          <h2>Contactos</h2>
+          <!-- <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores adipisci aliquam.</p> -->
         </div>
 
       </div>
@@ -23,7 +23,7 @@
 
             <div class="info">
               <h3>Entre em contato</h3>
-              <p>Et id eius voluptates atque nihil voluptatem enim in tempore minima sit ad mollitia commodi minus.</p>
+              <p>Caso tenha alguma dúvida ou questão, por favor entre em contacto connosco!</p>
 
               <div class="info-item d-flex">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>

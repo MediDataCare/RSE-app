@@ -16,6 +16,30 @@
 # CSS Alterado/Adicionado no Tema
 --------------------------------------------------------------
 Alterado Por Gonçalo Santos, Se gostarem Adicionar Classe no CSS e Retirar da Blade  */
+.profile {
+  border-color: black; /* Add a thin border */
+  border-radius: 1rem; /* Remove border radius for sharper corners */
+}
+
+.profile:hover {
+  border-color: var(--color-links); /* Change the border color to blue on hover */
+}
+
+.profile_route {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color:  var(--color-links);
+  color: #fff;
+  border-color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile_route:hover{
+  color: aliceblue;
+}
 
 .fa-plus-circle {
   color: #0ea2bd;
