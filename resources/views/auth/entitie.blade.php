@@ -72,7 +72,7 @@
                                     <div class="col-md-6">
                                         <input id="cae" type="number"
                                                class="form-control @error('cae') is-invalid @enderror" name="cae"
-                                               value="{{ old('cae') }}" required>
+                                               value="{{ old('cae') }}" required autocomplete="cae" autofocus>
 
                                         @error('cae')
                                         <span class="invalid-feedback" role="alert">
