@@ -36,18 +36,14 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul>
-                            <?php
-                                $userData = json_decode(Auth::user()->data);
-                                $role = $userData->role;
-                            ?>
-                            @if($role == 'entitie')
+                            @if(Auth::user()->data->role == 'entitie')
                                 <li><a href="/entitie/profile">Perfil</a></li>
-                            @elseif($role == 'user')
+                            @elseif(Auth::user()->data->role == 'user')
                                 <li><a href="/user/profile">Perfil</a></li>
                             @endif
-                            @if($role == 'entitie')
+                            @if(Auth::user()->data->role == 'entitie')
                                 <li><a href="/entitie/form">Criar estudo</a></li>
-                            @elseif($role == 'user')
+                            @elseif(Auth::user()->data->role == 'user')
                                 <li><a href="/user/form">Registar dados</a></li>
                             @endif
                             <li><a href="{{ route('logout') }}"

@@ -76,10 +76,9 @@ class RegisterController extends Controller
                 'sex' => data_get($data, 'sex'),
                 'age' => (int)data_get($data, 'age'),
             ],
-            'data' => json_encode([
-                'role' => data_get($data, 'role'),
-            ])
-
+            'data' => [
+                'role' => data_get($data, 'role')
+            ]
         ]);
     }
 }
