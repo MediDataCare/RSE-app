@@ -9,10 +9,10 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ __('Utilizador') }}</div>
+                        <div class="card-header">{{ __('Entidade') }}</div>
 
                         <div class="card-body">
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('register-entitie') }}">
                                 @csrf
 
                                 <div class="row mb-3">
@@ -50,42 +50,37 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="age"
-                                           class="col-md-4 col-form-label text-md-end">{{ __('Idade') }}</label>
+                                    <label for="file"
+                                           class="col-md-4 col-form-label text-md-end">{{ __('Ficheiro') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="age" type="number"
-                                               class="form-control @error('age') is-invalid @enderror" name="age"
-                                               value="{{ old('age') }}" required>
-
-                                        @error('age')
+                                        <input id="file" type="text"
+                                               class="form-control @error('file') is-invalid @enderror" name="file"
+                                               value="{{ old('file') }}" required autocomplete="file" autofocus>
+                                        @error('file')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="row mb-3">
-                                    <label for="sex"
-                                           class="col-md-4 col-form-label text-md-end">{{ __('Sexo') }}</label>
+                                    <label for="cae"
+                                           class="col-md-4 col-form-label text-md-end">{{ __('Cae') }}</label>
 
                                     <div class="col-md-6">
-                                        <select id="sex" type="number"
-                                                class="form-control @error('sex') is-invalid @enderror"
-                                                name="sex" required>
-                                            <option value="">Sexo</option>
-                                            <option value="male">Masculino</option>
-                                            <option value="female">Feminino</option>
-                                            <option value="other">Outro</option>
-                                        </select>
-                                        @error('sex')
+                                        <input id="cae" type="number"
+                                               class="form-control @error('cae') is-invalid @enderror" name="cae"
+                                               value="{{ old('cae') }}" required>
+
+                                        @error('cae')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                         @enderror
                                     </div>
                                 </div>
-
 
                                 <div class="row mb-3">
                                     <label for="password"
@@ -115,7 +110,7 @@
                                 </div>
 
                                 <input id="role" type="hidden" class="form-control" name="role" value="entitie">
-                                
+
                                 <div class="row mb-0">
                                     <div class="col-md-6 offset-md-4 btn-form">
                                         <button type="submit">

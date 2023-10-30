@@ -3,14 +3,14 @@
         <div class="container">
             <div class="section-header">
                 <h2>Criar estudo</h2>
-                <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores adipisci aliquam.</p>
+                <p>Aqui pode criar os seus estudos para posteriormente extrair os dados.</p>
             </div>
-            <x-form class="mt-5 pb-5" method="POST">
+            <x-form class="pb-5" method="POST">
                 <x-form-input action="create"
                               name="name"
                               :label="'Title'"
-                              :placeholder="'Title'"
-                              class="'form-control mb-2'"
+                              :placeholder="'Titulo'"
+                              class="form-control mb-3"
                               wire:model.lazy="inputs.title"
                 />
 
@@ -19,7 +19,7 @@
                     name="description"
                     :label="'Descrição'"
                     :placeholder="'Descrição'"
-                    class="'form-control mb-2'"
+                    class="form-control mb-3"
                     wire:model.lazy="inputs.description"
                 />
 
@@ -28,7 +28,7 @@
                               type="number"
                               :label="'Duração (dias)'"
                               :placeholder="'Duração (dias)'"
-                              class="'form-control mb-2'"
+                              class="form-control mb-2"
                               wire:model.lazy="inputs.duration"
                 />
 
@@ -90,8 +90,8 @@
                 @endforeach
                 </tbody>
             </table>
-            <div class="text-center">
-                <button class="btn btn-primary" wire:click="storeStudy">
+            <div class="text-center btn-form mt-5">
+                <button wire:click="storeStudy">
                     <span>Guardar</span>
                 </button>
             </div>

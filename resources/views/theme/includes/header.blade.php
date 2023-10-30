@@ -16,6 +16,12 @@
                         <li><a href="/entitie/form">Entitie</a></li>
                     </ul>
                 </li>
+                <li class="dropdown"><a href="#"><span>Registar</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                        <li><a href="/register">Utilizador</a></li>
+                        <li><a href="/resgiter-entitie">Entidade</a></li>
+                    </ul>
+                </li>
                 <li><a class="nav-link scrollto" href="/contact">Contactos</a></li>
                 <a class="btn-getstarted scrollto w-md-100" href="/login">Login <i class="fas fa-user"></i></a>
             </ul>
