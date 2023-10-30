@@ -30,11 +30,13 @@
             </div>
 
             <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="mailto:secretariado@isec.pt" class="twitter"><i class="fas fa-at"></i></a>
+                <a href="tel:+351239790200" class="twitter"><i class="fas fa-phone"></i></a>
+                <a href="/contact" class="twitter"><i class="far fa-question-circle"></i></a>
+                <!-- <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                 <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> -->
             </div>
 
         </div>

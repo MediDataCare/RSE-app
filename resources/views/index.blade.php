@@ -6,7 +6,7 @@
       <h2>Bem-Vindo à MediData<span>Care<i class="fas fa-plus-circle"></i></span></h2>
       <p>Partilhe os seus dados clínicos em troca de compensação monetária e ajude a contribuir para o futuro da Medicina</p>
       <div class="d-flex">
-        <a href="#about" class="btn-get-started scrollto">Saber mais</a>
+        <a href="/contact" class="btn-get-started scrollto">Saber mais</a>
         <!--<a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>-->
       </div>
     </div>
@@ -21,33 +21,33 @@
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
             <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-activity icon"></i></div>
-              <h4><a href="" class="stretched-link">Medicina</a></h4>
-              <p>Ajudar os profissionais de saúde a atingirem o seu máximo potencial investigação médica, de modo a possibilitar uma melhoria na qualidade de vida.</p>
+              <div class="icon"><i class="fas fa-heartbeat icon"></i></div>
+              <h4><a class="stretched-link">Medicina</a></h4>
+              <p>Ajudar os profissionais de saúde a atingirem o seu máximo potencial na investigação médica, de modo a possibilitar uma melhoria na qualidade de vida.</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
             <div class="service-item position-relative">
               <div class="icon"><i class="fas fa-hospital-user icon"></i></div>
-              <h4><a href="" class="stretched-link">Inovador</a></h4>
+              <h4><a class="stretched-link">Inovador</a></h4>
               <p>Serviço inovador e diferenciador aos utentes permite progressos na investigação médica e compensa os que contribuem.</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
             <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-              <h4><a href="" class="stretched-link">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <div class="icon"><i class="fas fa-coins icon"></i></div>
+              <h4><a class="stretched-link">Recompensa</a></h4>
+              <p>Os utilizadores recebem recompensas monetárias cada vez que os seus dados são selecionados.</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
             <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-              <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <div class="icon"><i class="fas fa-user-lock icon"></i></div>
+              <h4><a class="stretched-link">Confidencialidade</a></h4>
+              <p>Quando adquiridos pelas Entidades, os dados são entregues de forma anónima. Os dados estão guardados de forma segura pelo Software.</p>
             </div>
           </div><!-- End Service Item -->
 
@@ -174,9 +174,9 @@
         <div class="row g-5">
 
           <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
-            <h3>Alias sunt quas <em>Cupiditate</em> oluptas hic minima</h3>
-            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <a class="cta-btn align-self-start" href="#">Call To Action</a>
+            <h3>Procura <em>Dados</em> e <em>Informações</em> <em>Clínicas</em> para os seus Estudos?</h3>
+            <p> Obtenha de forma Segura e Transparante os Dados e Informações Clínicas dos utilizadores do Software MediDataCare. Registe-se já!</p>
+            <a class="cta-btn align-self-start" href="#">Registar</a>
           </div>
 
           <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
@@ -210,7 +210,7 @@
       </div>
     </section><!-- End Clients Section -->
 
-    <!-- ======= On Focus Section ======= -->
+    <!-- ======= On Focus Section ======= -- >
     <section id="onfocus" class="onfocus">
       <div class="container-fluid p-0" data-aos="fade-up">
 
@@ -236,9 +236,9 @@
         </div>
 
       </div>
-    </section><!-- End On Focus Section -->
+    </section><!- - End On Focus Section -- >
 
-    <!-- ======= Features Section ======= -->
+    <!- - ======= Features Section ======= -- > 
     <section id="features" class="features">
       <div class="container" data-aos="fade-up">
 
@@ -249,42 +249,42 @@
               <i class="bi bi-binoculars color-cyan"></i>
               <h4>Modinest</h4>
             </a>
-          </li><!-- End Tab 1 Nav -->
+          </li><! -- End Tab 1 Nav -- >
 
           <li class="nav-item col-6 col-md-4 col-lg-2">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
               <i class="bi bi-box-seam color-indigo"></i>
               <h4>Undaesenti</h4>
             </a>
-          </li><!-- End Tab 2 Nav -->
+          </li>< !-- End Tab 2 Nav - ->
 
           <li class="nav-item col-6 col-md-4 col-lg-2">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
               <i class="bi bi-brightness-high color-teal"></i>
               <h4>Pariatur</h4>
             </a>
-          </li><!-- End Tab 3 Nav -->
+          </li>< !-- End Tab 3 Nav - ->
 
           <li class="nav-item col-6 col-md-4 col-lg-2">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
               <i class="bi bi-command color-red"></i>
               <h4>Nostrum</h4>
             </a>
-          </li><!-- End Tab 4 Nav -->
+          </li><!- - End Tab 4 Nav - ->
 
           <li class="nav-item col-6 col-md-4 col-lg-2">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-5">
               <i class="bi bi-easel color-blue"></i>
               <h4>Adipiscing</h4>
             </a>
-          </li><!-- End Tab 5 Nav -->
+          </li><!- - End Tab 5 Nav - >
 
           <li class="nav-item col-6 col-md-4 col-lg-2">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-6">
               <i class="bi bi-map color-orange"></i>
               <h4>Reprehit</h4>
             </a>
-          </li><!-- End Tab 6 Nav -->
+          </li><! -- End Tab 6 Nav  - ->
 
         </ul>
 
@@ -313,7 +313,7 @@
                 <img src="assets/img/features-1.svg" alt="" class="img-fluid">
               </div>
             </div>
-          </div><!-- End Tab Content 1 -->
+          </div><!- - End Tab Content 1 -- >
 
           <div class="tab-pane" id="tab-2">
             <div class="row gy-4">
@@ -339,7 +339,7 @@
                 <img src="assets/img/features-2.svg" alt="" class="img-fluid">
               </div>
             </div>
-          </div><!-- End Tab Content 2 -->
+          </div><! -- End Tab Content 2 -- >
 
           <div class="tab-pane" id="tab-3">
             <div class="row gy-4">
@@ -364,7 +364,7 @@
                 <img src="assets/img/features-3.svg" alt="" class="img-fluid">
               </div>
             </div>
-          </div><!-- End Tab Content 3 -->
+          </div><!- - End Tab Content 3  - ->
 
           <div class="tab-pane" id="tab-4">
             <div class="row gy-4">
@@ -389,7 +389,7 @@
                 <img src="assets/img/features-4.svg" alt="" class="img-fluid">
               </div>
             </div>
-          </div><!-- End Tab Content 4 -->
+          </div>< !-- End Tab Content 4 - ->
 
           <div class="tab-pane" id="tab-5">
             <div class="row gy-4">
@@ -414,7 +414,7 @@
                 <img src="assets/img/features-5.svg" alt="" class="img-fluid">
               </div>
             </div>
-          </div><!-- End Tab Content 5 -->
+          </div><!- - End Tab Content 5 -- >
 
           <div class="tab-pane" id="tab-6">
             <div class="row gy-4">
@@ -439,14 +439,14 @@
                 <img src="assets/img/features-6.svg" alt="" class="img-fluid">
               </div>
             </div>
-          </div><!-- End Tab Content 6 -->
+          </div><! -- End Tab Content 6 -- >
 
         </div>
 
       </div>
-    </section><!-- End Features Section -->
+    </section><! -- End Features Section -- >
 
-    <!-- ======= Services Section ======= 
+    <! -- ======= Services Section ======= 
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">
 
@@ -780,12 +780,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?
+                    Quanto ganham os utilizadores com a partilha dos dados?
                   </button>
                 </h3>
                 <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                    A recompensa monetária é calculada com base num algoritmo para cada Estudo em que os dados são selecionados.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -794,12 +794,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?
+                    Os utilizadores sabem que Entidade vai comprar os dados?
                   </button>
                 </h3>
                 <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                    Sim, quando os dados são selecionados na pesquisa de um Estudo, o utilizador tem acesso às informações do Estudo e da respetiva Entidade.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -808,13 +808,13 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?
+                    É possível remover os dados, mesmo que já utilizados em Estudos?
                   </button>
                 </h3>
                 <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                    Sim, a qualquer momento é possível retirar os dados da Plataforma.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -823,12 +823,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Tempus quam pellentesque nec nam aliquam sem et tortor consequat?
+                    Em que formato é que os utilizadores recebem a compensação monetária?
                   </button>
                 </h3>
                 <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+                    ____
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -1054,7 +1054,7 @@
       </div>
     </section><! -- End Team Section -->
 
-    <!-- ======= Recent Blog Posts Section ======= -->
+    <!-- ======= Recent Blog Posts Section ======= - ->
     <section id="recent-blog-posts" class="recent-blog-posts">
 
       <div class="container" data-aos="fade-up">
@@ -1109,9 +1109,9 @@
 
       </div>
 
-    </section><!-- End Recent Blog Posts Section -->
+    </section><!- - End Recent Blog Posts Section  - ->
 
-    <!-- ======= Contact Section ======= -- >
+    <! -- ======= Contact Section ======= -- >
     <section id="contact" class="contact">
       <div class="container">
 
