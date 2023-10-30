@@ -1,8 +1,11 @@
 @extends('theme.master')
-
 @section('content')
     <div class="container-fluid mt-5">
         <div class="container py-5">
+            <div class="section-header">
+                <h2>Login</h2>
+                <p>Aqui pode criar os seus estudos para posteriormente extrair os dados.</p>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
@@ -14,7 +17,7 @@
 
                                 <div class="row mb-3">
                                     <label for="email"
-                                           class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                           class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="email" type="email"
@@ -54,21 +57,21 @@
                                                    id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                             <label class="form-check-label" for="remember">
-                                                {{ __('Remember Me') }}
+                                                {{ __('Lembrar-me') }}
                                             </label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
+                                    <div class="col-md-8 offset-md-4 btn-form">
+                                        <button type="submit">
                                             {{ __('Login') }}
                                         </button>
 
                                         @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Your Password?') }}
+                                                {{ __('Esqueceu-se da password?') }}
                                             </a>
                                         @endif
                                     </div>

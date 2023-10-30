@@ -3,6 +3,7 @@
 use App\Http\Controllers\BackOfficeController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('homepage');
 
 Route::get('/contact', function () {
     return view('theme.contact');
@@ -33,6 +34,12 @@ Route::get('/entitie/profile', [FrontEndController::class, 'entitiesProfile']);
 Route::get('/user/form', [FrontEndController::class, 'usersForm']);
 Route::get('/user/profile', [FrontEndController::class, 'userProfile']);
 
+
+Route::get('/resgiter-entitie', function () {
+    return view('auth.entitie');
+});
+
+Route::post('/', [FrontEndController::class, 'entitie_store'])->name('register-entitie');
 
 //Private routes
 
