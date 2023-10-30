@@ -11,7 +11,7 @@
         <nav id="navbar" class="navbar">
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
             <ul class="">
-                <li><a class="nav-link scrollto" href="#">Home</a></li>
+                <li><a class="nav-link scrollto" href="/">Home</a></li>
                 @guest
                     @if (Route::has('login'))
                         <li class="dropdown"><a href="#"><span>Registar</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -36,15 +36,17 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul>
-                            @if(Auth::user()->data->role == 'entitie')
-                                <li><a href="/entitie/profile">Perfil</a></li>
-                            @elseif(Auth::user()->data->role == 'user')
-                                <li><a href="/user/profile">Perfil</a></li>
-                            @endif
-                            @if(Auth::user()->data->role == 'entitie')
-                                <li><a href="/entitie/form">Criar estudo</a></li>
-                            @elseif(Auth::user()->data->role == 'user')
-                                <li><a href="/user/form">Registar dados</a></li>
+                            @if(Auth::user()->data && Auth::user()->data->role)
+                                @if(Auth::user()->data->role == 'entitie')
+                                    <li><a href="/entitie/profile">Perfil</a></li>
+                                @elseif(Auth::user()->data->role == 'user')
+                                    <li><a href="/user/profile">Perfil</a></li>
+                                @endif
+                                @if(Auth::user()->data->role == 'entitie')
+                                    <li><a href="/entitie/form">Criar estudo</a></li>
+                                @elseif(Auth::user()->data->role == 'user')
+                                    <li><a href="/user/form">Registar dados</a></li>
+                                @endif
                             @endif
                             <li><a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

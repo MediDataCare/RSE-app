@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 mt-4">
-                    <a href="" class=" profile_route"><i class="fas fa-address-card"></i> Registar Dados</a>
+                    <a href="/user/form" class=" profile_route"><i class="fas fa-address-card"></i> Registar Dados</a>
                 </div>
             </div>
         </div>
