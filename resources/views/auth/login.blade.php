@@ -64,13 +64,14 @@
                                 </div>
 
                                 <div class="row mb-0">
-                                    <div class="col-md-8 offset-md-4 btn-form">
-                                        <button type="submit">
-                                            {{ __('Login') }}
-                                        </button>
-
+                                    <div class="col-md-8 offset-md-4">
+                                        <div class="btn-form mb-2">
+                                            <button type="submit">
+                                                {{ __('Login') }}
+                                            </button>
+                                        </div>
                                         @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            <a href="{{ route('password.request') }}">
                                                 {{ __('Esqueceu-se da password?') }}
                                             </a>
                                         @endif

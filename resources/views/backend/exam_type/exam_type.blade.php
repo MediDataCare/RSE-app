@@ -1,9 +1,11 @@
-@extends('layouts.app')
+@extends('theme.master')
 @section('content')
 
-    <div>
-        <livewire:exam-type-form
-            {{--            :examType = "$examType"--}}
-        />
+    <div class="container-fluid">
+        <div class="container py-5">
+            <livewire:exam-type-form
+                {{--            :examType = "$examType"--}}
+            />
+        </div>
     </div>
 @endsection

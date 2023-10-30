@@ -176,7 +176,7 @@
           <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
             <h3>Procura <em>Dados</em> e <em>Informações</em> <em>Clínicas</em> para os seus Estudos?</h3>
             <p> Obtenha de forma Segura e Transparante os Dados e Informações Clínicas dos utilizadores do Software MediDataCare. Registe-se já!</p>
-            <a class="cta-btn align-self-start" href="#">Registar</a>
+            <a class="cta-btn align-self-start" href="/resgiter-entitie">Registar</a>
           </div>
 
           <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">

@@ -1,10 +1,14 @@
 @extends('theme.master')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="container py-5">
-            <livewire:user-form
-            />
+    @if (Auth::check() && Auth::user()->data->role == 'user')
+        <div class="container-fluid">
+            <div class="container py-5">
+                <livewire:user-form
+                />
+            </div>
         </div>
-    </div>
+    @else
+        <script>window.location = "/";</script>
+    @endif
 @endsection

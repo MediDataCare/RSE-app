@@ -9,6 +9,38 @@
         </a>
         <!-- ALterado para Original <nav id="navbar" class="navbar w-md-100"> -->
         <nav id="navbar" class="navbar">
+            @if ((request()->is('private')) || (request()->is('private/*')))
+                <i class="bi bi-list mobile-nav-toggle d-none"></i>
+                <ul class="">
+                    <li><a class="nav-link scrollto" href="/private">Home</a></li>
+                    <li><a class="nav-link scrollto" href="{{route('exam-type-index')}}">Lista de formulários</a></li>
+                    <li><a class="nav-link scrollto" href="{{route('exam-type-create')}}">Criar formulário</a></li>
+                    <!-- <a class="btn-getstarted scrollto w-md-100" href="/login">Login <i class="fas fa-user"></i></a> -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="btn-getstarted scrollto" href="/login">Login <i class="fas fa-user"></i></a>
+                            </li>
+                        @endif
+                        @else
+                        <li class="dropdown">
+                            <a id="navbarDropdown" class="btn-getstarted scrollto dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul>
+                                <li><a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a></li>
+                            </ul>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    @endguest
+                </ul>
+            @else
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
             <ul class="">
                 <li><a class="nav-link scrollto" href="/">Home</a></li>
@@ -60,6 +92,7 @@
                     </li>
                 @endguest
             </ul>
+            @endif
         </nav>
 
     </div>

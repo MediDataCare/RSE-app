@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class FrontEndController extends Controller
 {
@@ -34,7 +35,7 @@ class FrontEndController extends Controller
         //self::validator($data);
         //Passa a role no data. Se a role for igual a entitie então o estado é peding. Se for user o estado é accepted.
         //E guarda essa role no "data" => ['role' => data['role']
-        User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -47,6 +48,7 @@ class FrontEndController extends Controller
             ]
 
         ]);
+        Auth::login($user);
         return redirect()->route('homepage');
     }
 }
