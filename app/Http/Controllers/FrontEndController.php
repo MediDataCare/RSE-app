@@ -40,9 +40,11 @@ class FrontEndController extends Controller
             'password' => Hash::make($data['password']),
             'parameters' => [
                 'file' => data_get($data, 'file'),
-                'cae' => data_get($data, (int)'cae'),
+                'cae' => (int)data_get($data, 'cae'),
             ],
-            'data' => data_get($data, 'role')
+            'data' => [
+                'role' => data_get($data, 'role')
+            ]
 
         ]);
         return redirect()->route('homepage');

@@ -11,21 +11,56 @@
         <nav id="navbar" class="navbar">
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
             <ul class="">
-                <li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                    <ul>
-                        <li><a href="/user/form">Utilizador</a></li>
-                        <li><a href="/entitie/form">Entidade</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown"><a href="#"><span>Registar</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                    <ul>
-                        <li><a href="/register">Utilizador</a></li>
-                        <li><a href="/resgiter-entitie">Entidade</a></li>
-                    </ul>
-                </li>
+                <li><a class="nav-link scrollto" href="#">Home</a></li>
+                @guest
+                    @if (Route::has('login'))
+                        <li class="dropdown"><a href="#"><span>Registar</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                            <ul>
+                                <li><a href="/register">Utilizador</a></li>
+                                <li><a href="/resgiter-entitie">Entidade</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                @endguest
                 <li><a class="nav-link scrollto" href="/contact">Contactos</a></li>
                 <!-- <a class="btn-getstarted scrollto w-md-100" href="/login">Login <i class="fas fa-user"></i></a> -->
-                <a class="btn-getstarted scrollto" href="/login">Login <i class="fas fa-user"></i></a>
+                @guest
+                    @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="btn-getstarted scrollto" href="/login">Login <i class="fas fa-user"></i></a>
+                        </li>
+                    @endif
+                    @else
+                    <li class="dropdown">
+                        <a id="navbarDropdown" class="btn-getstarted scrollto dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul>
+                            <?php
+                                $userData = json_decode(Auth::user()->data);
+                                $role = $userData->role;
+                            ?>
+                            @if($role == 'entitie')
+                                <li><a href="/entitie/profile">Perfil</a></li>
+                            @elseif($role == 'user')
+                                <li><a href="/user/profile">Perfil</a></li>
+                            @endif
+                            @if($role == 'entitie')
+                                <li><a href="/entitie/form">Criar estudo</a></li>
+                            @elseif($role == 'user')
+                                <li><a href="/user/form">Registar dados</a></li>
+                            @endif
+                            <li><a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                 {{ __('Logout') }}
+                             </a></li>
+                        </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                @endguest
             </ul>
         </nav>
 

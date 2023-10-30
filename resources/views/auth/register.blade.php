@@ -56,7 +56,7 @@
                                     <div class="col-md-6">
                                         <input id="age" type="number"
                                                class="form-control @error('age') is-invalid @enderror" name="age"
-                                               value="{{ old('age') }}" required>
+                                               value="{{ old('age') }}" required autocomplete="age" autofocus>
 
                                         @error('age')
                                         <span class="invalid-feedback" role="alert">
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
 
-                                <input id="role" type="hidden" class="form-control" name="role" value="entitie">
+                                <input id="role" type="hidden" class="form-control" name="role" value="user">
                                 
                                 <div class="row mb-0">
                                     <div class="col-md-6 offset-md-4 btn-form">
