@@ -17,11 +17,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 mt-4">
-                        <a href="/user/form" class=" profile_route"><i class="fas fa-address-card"></i> Registar Dados</a>
-                    </div>
-                </div>
             </div>
             <div class="container mt-5 mb-5">
                 @if(!empty(\Illuminate\Support\Facades\Auth::user()))

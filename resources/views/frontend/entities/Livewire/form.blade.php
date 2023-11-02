@@ -12,6 +12,7 @@
                               :placeholder="'Titulo'"
                               class="form-control mb-3"
                               wire:model.lazy="inputs.title"
+                              required
                 />
 
                 <x-form-textarea
@@ -24,12 +25,12 @@
                 />
 
                 <x-form-input action="create"
-                              name="duration"
-                              type="number"
-                              :label="'Duração (dias)'"
-                              :placeholder="'Duração (dias)'"
-                              class="form-control mb-2"
-                              wire:model.lazy="inputs.duration"
+                      name="duration"
+                      type="number"
+                      :label="'Duração (dias)'"
+                      :placeholder="'Duração (dias)'"
+                      class="form-control mb-2"
+                      wire:model.lazy="inputs.duration"
                 />
 
             </x-form>

@@ -82,8 +82,9 @@ class EntitiesForm  extends Component
     }
 
     public function setFilters(){
-        if(!empty($exam = data_get($this->filters, 'exam_type_id'))){
-            $this->examsType = $this->examsType->find($exam);
+        if(!empty($examType = data_get($this->filters, 'exam_type_id'))){
+            $this->examsType = $this->examsType->find($examType);
+            $this->allExams = $this->allExams->where('exams_types_id', $examType);
         }
         if(!empty($age = data_get($this->filters, 'age'))){
             if($age == 'young'){

@@ -6,7 +6,8 @@
         <div class="container">
             <div class="section-header">
                 <h2>Registo de dados</h2>
-                <p>Aqui pode registar os seus dados médicos para posteriormente receber recompensas monetárias pela venda dos mesmos.</p>
+                <p>Aqui pode registar os seus dados médicos para posteriormente receber recompensas monetárias pela
+                    venda dos mesmos.</p>
             </div>
             <div class="mb-3">
                 <x-form-select name="selectExamType"
@@ -16,8 +17,9 @@
                                wire:model="selectExamType"
                 />
             </div>
-
             @if($showForm)
+                <h4>Descrição</h4>
+                <p class="mb-5">{{data_get($examsType, 'description', 'Sem informação')}}</p>
                 @foreach(data_get($examsType, 'parameters') ?? [] as $key => $value)
                     @if(data_get($value, 'type') === 'text')
                         <div class="mb-3">
@@ -44,6 +46,7 @@
                             <x-form-input action="create"
                                           name="{{Str::slug(data_get($value, 'title'))}}"
                                           type="number"
+                                          step="0.01"
                                           :label="data_get($value, 'title')"
                                           :placeholder="data_get($value, 'title')"
                                           class="form-control mb-2"

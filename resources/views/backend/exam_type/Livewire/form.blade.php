@@ -43,7 +43,7 @@
                                        name="inputs.{{ $key }}.type"
                                        :label="'Tipo de dados'"
                                        :placeholder="'Tipo de dados'"
-                                       :options="['select' => 'Várias opções', 'number' => 'número', 'text' => 'Texto']"
+                                       :options="['select' => 'Várias opções', 'number' => 'Número', 'text' => 'Texto']"
                                        icon="chevron-down"
                                        wire:model="inputs.{{ $key }}.type"
                         />
