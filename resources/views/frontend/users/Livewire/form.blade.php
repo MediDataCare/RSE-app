@@ -10,48 +10,76 @@
                     venda dos mesmos.</p>
             </div>
             <div class="mb-3">
-                <x-form-select name="selectExamType"
-                               :placeholder="'Tipo de dados'"
-                               :options="$examsTypeOptions"
-                               icon="chevron-down"
-                               wire:model="selectExamType"
-                />
+                {{--                <x-form-select name="selectExamType"--}}
+                {{--                               :placeholder="'Tipo de dados'"--}}
+                {{--                               :options="$examsTypeOptions"--}}
+                {{--                               icon="chevron-down"--}}
+                {{--                               wire:model="selectExamType"--}}
+                {{--                />--}}
+                <select class="js-example-basic-multiple w-100" name="exams[]" multiple="multiple"
+                        wire:model="selectExamType">
+                    @foreach($examsTypeOptions as $key => $exam)
+                        <optgroup label="$key">
+                            @foreach($exam as $id => $value)
+                                <option value="{{$id}}">{{$value}}</option>
+                            @endforeach
+                        </optgroup>
+                    @endforeach
+                </select>
             </div>
+            @dump($inputs)
             @if($showForm)
                 <h4>Descrição</h4>
                 <p class="mb-5">{{data_get($examsType, 'description', 'Sem informação')}}</p>
-                @foreach(data_get($examsType, 'parameters') ?? [] as $key => $value)
+                @foreach($examsType ?? [] as $examType)
+                    @php
+                        $value = data_get($examType, 'parameters');
+                    @endphp
                     @if(data_get($value, 'type') === 'text')
                         <div class="mb-3">
                             <x-form-input action="create"
-                                          name="{{Str::slug(data_get($value, 'title'))}}"
-                                          :label="data_get($value, 'title')"
-                                          :placeholder="data_get($value, 'title')"
+                                          name="{{Str::slug(data_get($examType, 'title'))}}"
+                                          :label="data_get($examType, 'title')"
+                                          :placeholder="data_get($examType, 'title')"
                                           class="form-control mb-2"
-                                          wire:model.lazy="inputs.{{ $key }}.{{Str::slug(data_get($value, 'title'))}}"
+                                          wire:model.lazy="inputs.{{ $key }}.{{Str::slug(data_get($examType, 'title'))}}"
                             />
                         </div>
                     @elseif(data_get($value, 'type') === 'select')
                         <div class="mb-3">
-                            <x-form-select name="{{Str::slug(data_get($value, 'title'))}}"
-                                           :placeholder="data_get($value, 'title')"
-                                           :label="data_get($value, 'title')"
+                            <x-form-select name="{{Str::slug(data_get($examType, 'title'))}}"
+                                           :placeholder="data_get($examType, 'title')"
+                                           :label="data_get($examType, 'title')"
                                            :options="data_get($value, 'options', [])"
                                            icon="chevron-down"
-                                           wire:model.lazy="inputs.{{ $key }}.{{Str::slug(data_get($value, 'title'))}}"
+                                           wire:model.lazy="inputs.{{ $key }}.{{Str::slug(data_get($examType, 'title'))}}"
                             />
                         </div>
                     @elseif(data_get($value, 'type') === 'number')
                         <div class="mb-3">
-                            <x-form-input action="create"
-                                          name="{{Str::slug(data_get($value, 'title'))}}"
-                                          type="number"
-                                          step="0.01"
-                                          :label="data_get($value, 'title')"
-                                          :placeholder="data_get($value, 'title')"
-                                          class="form-control mb-2"
-                                          wire:model.lazy="inputs.{{ $key }}.{{Str::slug(data_get($value, 'title'))}}"
-                            />
+                            <div class="row">
+                                <div class="col-11">
+                                    <x-form-input action="create"
+                                                  name="{{Str::slug(data_get($examType, 'title'))}}"
+                                                  type="number"
+                                                  step="0.01"
+                                                  :label="data_get($examType, 'title')"
+                                                  :placeholder="data_get($examType, 'title')"
+                                                  class="form-control mb-2"
+                                                  wire:model.lazy="inputs.{{ $key }}.{{Str::slug(data_get($examType, 'title'))}}"
+                                    />
+                                </div>
+                                <div class="col-1">
+                                    <x-form-input name="unit"
+                                                  action="show"
+                                                  :label="'Unidade'"
+                                                  :value="data_get($value, 'unit', '-')"
+                                                  :placeholder="'Unidade'"
+                                                  class="form-control mb-2 form-control-plaintext border-0 text-center"
+                                                  readonly
+                                    />
+                                </div>
+                            </div>
                         </div>
                     @endif
                 @endforeach
@@ -66,3 +94,33 @@
         </div>
     </div>
 </div>
+<script type="module">
+
+    document.addEventListener("DOMContentLoaded", () => {
+        $('.js-example-basic-multiple').select2();
+        $('.js-example-basic-multiple').on('change', function (e) {
+            console.log('entrei')
+            var data = $('.js-example-basic-multiple').select2("val");
+            @this.
+            set('selectExamType', data);
+        });
+        Livewire.hook('component.initialized', (component) => {
+            $('.js-example-basic-multiple').select2();
+            $('.js-example-basic-multiple').on('change', function (e) {
+                console.log('entrei')
+                var data = $('.js-example-basic-multiple').select2("val");
+                @this.
+                set('selectExamType', data);
+            });
+        })
+        Livewire.hook('message.processed', (message, component) => {
+            $('.js-example-basic-multiple').select2();
+            $('.js-example-basic-multiple').on('change', function (e) {
+                console.log('entrei')
+                var data = $('.js-example-basic-multiple').select2("val");
+                @this.
+                set('selectExamType', data);
+            });
+        })
+    });
+</script>

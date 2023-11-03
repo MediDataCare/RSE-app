@@ -8,20 +8,26 @@ use App\Models\ExamType;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use Illuminate\Http\Request;
 
 class UserForm extends Component
 {
 
+    public $allexamsType = [];
     public $examsType = [];
     public $examsTypeOptions = [];
     public $showForm = false;
-    public $selectExamType;
+    public $selectExamType = [];
     public $inputs = [];
 
     public function mount()
     {
-        $this->examsType = ExamType::all();
-        $this->examsTypeOptions = $this->examsType->pluck('title', 'id');
+        $this->allexamsType = ExamType::all();
+        $exmasGroup = $this->allexamsType->pluck('group', 'id')->unique();
+        foreach ($exmasGroup as $group){
+            $this->examsTypeOptions[$group] = $this->allexamsType->where('group', $group)->pluck('title', 'id')->toArray();
+        }
+
     }
 
     public function render()
@@ -31,13 +37,15 @@ class UserForm extends Component
 
     public function updatingSelectExamType($value)
     {
-        $this->examsType = $this->examsType->find($value);
+        $this->examsType = $this->allexamsType->whereIn('id', $value);
         $this->showForm = true;
     }
 
     public function storeExam()
     {
         try {
+
+
             $user = Auth::user();
 
             $data = [];
@@ -47,6 +55,12 @@ class UserForm extends Component
             foreach ($this->inputs as $input) {
                 array_push($data['parameters'], $input);
             }
+//            $request = new Request($data);
+//
+//            $validated = $request->validate([
+//                'title' => 'required|unique:posts|max:255',
+//                'body' => 'required',
+//            ]);
             Exam::create($data);
             return redirect()->action([FrontEndController::class, 'userProfile']);
         } catch (\Exception $e) {

@@ -13,69 +13,91 @@
                           wire:model="title"
             />
 
-            <x-form-textarea
-                action="create"
-                name="description"
-                :label="'Descrição'"
-                :placeholder="'Descrição'"
-                class="form-control mb-3"
-                wire:model="description"
-            />
-
-            <h5 class="text-center mt-5 mb-3">Dados</h5>
-
-        @foreach ($inputs ?? [] as $key => $input)
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <button class="btn btm-white float-end" wire:click="removeInput({{ $key }})">Remover dados
-                        </button>
-
-                    </div>
-                    <div class="card-body">
-                        <x-form-input action="create"
-                                      name="inputs.{{ $key }}.title"
-                                      :label="'Titulo'"
-                                      :placeholder="'Titulo'"
-                                      :class="'form-control mb-3'"
-                                      wire:model.lazy="inputs.{{ $key }}.title"
-                        />
+            <div class="{{$addGroup ? 'd-none' : 'd-block'}}">
+                <div class="row">
+                    <div class="col-11">
                         <x-form-select action="create"
-                                       name="inputs.{{ $key }}.type"
-                                       :label="'Tipo de dados'"
-                                       :placeholder="'Tipo de dados'"
-                                       :options="['select' => 'Várias opções', 'number' => 'Número', 'text' => 'Texto']"
+                                       name="group"
+                                       :label="'Grupo'"
+                                       :placeholder="'Grupos'"
+                                       :options="$allExamsParams"
                                        icon="chevron-down"
-                                       wire:model="inputs.{{ $key }}.type"
+                                       wire:model="group"
                         />
-                        @if(data_get($inputs, $key . '.type') === 'select')
-                            @php
-
-                            @endphp
-                            <h5 class="mt-5">Opções</h5>
-                        @foreach(data_get($inputs, $key . '.options') as $opt => $option)
-                                <x-form-input action="create"
-                                              name="inputs.{{ $key }}.options.{{$opt}}"
-                                              :label="'Titulo'"
-                                              :placeholder="'Titulo'"
-                                              :class="'form-control mb-3'"
-                                              wire:model.lazy="inputs.{{ $key }}.options.{{$opt}}"
-                                />
-                        @endforeach
-                            <div class="w-100 text-center btn-form mt-5">
-                                <button wire:click="addOptions('{{ $key }}')">
-                                    {{ 'Adicionar novas opções' }}
-                                </button>
-                            </div>
-                        @endif
+                    </div>
+                    <div class="col-1 border border-0 bg-white">
+                        <a wire:click="addGroup">
+                            <i class="fas fa-plus-circle" style="margin-top: 36px;"></i>
+                        </a>
                     </div>
                 </div>
-            @endforeach
-
-            <div class="w-100 text-center btn-form mt-5">
-                <button wire:click="addInput">
-                    {{ 'Adicionar novos dados' }}
-                </button>
             </div>
+
+            <div class="{{$addGroup ? 'd-block' : 'd-none'}}">
+                <x-form-input action="create"
+                              name="group"
+                              :label="'Grupo'"
+                              :placeholder="'Grupo'"
+                              :class="'form-control mb-3'"
+                              wire:model="group"
+                />
+            </div>
+
+            <x-form-select action="create"
+                           name="inputs.type"
+                           :label="'Tipo de dados'"
+                           :placeholder="'Tipo de dados'"
+                           :options="['select' => 'Várias opções', 'number' => 'Número', 'text' => 'Texto']"
+                           icon="chevron-down"
+                           wire:model="inputs.type"
+            />
+
+            @if(data_get($inputs, 'type') === 'select')
+                <h5>Adicionar opções</h5>
+                <div class="p-4">
+                    @foreach(data_get($inputs, 'options.options') ?? [] as $opt => $option)
+                        @php
+                            $optName = 'opt-'.$opt;
+                        @endphp
+                        <x-form-input action="create"
+                                      name="inputs.options.options.{{$opt}}"
+                                      :label="'Opção'"
+                                      :placeholder="'Opção'"
+                                      :class="'form-control mb-3'"
+                                      wire:model.lazy="inputs.options.options.{{$opt}}"
+                        />
+                    @endforeach
+                    <div class="w-100 text-center btn-form mt-5">
+                        <button wire:click="addOptions">
+                            {{ 'Adicionar novos dados' }}
+                        </button>
+                    </div>
+                </div>
+            @elseif(data_get($inputs, 'type') === 'number')
+                <x-form-input action="create"
+                              type="number"
+                              name="inputs.options.min-number"
+                              :label="'Valor minimo'"
+                              :placeholder="'Valor minimo'"
+                              :class="'form-control mb-3'"
+                              wire:model.lazy="inputs.options.min-number"
+                />
+                <x-form-input action="create"
+                              type="number"
+                              name="inputs.options.max-number"
+                              :label="'Valor máximo'"
+                              :placeholder="'Valor máximo'"
+                              :class="'form-control mb-3'"
+                              wire:model.lazy="inputs.options.max-number"
+                />
+                <x-form-input action="create"
+                              name="inputs.options.unit"
+                              :label="'Unidade'"
+                              :placeholder="'Unidade'"
+                              :class="'form-control mb-3'"
+                              wire:model.lazy="inputs.options.unit"
+                />
+            @endif
 
             <div class="row row-cols-1 row-cols-sm-2">
                 <div class="col">

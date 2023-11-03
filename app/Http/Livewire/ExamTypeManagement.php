@@ -12,15 +12,25 @@ class ExamTypeManagement extends Component
 
     public $inputs = [];
     public $title;
-    public $description;
+    public $group;
+    public $allExamsParams;
+
+    public $addGroup = false;
 
     public function mount()
     {
         if(!empty($this->examType)){
             $this->title = data_get($this->examType, 'title');
-            $this->description = data_get($this->examType, 'description');
+//            $this->examTag = data_get($this->examType, 'description');
             $this->inputs = data_get($this->examType, 'parameters', []);
         }
+
+        $this->inputs = [
+            'type' => '',
+            'options' =>  []
+        ];
+
+        $this->allExamsParams = ExamType::pluck('group', 'group')->unique();
     }
 
 
@@ -29,25 +39,16 @@ class ExamTypeManagement extends Component
         return view('backend.exam_type.Livewire.form');
     }
 
-    public function addInput()
+    public function addOptions()
     {
-        $this->inputs[] = [
-            'title' => '',
-            'type' => '',
-            'options' =>  ['']
-        ];
-    }
-
-    public function addOptions($key)
-    {
-        $options = data_get($this->inputs, $key.'.options');
+        $options = data_get($this->inputs,'options.options', []);
         array_push($options, '');
-        data_set($this->inputs, $key.'.options', $options);
+        data_set($this->inputs, 'options.options', $options);
     }
 
-    public function removeInput($position)
+    public function addGroup()
     {
-        unset($this->inputs[$position]);
+        $this->addGroup = true;
     }
 
     public function storeData()
@@ -55,11 +56,12 @@ class ExamTypeManagement extends Component
         try {
             $data = [];
             $data['title'] = $this->title;
-            $data['description'] = $this->description;
+            $data['group'] = $this->group;
             $data['parameters'] = [];
-            foreach ($this->inputs as $input) {
-                array_push($data['parameters'], $input);
+            foreach (data_get($this->inputs, 'options') as $name => $input) {
+                data_set($data['parameters'], $name, $input);
             }
+            data_set($data['parameters'], 'type', data_get($this->inputs, 'type'));
             ExamType::create($data);
             return redirect()->action([BackOfficeController::class, 'indexExameType']);
 

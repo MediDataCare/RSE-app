@@ -12,6 +12,7 @@ class Exam extends Model
     protected $table = 'exams';
 
     protected $casts = [
+        'exams_types_id' => 'object',
         'parameters' => 'object',
     ];
 

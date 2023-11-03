@@ -30,7 +30,7 @@ class ExamTypeTable extends DataTableComponent
                 ->html()
                 ->sortable()
                 ->searchable(),
-            Column::make(__('Descrição'), 'description')
+            Column::make(__('Grupo'), 'group')
                 ->sortable()
                 ->searchable(),
             Column::make(__('Criado a'), 'created_at')

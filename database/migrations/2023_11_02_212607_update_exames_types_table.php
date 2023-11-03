@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exams', function (Blueprint $table) {
-            $table->id();
-            $table->json('exams_types_id')->nullable();
-            $table->foreignId('user_id')->unsigned()->default(0);
-            $table->json('parameters')->nullable();
-            $table->timestamps();
+        Schema::table('exams_types', function (Blueprint $table) {
+            $table->renameColumn('description', 'group')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exams');
+        Schema::table('exams_types', function (Blueprint $table) {
+            $table->renameColumn('group', 'description');
+        });
     }
 };

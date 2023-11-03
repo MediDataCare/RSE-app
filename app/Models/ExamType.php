@@ -13,14 +13,14 @@ class ExamType extends Model
 
     protected $casts = [
         'title' => 'string',
-        'description' => 'string',
+        'group' => 'string',
         'parameters' => 'object',
         'data' => 'object',
     ];
 
     protected $fillable = [
         'title',
-        'description',
+        'group',
         'parameters',
     ];
 
