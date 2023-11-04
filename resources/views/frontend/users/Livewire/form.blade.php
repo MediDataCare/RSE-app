@@ -27,7 +27,6 @@
                     @endforeach
                 </select>
             </div>
-            @dump($inputs)
             @if($showForm)
                 <h4>Descrição</h4>
                 <p class="mb-5">{{data_get($examsType, 'description', 'Sem informação')}}</p>
@@ -42,7 +41,7 @@
                                           :label="data_get($examType, 'title')"
                                           :placeholder="data_get($examType, 'title')"
                                           class="form-control mb-2"
-                                          wire:model.lazy="inputs.{{ $key }}.{{Str::slug(data_get($examType, 'title'))}}"
+                                          wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
                             />
                         </div>
                     @elseif(data_get($value, 'type') === 'select')
@@ -52,7 +51,7 @@
                                            :label="data_get($examType, 'title')"
                                            :options="data_get($value, 'options', [])"
                                            icon="chevron-down"
-                                           wire:model.lazy="inputs.{{ $key }}.{{Str::slug(data_get($examType, 'title'))}}"
+                                           wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
                             />
                         </div>
                     @elseif(data_get($value, 'type') === 'number')
@@ -66,7 +65,7 @@
                                                   :label="data_get($examType, 'title')"
                                                   :placeholder="data_get($examType, 'title')"
                                                   class="form-control mb-2"
-                                                  wire:model.lazy="inputs.{{ $key }}.{{Str::slug(data_get($examType, 'title'))}}"
+                                                  wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
                                     />
                                 </div>
                                 <div class="col-1">

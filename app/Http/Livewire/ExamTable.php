@@ -29,7 +29,7 @@ class ExamTable extends DataTableComponent
             Column::make(__('ID'), 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('Tipo de Exame'), 'exams_types_id')
+            Column::make(__('Dado'), 'exams_types_id')
                 ->format(function ($value, $column, $model) {
                     return data_get($column->examType,'title', '');
                 })
@@ -40,7 +40,15 @@ class ExamTable extends DataTableComponent
                 ->sortable()
                 ->format(function ($value) {
                     return Carbon::parse($value)->isoFormat('Y-MM-DD • HH:mm:ss');
+                })/*,
+            Column::make('')
+                ->format(function ($value, $column, $model) {
+                    dd($value, $column);
+                    return data_get($column->examType,'group', '');
+//                    return data_get($column->examType,'title', '');
                 })
+                ->sortable()
+                ->searchable()*/
         ];
 
         return $columns;

@@ -7,7 +7,7 @@
             </div>
             <x-form class="pb-5" method="POST">
                 <x-form-input action="create"
-                              name="name"
+                              name="title"
                               :label="'Title'"
                               :placeholder="'Titulo'"
                               class="form-control mb-3"

@@ -31,6 +31,8 @@ Route::get('/about', function () {
 
 Route::get('/entitie/form', [FrontEndController::class, 'entitiesForm']);
 Route::get('/entitie/profile', [FrontEndController::class, 'entitiesProfile']);
+Route::delete('/entitie/profile/{id}', [FrontEndController::class, 'removeStudy'])->name('remove-study');
+Route::get('/entitie/profile/{id}', [FrontEndController::class, 'showStudy'])->name('show-study');
 Route::get('/user/form', [FrontEndController::class, 'usersForm']);
 Route::get('/user/profile', [FrontEndController::class, 'userProfile']);
 
@@ -50,13 +52,13 @@ Route::group([
     Route::get('/', [BackOfficeController::class, 'home']);
     Route::get('/exam-type/', [BackOfficeController::class, 'indexExameType'])->name('exam-type-index');
     Route::get('/exam-type/create', [BackOfficeController::class, 'createExamType'])->name('exam-type-create');
+    Route::get('/entities', [BackOfficeController::class, 'entities'])->name('entities');
+    Route::get('/entities/{id}/aprove', [BackOfficeController::class, 'aproveEntitie'])->name('aproveEntitie');
+    Route::get('/entities/{id}/reject', [BackOfficeController::class, 'rejectEntitie'])->name('rejectEntitie');
+    Route::get('/entities/{entitiesId}/all-studies', [BackOfficeController::class, 'showAllStudies'])->name('all-studies');
+    Route::get('/entities/{entitiesId}/all-studies/{id}/aprove', [BackOfficeController::class, 'aproveStudy'])->name('aprove-study');
+    Route::get('/entities/{entitiesId}/all-studies/{id}/reject', [BackOfficeController::class, 'rejectStudy'])->name('reject-study');
 });
-//Route::middleware(['CheckAuthBO'])->group(function () {
-//    Route::get('/private', [BackOfficeController::class, 'home']);
-//    Route::get('/private/exam-type/', [BackOfficeController::class, 'indexExamType'])->name('exam-type-index');
-//    Route::get('/private/exam-type/create', [BackOfficeController::class, 'createExamType'])->name('exam-type-create');
-//});
-//Route::get('/private/exam-type/{id}', [BackOfficeController::class, 'showExameType']);
 
 Auth::routes();
 

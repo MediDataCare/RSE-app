@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exam;
+use App\Models\ExamType;
+use App\Models\Study;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -51,4 +54,17 @@ class FrontEndController extends Controller
         Auth::login($user);
         return redirect()->route('homepage');
     }
+
+    public function removeStudy($id){
+        $study = Study::find($id);
+        $study->delete();
+        return redirect()->action([FrontEndController::class, 'entitiesProfile']);
+    }
+
+    public function showStudy($id){
+        $study = Study::find($id);
+        $allExams = Exam::whereIn('id', data_get($study, 'data.pending'))->get();
+        return view('frontend.entities.study', ['study' => $study, 'allExams' => $allExams]);
+    }
+
 }

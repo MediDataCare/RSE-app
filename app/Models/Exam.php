@@ -12,7 +12,6 @@ class Exam extends Model
     protected $table = 'exams';
 
     protected $casts = [
-        'exams_types_id' => 'object',
         'parameters' => 'object',
     ];
 
@@ -20,14 +19,14 @@ class Exam extends Model
         'parameters',
         'exams_types_id',
         'user_id',
+        'group'
     ];
 
-
     public function examType(){
-        return$this->belongsTo(ExamType::class, 'exams_types_id', 'id');
+        return $this->belongsTo(ExamType::class, 'exams_types_id', 'id');
     }
 
     public function examOwner(){
-        return$this->belongsTo(User::class, 'user_id', 'id')->first();
+        return $this->belongsTo(User::class, 'user_id', 'id')->first();
     }
 }

@@ -13,9 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('exams_types', function (Blueprint $table) {
-            $table->renameColumn('description', 'group')->nullable();
-        });
+        //
     }
 
     /**
@@ -25,8 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('exams_types', function (Blueprint $table) {
-            $table->renameColumn('group', 'description');
-        });
+        //
     }
 };

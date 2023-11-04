@@ -21,6 +21,7 @@
             <div class="container mt-5 mb-5">
                 @if(!empty(\Illuminate\Support\Facades\Auth::user()))
                     <livewire:study-table
+                        :user="Auth::user()"
                     />
                 @endif
             </div>

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Livewire\EntitiesForm;
+use App\Http\Livewire\EntitiesTable;
 use App\Http\Livewire\ExamTable;
 use App\Http\Livewire\ExamTypeManagement;
 use App\Http\Livewire\ExamTypeTable;
@@ -36,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
         Livewire::component('exam-type-table', ExamTypeTable::class);
         Livewire::component('exam-table', ExamTable::class);
         Livewire::component('study-table', StudyTable::class);
+        Livewire::component('entitie-table', EntitiesTable::class);
     }
 }

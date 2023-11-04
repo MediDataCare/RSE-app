@@ -43,6 +43,4 @@ class ExamTypeTable extends DataTableComponent
 
         return $columns;
     }
-
-
 }

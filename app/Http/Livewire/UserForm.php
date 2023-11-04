@@ -48,20 +48,24 @@ class UserForm extends Component
 
             $user = Auth::user();
 
-            $data = [];
-            $data['exams_types_id'] = $this->selectExamType;
-            $data['user_id'] = empty($user) ? 0 : $user->id;
-            $data['parameters'] = [];
-            foreach ($this->inputs as $input) {
-                array_push($data['parameters'], $input);
+            $parameters = [];
+
+            foreach ($this->selectExamType as $value){
+                $data = [];
+                $examType = ExamType::where('id', $value)->first();
+                $type = strtolower(data_get($examType, 'title'));
+                $data['exams_types_id'] = $value;
+                $data['user_id'] = empty($user) ? 0 : $user->id;
+                $data['parameters'] = [$type => $this->inputs[$value]];
+                Exam::create($data);
             }
+
 //            $request = new Request($data);
 //
 //            $validated = $request->validate([
 //                'title' => 'required|unique:posts|max:255',
 //                'body' => 'required',
 //            ]);
-            Exam::create($data);
             return redirect()->action([FrontEndController::class, 'userProfile']);
         } catch (\Exception $e) {
             throw new Exception('Error');
