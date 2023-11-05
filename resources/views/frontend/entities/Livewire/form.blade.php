@@ -2,8 +2,8 @@
     <div class="container-fluid mt-5">
         <div class="container">
             <div class="section-header">
-                <h2>Criar estudo</h2>
-                <p>Aqui pode criar os seus estudos para posteriormente extrair os dados.</p>
+                <h2>Criar Estudo</h2>
+                <p>Aqui pode criar novos estudos para posteriormente extrair os dados partilhados pelos utilizadores</p>
             </div>
             <x-form class="pb-5" method="POST">
                 <x-form-input action="create"

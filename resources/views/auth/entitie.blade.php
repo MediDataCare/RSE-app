@@ -3,8 +3,8 @@
     <div class="container-fluid mt-5">
         <div class="container py-5">
             <div class="section-header">
-                <h2>Registar</h2>
-                <p>Aqui pode criar os seus estudos para posteriormente extrair os dados.</p>
+                <h2>Registar Entidade</h2>
+                <p>Registe a sua Entidade e obtenha dados valiosos de forma fácil e segura!</p>
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-8">

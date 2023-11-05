@@ -17,19 +17,22 @@
 --------------------------------------------------------------
 Alterado Por Gonçalo Santos, Se gostarem Adicionar Classe no CSS e Retirar da Blade  */
 .profile {
-  border-color: black; /* Add a thin border */
-  border-radius: 1rem; /* Remove border radius for sharper corners */
+  border-color: black;
+  /* Add a thin border */
+  border-radius: 1rem;
+  /* Remove border radius for sharper corners */
 }
 
 .profile:hover {
-  border-color: var(--color-links); /* Change the border color to blue on hover */
+  border-color: var(--color-links);
+  /* Change the border color to blue on hover */
 }
 
 .profile_route {
   display: inline-block;
   padding: 5px 10px;
   font-size: 16px;
-  background-color:  var(--color-links);
+  background-color: var(--color-links);
   color: #fff;
   border-color: black;
   border-radius: 5px;
@@ -37,7 +40,7 @@ Alterado Por Gonçalo Santos, Se gostarem Adicionar Classe no CSS e Retirar da B
   transition: background-color 0.3s;
 }
 
-.profile_route:hover{
+.profile_route:hover {
   color: aliceblue;
 }
 
@@ -301,7 +304,8 @@ section {
   border-radius: 4px;
   transition: 0.3s;
   font-family: var(--font-secondary);
-  margin-right: 15px;;
+  margin-right: 15px;
+  ;
 }
 
 .header .btn-getstarted:hover,
@@ -632,7 +636,7 @@ section {
   color: var(--color-primary);
 }
 
-.hero-animated h2 span i{
+.hero-animated h2 span i {
   color: var(--color-primary);
   font-size: 45px;
 }
@@ -718,7 +722,7 @@ section {
     margin-bottom: 30px;
   }
 
-  .hero-animated h2 span i{
+  .hero-animated h2 span i {
     color: var(--color-primary);
     font-size: 25px;
   }
@@ -2422,11 +2426,14 @@ section {
 
 .btn-form button {
   background: var(--color-primary);
-  border: 0;
-  padding: 13px 50px;
   color: var(--color-white);
   transition: 0.4s;
   border-radius: 0;
+  border: 0;
+  padding: 7px 17px;
+  border-radius: 4px;
+  transition: 0.3s;
+  font-family: var(--font-secondary);
 }
 
 .btn-form a {

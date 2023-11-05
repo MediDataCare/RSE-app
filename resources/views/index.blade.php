@@ -6,7 +6,7 @@
       <h2>Bem-Vindo à MediData<span>Care<i class="fas fa-plus-circle"></i></span></h2>
       <p>Partilhe os seus dados clínicos em troca de compensação monetária e ajude a contribuir para o futuro da Medicina</p>
       <div class="d-flex">
-        <a href="/contact" class="btn-get-started scrollto">Saber mais</a>
+        <a href="/login" class="btn-get-started scrollto">Saber mais</a>
         <!--<a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>-->
       </div>
     </div>

@@ -4,7 +4,10 @@
         <div class="container py-5">
             <div class="section-header">
                 <h2>Login</h2>
-                <p>Aqui pode criar os seus estudos para posteriormente extrair os dados.</p>
+                <p style="text-align: left"><b>Não tem Conta?</b></p>
+                <p style="text-align: left">Faça o seu registo na MediDataCare, é rápido e simples: 
+                    <a href="/register"><b>Registar Utilizador</b></a> | <a href="/resgiter-entitie"><b>Registar Entidade</b></a>
+                </p>
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-8">

@@ -44,6 +44,20 @@
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
             <ul class="">
                 <li><a class="nav-link scrollto" href="/">Home</a></li>
+                @auth
+                    @if(Auth::user()->data && Auth::user()->data->role)
+                        @if(Auth::user()->data->role == 'user')
+                            <li><a class="nav-link scrollto" href="/user/form">Inserir Dados</a></li>
+                        @endif
+                    @endif
+                @endauth
+                @auth
+                @if(Auth::user()->data && Auth::user()->data->role)
+                    @if(Auth::user()->data->role == 'entitie')
+                        <li><a href="/entitie/form">Criar Estudo</a></li>
+                    @endif
+                @endif
+                @endauth
                 @guest
                     @if (Route::has('login'))
                         <li class="dropdown"><a href="#"><span>Registar</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -73,11 +87,6 @@
                                     <li><a href="/entitie/profile">Perfil</a></li>
                                 @elseif(Auth::user()->data->role == 'user')
                                     <li><a href="/user/profile">Perfil</a></li>
-                                @endif
-                                @if(Auth::user()->data->role == 'entitie')
-                                    <li><a href="/entitie/form">Criar estudo</a></li>
-                                @elseif(Auth::user()->data->role == 'user')
-                                    <li><a href="/user/form">Registar dados</a></li>
                                 @endif
                             @endif
                             <li><a href="{{ route('logout') }}"

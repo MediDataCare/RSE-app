@@ -5,9 +5,9 @@
     <div class="container-fluid mt-5">
         <div class="container">
             <div class="section-header">
-                <h2>Registo de dados</h2>
-                <p>Aqui pode registar os seus dados médicos para posteriormente receber recompensas monetárias pela
-                    venda dos mesmos.</p>
+                <h2>Inserir Dados</h2>
+                <p>Aqui pode introduzir as suas informações e dados médicos para posteriormente receber recompensas monetárias pela
+                    partilha dos mesmos</p>
             </div>
             <div class="mb-3">
                 {{--                <x-form-select name="selectExamType"--}}
