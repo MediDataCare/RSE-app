@@ -76,7 +76,6 @@ class StudyTable extends DataTableComponent
                 ->html(),
             Column::make('Ações','id')
                 ->format(function ($value, $column, $model) {
-                    $study = Study::find($value);
                     $html[] = '<a href="' . route('remove-study', ['id' => $value]) . '" class="text-danger ms-3"><i class="fa fa-trash" aria-hidden="true"></i></a>';
                     return implode($html);
                 })

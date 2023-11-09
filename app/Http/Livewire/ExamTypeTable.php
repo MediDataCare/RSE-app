@@ -27,6 +27,10 @@ class ExamTypeTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make(__('Titulo'), 'title')
+                ->format(function ($value, $column, $model) {
+                    $route = route('exam-type-show', ['id' => $column->id]);
+                    return '<a href="' . $route . '">' . data_get($column, 'title') ?? '-' . '</a>';
+                })
                 ->html()
                 ->sortable()
                 ->searchable(),
@@ -38,7 +42,15 @@ class ExamTypeTable extends DataTableComponent
                 ->sortable()
                 ->format(function ($value) {
                     return Carbon::parse($value)->isoFormat('Y-MM-DD • HH:mm:ss');
+                }),
+            Column::make('Ações','id')
+                ->format(function ($value, $column, $model) {
+                    $html[] = '<a href="' . route('exam-type-remove', ['id' => $value]) . '" class="text-danger ms-3"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+//                    $html[] = '<a href="' . route('exam-type-show', ['id' => $value]) . '" class="ms-3"><i class="fa fa-eye" aria-hidden="true"></i></a>';
+//                    $html[] = '<a href="' . route('exam-type-edit', ['id' => $value]) . '" class="text-danger ms-3"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
+                    return implode($html);
                 })
+                ->html(),
         ];
 
         return $columns;

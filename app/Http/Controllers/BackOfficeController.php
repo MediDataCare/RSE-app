@@ -11,16 +11,27 @@ class BackOfficeController extends Controller
 {
 
     public function createExamType(){
-        return view('backend.exam_type.exam_type');
+        return view('backend.exam_type.exam_type', ['examType' => [], 'action' => 'create']);
     }
 
-    public function indexExameType(){
+    public function indexExamType(){
         return view('backend.exam_type.table');
     }
 
-    public function showExameType($id){
+    public function removeExamType($id){
+    $examType = ExamType::find($id);
+    $examType->delete();
+    return redirect()->action([self::class, 'indexExamType']);
+}
+
+    public function showExamType($id){
         $examType = ExamType::find($id);
         return view('backend.exam_type.exam_type', ['examType' => $examType, 'action' => 'show']);
+    }
+
+    public function editExamType($id){
+        $examType = ExamType::find($id);
+        return view('backend.exam_type.exam_type', ['examType' => $examType, 'action' => 'edit']);
     }
 
     public function home(){

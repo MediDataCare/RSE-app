@@ -31,8 +31,8 @@ Route::get('/about', function () {
 
 Route::get('/entitie/form', [FrontEndController::class, 'entitiesForm']);
 Route::get('/entitie/profile', [FrontEndController::class, 'entitiesProfile']);
-Route::delete('/entitie/profile/{id}', [FrontEndController::class, 'removeStudy'])->name('remove-study');
-Route::get('/entitie/profile/{id}', [FrontEndController::class, 'showStudy'])->name('show-study');
+Route::delete('/entitie/profile/study/{id}', [FrontEndController::class, 'removeStudy'])->name('remove-study');
+Route::get('/entitie/profile/study/{id}', [FrontEndController::class, 'showStudy'])->name('show-study');
 Route::get('/user/form', [FrontEndController::class, 'usersForm']);
 Route::get('/user/profile', [FrontEndController::class, 'userProfile']);
 
@@ -50,8 +50,18 @@ Route::group([
     'middleware' => ['checkAuthBO'],
 ], function (){
     Route::get('/', [BackOfficeController::class, 'home']);
-    Route::get('/exam-type/', [BackOfficeController::class, 'indexExameType'])->name('exam-type-index');
-    Route::get('/exam-type/create', [BackOfficeController::class, 'createExamType'])->name('exam-type-create');
+    Route::group([
+        'prefix' => 'exam-type',
+        'as' => 'exam-type-',
+    ], function () {
+        Route::get('/', [BackOfficeController::class, 'indexExamType'])->name('index');
+        Route::get('/create', [BackOfficeController::class, 'createExamType'])->name('create');
+        Route::get('/{id}', [BackOfficeController::class, 'showExamType'])->name('show');
+        Route::get('/{id}/edit', [BackOfficeController::class, 'editExamType'])->name('edit');
+        Route::get('/{id}/remove', [BackOfficeController::class, 'removeExamType'])->name('remove');
+    });
+
+
     Route::get('/entities', [BackOfficeController::class, 'entities'])->name('entities');
     Route::get('/entities/{id}/aprove', [BackOfficeController::class, 'aproveEntitie'])->name('aproveEntitie');
     Route::get('/entities/{id}/reject', [BackOfficeController::class, 'rejectEntitie'])->name('rejectEntitie');
