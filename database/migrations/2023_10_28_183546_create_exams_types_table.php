@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('exams_types', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->string('group');
             $table->json('parameters')->nullable();
             $table->json('data')->nullable();
             $table->timestamps();
