@@ -12,7 +12,7 @@ use Livewire\Component;
 use Exception;
 
 
-class EntitiesForm  extends Component
+class EntitiesForm extends Component
 {
 
     public $inputs = [];
@@ -20,101 +20,95 @@ class EntitiesForm  extends Component
     public $examsTypeOptions = [];
     public $examsType = [];
     public $allExams = [];
+    public $allExamsOriginal = [];
     public $users = [];
+    public $gender = ['male' => 'Masculino', 'female' => 'Feminino', 'other' => 'Outro'];
 
-    public function mount() {
-            $this->resetList();
+    public function mount()
+    {
+        $this->resetList();
     }
 
-    public function render() {
+    public function render()
+    {
         return view('frontend.entities.Livewire.form');
     }
 
-    public function resetList(){
+    public function resetList()
+    {
         $this->examsType = ExamType::all();
-        $this->examsTypeOptions = $this->examsType->pluck('title', 'id');
         $this->allExams = Exam::all();
+        $this->allExamsOriginal = $this->allExams;
+        $exmasGroup = $this->examsType->pluck('group', 'id')->unique();
+        foreach ($exmasGroup as $group) {
+            $this->examsTypeOptions[$group] = $this->examsType->where('group', $group)->pluck('title', 'id')->toArray();
+        }
         $this->users = User::all();
         $this->setFilters();
     }
 
-    public function updated($property, $value){
+    public function updated($property, $value)
+    {
         $this->resetList();
         $explode = explode('.', $property);
-        if ($explode[0] === 'filters'){
-            if($explode[1] === 'exam_type_id')
-                $this->examsType = $this->examsType->find($value);
-            if($explode[1] === 'age'){
-                if($value == 'young'){
-                    $users = $this->users->whereBetween('parameters.age', [0, 19]);
-                    $userIds = $users->pluck('id');
-                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-                }
-                if($value == 'adult'){
-                    $users = $this->users->whereBetween('parameters.age', [20, 59]);
-                    $userIds = $users->pluck('id');
-                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-                }
-                if($value == 'old'){
-                    $users = $this->users->where('parameters.age', '>=', 60);
-                    $userIds = $users->pluck('id');
-                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-                }
+        if ($explode[0] === 'filters') {
+            if(!empty(data_get($this->filters, 'exams'))){
+                $this->examsType = $this->examsType->whereIn('id', data_get($this->filters, 'exams'));
+                $this->allExams = $this->allExams->whereIn('exams_types_id', $this->examsType->pluck('id')->toArray());
             }
-            if($explode[1] === 'sex'){
-                if($value == 'male'){
-                    $users = $this->users->where('parameters.sex', 'male');
-                    $userIds = $users->pluck('id');
-                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-                }
-                if($value == 'female'){
-                    $users = $this->users->where('parameters.sex', 'female');
-                    $userIds = $users->pluck('id');
-                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-                }
-                if($value == 'other'){
-                    $users = $this->users->where('parameters.sex', 'other');
-                    $userIds = $users->pluck('id');
-                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-                }
+            if(!empty(data_get($this->filters, 'age_min'))){
+                $users = $this->users->where('parameters.age', '>=', data_get($this->filters, 'age_min'));
+                $userIds = $users->pluck('id');
+                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+            }
+            if(!empty(data_get($this->filters, 'age_max'))){
+                $users = $this->users->where('parameters.age', '<=', data_get($this->filters, 'age_max'));
+                $userIds = $users->pluck('id');
+                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+            }
+            if (!empty(data_get($this->filters, 'sex'))) {
+                $users = $this->users->whereIn('parameters.sex', data_get($this->filters, 'sex'));
+                $userIds = $users->pluck('id');
+                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
             }
         }
     }
 
-    public function setFilters(){
-        if(!empty($examType = data_get($this->filters, 'exam_type_id'))){
+    public function setFilters()
+    {
+        if (!empty($examType = data_get($this->filters, 'exam_type_id'))) {
             $this->examsType = $this->examsType->find($examType);
             $this->allExams = $this->allExams->where('exams_types_id', $examType);
         }
-        if(!empty($age = data_get($this->filters, 'age'))){
-            if($age == 'young'){
+        if (!empty($age = data_get($this->filters, 'age'))) {
+            if ($age == 'young') {
                 $users = $this->users->whereBetween('parameters.age', [0, 19]);
                 $userIds = $users->pluck('id');
                 $this->allExams = $this->allExams->whereIn('user_id', $userIds);
             }
-            if($age == 'adult'){
+            if ($age == 'adult') {
                 $users = $this->users->whereBetween('parameters.age', [20, 59]);
                 $userIds = $users->pluck('id');
                 $this->allExams = $this->allExams->whereIn('user_id', $userIds);
             }
-            if($age == 'old'){
+            if ($age == 'old') {
                 $users = $this->users->where('parameters.age', '>=', 60);
                 $userIds = $users->pluck('id');
                 $this->allExams = $this->allExams->whereIn('user_id', $userIds);
             }
         }
-        if(!empty($age = data_get($this->filters, 'sex'))){
-            if($age == 'male'){
+        if (!empty($age = data_get($this->filters, 'sex'))) {
+            if ($age == 'male') {
                 $users = $this->users->where('parameters.sex', 'male');
                 $userIds = $users->pluck('id');
                 $this->allExams = $this->allExams->whereIn('user_id', $userIds);
             }
-            if($age == 'female'){
+            if ($age == 'female') {
                 $users = $this->users->where('parameters.sex', 'female');
                 $userIds = $users->pluck('id');
                 $this->allExams = $this->allExams->whereIn('user_id', $userIds);
             }
-            if($age == 'other'){
+            if ($age == 'other') {
                 $users = $this->users->where('parameters.sex', 'other');
                 $userIds = $users->pluck('id');
                 $this->allExams = $this->allExams->whereIn('user_id', $userIds);
@@ -135,6 +129,7 @@ class EntitiesForm  extends Component
             $data['data'] = [];
             data_set($data, 'data.filters', $this->filters);
             data_set($data, 'data.duration', data_get($this->inputs, 'duration'));
+            data_set($data, 'data.expected_Exams', data_get($this->inputs, 'expected_Exams'));
             data_set($data, 'data.pending', $this->allExams->pluck('id')->toArray());
             Study::create($data);
             return redirect()->action([FrontEndController::class, 'entitiesProfile']);

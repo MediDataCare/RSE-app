@@ -100,25 +100,20 @@
         $('.js-example-basic-multiple').on('change', function (e) {
             console.log('entrei')
             var data = $('.js-example-basic-multiple').select2("val");
-            @this.
-            set('selectExamType', data);
+            @this.set('selectExamType', data);
         });
         Livewire.hook('component.initialized', (component) => {
             $('.js-example-basic-multiple').select2();
             $('.js-example-basic-multiple').on('change', function (e) {
-                console.log('entrei')
                 var data = $('.js-example-basic-multiple').select2("val");
-                @this.
-                set('selectExamType', data);
+                @this.set('selectExamType', data);
             });
         })
         Livewire.hook('message.processed', (message, component) => {
             $('.js-example-basic-multiple').select2();
             $('.js-example-basic-multiple').on('change', function (e) {
-                console.log('entrei')
                 var data = $('.js-example-basic-multiple').select2("val");
-                @this.
-                set('selectExamType', data);
+                @this.set('selectExamType', data);
             });
         })
     });
