@@ -5,7 +5,7 @@
                 <h2>Criar Estudo</h2>
                 <p>Aqui pode criar novos estudos para posteriormente extrair os dados partilhados pelos utilizadores</p>
             </div>
-            @dump($filters)
+
             <x-form class="pb-5" method="POST">
                 <x-form-input action="create"
                               name="title"
