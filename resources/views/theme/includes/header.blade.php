@@ -45,6 +45,13 @@
             <ul class="">
                 <li><a class="nav-link scrollto" href="/">Home</a></li>
                 @auth
+                @if(Auth::user()->data && Auth::user()->data->role)
+                    @if(Auth::user()->data->role == 'manager')
+                        <li><a class="nav-link scrollto" href="/private">Backoffice</a></li>
+                    @endif
+                @endif
+                @endauth
+                @auth
                     @if(Auth::user()->data && Auth::user()->data->role)
                         @if(Auth::user()->data->role == 'user')
                             <li><a class="nav-link scrollto" href="/user/form">Inserir Dados</a></li>
@@ -60,7 +67,7 @@
                 @endauth
                 @guest
                     @if (Route::has('login'))
-                        <li class="dropdown"><a href="#"><span>Registar</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <li class="dropdown"><a href="#">Registar <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>
                                 <li><a href="/register">Utilizador</a></li>
                                 <li><a href="/resgiter-entitie">Entidade</a></li>

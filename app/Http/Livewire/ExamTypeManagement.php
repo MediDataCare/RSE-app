@@ -82,7 +82,7 @@ class ExamTypeManagement extends Component
                 data_set($data['parameters'], $name, $input);
             }
             data_set($data['parameters'], 'type', data_get($this->inputs, 'type'));
-            /*$this->examType = */ExamType::create($data);
+            $this->examType = ExamType::create($data);
             return redirect()->action([BackOfficeController::class, 'showExamType'], ['id' => data_get($this->examType, 'id')]);
 
         } catch (\Exception $e) {

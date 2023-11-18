@@ -8,9 +8,9 @@
             </div>
             <div class="container mt-5">
                 <div class="btn-form mb-3">
-                    <a href="{{route('exam-type-create')}}">
-                        {{'Criar formulário'}}
-                    </a>
+                    <button onclick="window.location.href='{{ route('exam-type-create') }}'">
+                        {{ 'Criar formulário' }}
+                    </button>                    
                 </div>
                 <livewire:exam-type-table
                 />

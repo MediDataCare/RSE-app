@@ -3,47 +3,48 @@
         <div class="container">
             @if($action === 'create')
                 <div class="section-header">
-                    <h2>Criação Dado</h2>
-                    <p>Aqui pode criar um dado.</p>
+                    <h2>Adicionar novo Tipo de Dados</h2>
+                    <p>Configure o Tipo de Dados que pretende adicionar à Plataforma, certifique-se de preencher o Título e o seu tipo de dados. <br>Pode ser editado mais tarde...</p>
                 </div>
             @elseif($action === 'edit')
                 <div class="section-header">
                     <h2>Editar Dado</h2>
-                    <p>Aqui pode editar o dado.</p>
+                    <p>Pode alterar ou adicionar características neste Dado</p>
                 </div>
             @else
                 <div class="section-header">
-                    <h2>Mostrar Dado</h2>
-                    <p>Aqui pode visualizar o dado.</p>
+                    <h2>Características do Dado</h2>
+                    <p>Pode observar e validar os parâmetros definidos para este Dado</p>
                 </div>
             @endif
             @if($action === 'show')
                 <div class="btn-form mb-3">
-                    <a href="{{route('exam-type-edit', ['id' => $examType->id])}}">
-                        {{'Editar formulário'}}
-                    </a>
+                    <button onclick="window.location.href='{{ route('exam-type-edit', ['id' => $examType->id]) }}'">
+                        {{ 'Editar formulário' }}
+                    </button>         
                 </div>
             @endif
-            <x-form-input action="{{$action}}"
+            <b><x-form-input action="{{$action}}"
                           name="title"
-                          :label="'Titulo'"
-                          :placeholder="'Titulo'"
+                          :label="'Título'"
+                          :placeholder="'Introduza o Título'"
                           class="form-control mb-3"
                           wire:model="title"
-            />
+            /></b>
 
             <div class="{{$addGroup ? 'd-none' : 'd-block'}}">
                 <div class="row">
                     <div class="col-11">
-                        <x-form-select action="{{$action}}"
+                        <b><x-form-select action="{{$action}}"
                                        name="group"
                                        :label="'Grupo'"
                                        :placeholder="'Grupos'"
                                        :value="$group"
                                        :options="$allExamsParams"
+                                       :class="'mb-3'"
                                        icon="chevron-down"
                                        wire:model="group"
-                        />
+                        /></b>
                     </div>
                     @if($action !== 'show')
                         <div class="col-1 border border-0 bg-white">
@@ -56,26 +57,27 @@
             </div>
 
             <div class="{{$addGroup ? 'd-block' : 'd-none'}}">
-                <x-form-input action="{{$action}}"
+                <b><x-form-input action="{{$action}}"
                               name="group"
                               :label="'Grupo'"
-                              :placeholder="'Grupo'"
+                              :placeholder="'Introduza o novo Grupo'"
                               :class="'form-control mb-3'"
                               wire:model="group"
-                />
+                /></b>
             </div>
-            <x-form-select action="{{$action}}"
+            <b><x-form-select action="{{$action}}"
                            name="inputs.type"
-                           :label="'Tipo de dados'"
+                           :label="'Tipo de Dados'"
                            :value="data_get($inputs, 'type')"
-                           :placeholder="'Tipo de dados'"
+                           :placeholder="'Selecione o Tipo de dados'"
                            :options="['select' => 'Várias opções', 'number' => 'Número', 'text' => 'Texto']"
+                           :class="'mb-3'"
                            icon="chevron-down"
                            wire:model="inputs.type"
-            />
+            /></b>
             @if(data_get($inputs, 'type') === 'select')
-                <h5>Adicionar opções</h5>
-                <div class="p-4">
+                <h5 class="mt-3">Adicionar opções</h5>
+                <div class="p-2">
                     @foreach(data_get($inputs, 'options.options') ?? [] as $opt => $option)
                         @php
                             $optName = 'opt-'.$opt;
@@ -93,46 +95,47 @@
                         />
                     @endforeach
                     @if($action !== 'show')
-                        <div class="w-100 text-center btn-form mt-5">
+                        <div class="w-100 text-center btn-form mt-1">
                             <button wire:click="addOptions">
-                                {{ 'Adicionar novos dados' }}
+                                {{ 'Adicionar Opção' }}
                             </button>
                         </div>
                     @endif
                 </div>
             @elseif(data_get($inputs, 'type') === 'number')
-                <x-form-input action="{{$action}}"
+                <b><x-form-input action="{{$action}}"
                               type="number"
                               name="inputs.options.min-number"
-                              :label="'Valor minimo'"
-                              :placeholder="'Valor minimo'"
+                              :label="'Valor mínimo'"
+                              :placeholder="'Introduza o valor minimo'"
                               :class="'form-control mb-3'"
                               wire:model.lazy="inputs.options.min-number"
-                />
-                <x-form-input action="{{$action}}"
+                /></b>
+                <b><x-form-input action="{{$action}}"
                               type="number"
                               name="inputs.options.max-number"
                               :label="'Valor máximo'"
-                              :placeholder="'Valor máximo'"
+                              :placeholder="'Introduza o valor máximo'"
                               :class="'form-control mb-3'"
                               wire:model.lazy="inputs.options.max-number"
-                />
-                <x-form-input action="{{$action}}"
+                /></b>
+                <b><x-form-input action="{{$action}}"
                               name="inputs.options.unit"
                               :label="'Unidade'"
-                              :placeholder="'Unidade'"
+                              :placeholder="'Defina a Unidade'"
                               :class="'form-control mb-3'"
                               wire:model.lazy="inputs.options.unit"
-                />
+                /></b>
             @endif
 
             @if($action !== 'show')
                 <div class="row row-cols-1 row-cols-sm-2">
                     <div class="col">
                         <div class="w-100 text-center btn-form mt-5">
-                            <a href="{{route('exam-type-index')}}">
-                                {{ 'Cancel' }}
-                            </a>
+                            <!-- Alterei para Botao apenas pelo Layout, podemos dar rollback -->
+                            <button onclick="window.location='{{ route('exam-type-index') }}'">
+                                {{ 'Cancelar' }}
+                            </button> 
                         </div>
                     </div>
                     <div class="col">
