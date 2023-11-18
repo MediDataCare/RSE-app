@@ -19,7 +19,7 @@
                 <select class="js-example-basic-multiple w-100" name="exams[]" multiple="multiple"
                         wire:model="selectExamType">
                     @foreach($examsTypeOptions as $key => $exam)
-                        <optgroup label="$key">
+                        <optgroup label="{{$key}}">
                             @foreach($exam as $id => $value)
                                 <option value="{{$id}}">{{$value}}</option>
                             @endforeach

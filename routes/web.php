@@ -21,10 +21,6 @@ Route::get('/', function () {
     return view('index');
 })->name('homepage');
 
-Route::get('/contact', function () {
-    return view('theme.contact');
-});
-
 Route::get('/about', function () {
     return view('theme.about');
 });

@@ -30,7 +30,7 @@ class EntitiesTable extends DataTableComponent
             Column::make(__('ID'), 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('Titulo'), 'name')
+            Column::make(__('Nome'), 'name')
                 ->format(function ($value, $column, $model) {
                     $route = route('all-studies', ['entitiesId' => $column->id]);
                     return '<a href="' . $route . '">' . data_get($column, 'name') ?? '-' . '</a>';
@@ -38,9 +38,15 @@ class EntitiesTable extends DataTableComponent
                 ->html()
                 ->sortable()
                 ->searchable(),
-            Column::make(__('Grupo'), 'email')
+            Column::make(__('Email'), 'email')
                 ->sortable()
                 ->searchable(),
+            Column::make(__('Criado a'), 'created_at')
+                ->searchable()
+                ->sortable()
+                ->format(function ($value) {
+                    return Carbon::parse($value)->isoFormat('Y-MM-DD • HH:mm:ss');
+                }),
             Column::make(__('Estado'), 'state')
                 ->format(function ($value) {
                     if($value === 'rejected')
@@ -50,13 +56,7 @@ class EntitiesTable extends DataTableComponent
                 })
                 ->sortable()
                 ->searchable(),
-            Column::make(__('Criado a'), 'created_at')
-                ->searchable()
-                ->sortable()
-                ->format(function ($value) {
-                    return Carbon::parse($value)->isoFormat('Y-MM-DD • HH:mm:ss');
-                }),
-            Column::make('provar/Rejeitar','id')
+            Column::make('Aprovar/Rejeitar','id')
                 ->format(function ($value, $column, $model) {
                     $entitie = User::find($value);
                     if(data_get($entitie, 'state') === 'rejected')
