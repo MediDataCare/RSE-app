@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Auth;
 
 class EntitiesTable extends DataTableComponent
 {
@@ -28,6 +29,7 @@ class EntitiesTable extends DataTableComponent
     public function columns() : array {
         $columns = [
             Column::make(__('ID'), 'id')
+                ->hideIf(Auth::user()->data->role != 'manager')
                 ->sortable()
                 ->searchable(),
             Column::make(__('Nome'), 'name')

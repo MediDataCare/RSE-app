@@ -31,6 +31,7 @@ class StudyTable extends DataTableComponent
     {
         $columns = [
             Column::make(__('ID'), 'id')
+                ->hideIf(Auth::user()->data->role != 'manager')
                 ->sortable()
                 ->searchable(),
             Column::make(__('Estudo'), 'title')
