@@ -42,7 +42,8 @@ class AddEntitieUsers extends Component
 
     public function addUser()
     {
-        $users = $this->users->whereIn('id', $this->selectedUsers);
+        $emails = explode(',', $this->selectedUsers);
+        $users = $this->users->whereIn('email', $emails);
         if (!empty($this->entitie)) {
             foreach ($users as $user) {
                 $data = data_get($user, 'data', []);

@@ -20,7 +20,7 @@
         </tbody>
     </table>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -28,75 +28,21 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <select class="users-multiple w-100" name="selectedUsers[]" multiple="multiple"
-                            wire:model="selectedUsers"
-                            data-placeholder="Selecione o Sexo">
-                        @foreach($allUsers as $key => $user)
-                            <option value="{{$key}}">{{$user}}</option>
-                        @endforeach
-                    </select>
+                    <x-form-input action="create" name="selectedUsers" :label="'Emails'" :placeholder="'email@email.pt, emails2@email.pt'"
+                                  class="form-control mb-3" wire:model.lazy="selectedUsers" />
+                    <span class="fw-bold">{{'Exemplo: email@email.pt, emails2@email.pt'}}</span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary save">Save changes</button>
+                    <button type="button" class="btn btn-primary" wire:click="addUser">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-    <script type="module">
-        document.addEventListener("DOMContentLoaded", () => {
-            $('.users-multiple').select2({
-                placeholder: function () {
-                    return $(this).data('placeholder');
-                },
-                dropdownParent: $('#exampleModal')
-            });
-
-            $(".save").click(function () {
-                var data = $('.users-multiple').select2("val");
-                @this.
-                set('selectedUsers', data);
-                Livewire.emit('addUser', data);
-            });
-
-
-            Livewire.hook('component.initialized', (component) => {
-                $('.users-multiple').select2({
-                    placeholder: function () {
-                        return $(this).data('placeholder');
-                    },
-                    dropdownParent: $('#exampleModal')
-                });
-                $(".save").click(function () {
-                    var data = $('.users-multiple').select2("val");
-                    @this.
-                    set('selectedUsers', data);
-                    Livewire.emit('addUser', data);
-                });
-
-            })
-
-            Livewire.hook('message.processed', (message, component) => {
-                $('.users-multiple').select2({
-                    placeholder: function () {
-                        return $(this).data('placeholder');
-                    },
-                    dropdownParent: $('#exampleModal')
-                });
-                $(".save").click(function () {
-                    var data = $('.users-multiple').select2("val");
-                    @this.
-                    set('selectedUsers', data);
-                    Livewire.emit('addUser', data);
-                });
-            })
-
-        });
-
+    <script>
         window.addEventListener('reloadPage', event => {
             location.reload();
         });
-
 
     </script>
 </div>
