@@ -1,9 +1,15 @@
 <div>
-    <div class="container-fluid mt-5">
+    <div class="container-fluid my-5">
         <div class="container">
             <div class="section-header">
-                <h2>Criar Estudo</h2>
-                <p>Aqui pode criar novos estudos para posteriormente extrair os dados partilhados pelos utilizadores</p>
+                @if($action === 'create')
+                    <h2>Criar Estudo</h2>
+                    <p>Aqui pode criar novos estudos para posteriormente extrair os dados partilhados pelos
+                        utilizadores</p>
+                @else
+                    <h2>Editar Estudo</h2>
+                    <p>Aqui pode editar o estudo para posteriormente extrair os dados partilhados pelos utilizadores</p>
+                @endif
             </div>
 
             <x-form class="pb-5" method="POST">
@@ -75,7 +81,7 @@
             </div>
             <h4 class="text-center mt-2 mb-3"><b>Resultados</b></h4>
 
-             
+
             <!-- Esta alnhado ao Centro, mas ha bug na pagina e parece mal.....
             <div class="chart-container" style="display: flex; justify-content: center; align-items: center; height: 40vh; width: 80vw;">
                 <canvas id="myChart"></canvas>
@@ -84,8 +90,8 @@
                 <canvas id="myChart"></canvas>
             </div>
             <h5 class="mt-5 mb-2">{{ $allExams->count() . '/' . $allExamsOriginal->count() . ' Resultados
-                encontrados'}}</h5>     
-             
+                encontrados'}}</h5>
+
              <script>
                 const examsCount = {{ $allExams->count() }};
                 const originalCount = {{ $allExamsOriginal->count() }};
@@ -111,7 +117,7 @@
 
 
             <div class="text-center btn-form mt-5">
-                <button wire:click="storeStudy">
+                <button wire:click="{{$action === 'create' ? "storeStudy" : "updateStudy"}}">
                     <span>Guardar</span>
                 </button>
             </div>

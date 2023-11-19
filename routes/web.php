@@ -29,6 +29,7 @@ Route::get('/entitie/form', [FrontEndController::class, 'entitiesForm']);
 Route::get('/entitie/profile', [FrontEndController::class, 'entitiesProfile']);
 Route::delete('/entitie/profile/study/{id}', [FrontEndController::class, 'removeStudy'])->name('remove-study');
 Route::get('/entitie/profile/study/{id}', [FrontEndController::class, 'showStudy'])->name('show-study');
+Route::get('/entitie/profile/study/{id}/edit', [FrontEndController::class, 'editStudy'])->name('edit-study');
 Route::get('/user/form', [FrontEndController::class, 'usersForm']);
 Route::get('/user/profile', [FrontEndController::class, 'userProfile']);
 

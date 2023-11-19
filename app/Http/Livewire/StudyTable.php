@@ -66,18 +66,16 @@ class StudyTable extends DataTableComponent
                     if(data_get($study, 'state') === 'rejected'){
                         $html[] = '<a href="' . route('aprove-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-success ms-2"><i class="fa fa-check-circle" aria-hidden="true"></i></a>';
                     }elseif(data_get($study, 'state') === 'approved'){
-                        $html[] = '<a href="' . route('reject-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-danger ms-2"><i class="fa fa-ban" aria-hidden="true"></i></a>';
+                        if(empty(data_get($study, 'data.accepted', [])) && empty(data_get($study, 'data.rejected', []))){
+                            $html[] = '<a href="' . route('reject-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-danger ms-5"><i class="fa fa-ban" aria-hidden="true"></i></a>';
+                        }else{
+                            $html[] = '<a title="Não é possivel rejeitar este estudo" class="text-secondary ms-5"><i class="fa fa-ban" aria-hidden="true"></i></a>';
+                        }
                     }else{
                         $html[] = '<a href="' . route('aprove-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-success ms-2"><i class="fa fa-check-circle" aria-hidden="true"></i></a>';
                         $html[] = '<a href="' . route('reject-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-danger ms-2"><i class="fa fa-ban" aria-hidden="true"></i></a>';
                     }
 
-                    return implode($html);
-                })
-                ->html(),
-            Column::make('Ações','id')
-                ->format(function ($value, $column, $model) {
-                    $html[] = '<a href="' . route('remove-study', ['id' => $value]) . '" class="text-danger ms-3"><i class="fa fa-trash" aria-hidden="true"></i></a>';
                     return implode($html);
                 })
                 ->html(),

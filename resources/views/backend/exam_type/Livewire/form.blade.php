@@ -22,7 +22,7 @@
                 <div class="btn-form mb-3">
                     <button onclick="window.location.href='{{ route('exam-type-edit', ['id' => $examType->id]) }}'">
                         {{ 'Editar Dado' }}
-                    </button>         
+                    </button>
                 </div>
             @endif
             <b><x-form-input action="{{$action}}"
@@ -102,8 +102,8 @@
                                     <i class="fas fa-plus"></i>
                                     {{ 'Adicionar Opção' }}
                                 </p>
-                            </div> 
-                        </div>           
+                            </div>
+                        </div>
                     @endif
                 </div>
             @elseif(data_get($inputs, 'type') === 'number')
@@ -139,7 +139,7 @@
                             <!-- Alterei para Botao apenas pelo Layout, podemos dar rollback -->
                             <button onclick="window.location='{{ route('exam-type-index') }}'">
                                 {{ 'Cancelar' }}
-                            </button> 
+                            </button>
                         </div>
                     </div>
                     <div class="col">

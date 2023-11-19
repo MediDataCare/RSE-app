@@ -22,10 +22,26 @@ class EntitiesForm extends Component
     public $allExams = [];
     public $allExamsOriginal = [];
     public $users = [];
+    public $action = '';
     public $gender = ['male' => 'Masculino', 'female' => 'Feminino', 'other' => 'Outro'];
+    public $study;
 
     public function mount()
     {
+
+        if(!empty($this->study)){
+            //Filters
+            data_set($this->filters, 'exams', data_get($this->study, 'data.filters.exams'));
+            data_set($this->filters, 'age_min', data_get($this->study, 'data.filters.age_min'));
+            data_set($this->filters, 'age_max', data_get($this->study, 'data.filters.age_max'));
+            data_set($this->filters, 'sex', data_get($this->study, 'data.filters.sex'));
+
+            //Inputs
+            data_set($this->inputs, 'title', data_get($this->study, 'title'));
+            data_set($this->inputs, 'description', data_get($this->study, 'description'));
+            data_set($this->inputs, 'expected_Exams', data_get($this->study, 'data.expected_Exams'));
+            data_set($this->inputs, 'duration', data_get($this->study, 'data.duration'));
+        }
         $this->resetList();
     }
 
@@ -132,6 +148,30 @@ class EntitiesForm extends Component
             data_set($data, 'data.expected_Exams', data_get($this->inputs, 'expected_Exams'));
             data_set($data, 'data.pending', $this->allExams->pluck('id')->toArray());
             Study::create($data);
+            return redirect()->action([FrontEndController::class, 'entitiesProfile']);
+        } catch (\Exception $e) {
+            dd($e);
+            throw new Exception('Error');
+        }
+    }
+
+    public function updateStudy()
+    {
+        try {
+            $user = Auth::user();
+
+            $data = [];
+            $data['title'] = data_get($this->inputs, 'title');
+            $data['description'] = data_get($this->inputs, 'description');
+            $data['state'] = 'pending';
+            $data['user_id'] = empty($user) ? 0 : $user->id;;
+            $data['data'] = [];
+            $data['data'] = data_get($this->study, 'data');
+            data_set($data, 'data.filters', $this->filters);
+            data_set($data, 'data.duration', data_get($this->inputs, 'duration'));
+            data_set($data, 'data.expected_Exams', data_get($this->inputs, 'expected_Exams'));
+            data_set($data, 'data.pending', $this->allExams->pluck('id')->toArray());
+            $this->study->update($data);
             return redirect()->action([FrontEndController::class, 'entitiesProfile']);
         } catch (\Exception $e) {
             dd($e);

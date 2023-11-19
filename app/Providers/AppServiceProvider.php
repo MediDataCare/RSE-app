@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Livewire\AddEntitieUsers;
 use App\Http\Livewire\EntitiesForm;
 use App\Http\Livewire\EntitiesTable;
 use App\Http\Livewire\ExamTable;
@@ -38,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
         Livewire::component('exam-table', ExamTable::class);
         Livewire::component('study-table', StudyTable::class);
         Livewire::component('entitie-table', EntitiesTable::class);
+        Livewire::component('add-users', AddEntitieUsers::class);
     }
 }

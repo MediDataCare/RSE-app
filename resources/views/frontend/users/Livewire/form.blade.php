@@ -68,14 +68,13 @@
                                                   wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
                                     />
                                 </div>
-                                <div class="col-1">
-                                    <x-form-input name="unit"
-                                                  action="show"
-                                                  :label="'Unidade'"
-                                                  :value="data_get($value, 'unit', '-')"
-                                                  :placeholder="'Unidade'"
-                                                  class="form-control mb-2 form-control-plaintext border-0 text-center"
-                                                  readonly
+                                <x-form-input name="unit"
+                                              action="show"
+                                              :label="'Unidade'"
+                                              :value="data_get($value, 'unit', '-')"
+                                              :placeholder="'Unidade'"
+                                              class="form-control mb-2 form-control-plaintext border-0 text-center"
+                                              readonly
                                     />
                                 </div>
                             </div>
@@ -83,8 +82,6 @@
                     @endif
                 @endforeach
             @endif
-
-            {{--                <x-form-checkbox name="agreeterms" label="Concordo com os termos"/>--}}
             <div class="text-center btn-form mt-5">
                 <button wire:click="storeExam">
                     <span>Guardar</span>
@@ -98,7 +95,6 @@
     document.addEventListener("DOMContentLoaded", () => {
         $('.js-example-basic-multiple').select2();
         $('.js-example-basic-multiple').on('change', function (e) {
-            console.log('entrei')
             var data = $('.js-example-basic-multiple').select2("val");
             @this.set('selectExamType', data);
         });

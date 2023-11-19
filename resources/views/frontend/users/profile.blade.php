@@ -26,7 +26,7 @@
             </div>
             @php
                 $exams = \App\Models\Exam::where('user_id', Auth::user()->id)->get();
-                $studies = \App\Models\Study::all();
+                $studies = \App\Models\Study::where('state', 'approved')->get();
 
                 $allData = $studies->map(function ($study) use ($exams) {
                     $studyPendingExams = $exams->filter(function ($exam) use ($study) {

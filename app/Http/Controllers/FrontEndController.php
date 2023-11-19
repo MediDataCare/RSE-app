@@ -17,7 +17,7 @@ class FrontEndController extends Controller
 
     public function entitiesForm(){
 
-        return view('frontend.entities.form');
+        return view('frontend.entities.form', ['action' => 'create']);
     }
 
     public function entitiesProfile(){
@@ -55,16 +55,16 @@ class FrontEndController extends Controller
         return redirect()->route('homepage');
     }
 
-    public function removeStudy($id){
-        $study = Study::find($id);
-        $study->delete();
-        return redirect()->action([FrontEndController::class, 'entitiesProfile']);
-    }
-
     public function showStudy($id){
         $study = Study::find($id);
         $allExams = Exam::whereIn('id', data_get($study, 'data.pending'))->get();
-        return view('frontend.entities.study', ['study' => $study, 'allExams' => $allExams]);
+        return view('frontend.entities.study', ['study' => $study, 'allExams' => $allExams, 'action' => 'show']);
+    }
+
+    public function editStudy($id){
+        $study = Study::find($id);
+        $allExams = Exam::whereIn('id', data_get($study, 'data.pending'))->get();
+        return view('frontend.entities.study', ['study' => $study, 'allExams' => $allExams, 'action' => 'edit']);
     }
 
 }
