@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="section-header mt-5" style="margin-top:7rem!Important">
                 <h2>Perfil</h2>
-                <p>Aqui pode verificar e alterar os seus dados da sua Entidade</p>
+                <p>Faça a Gestão dos seus Estudos</p>
             </div>
             <div class="container">
                 <div class="row">
@@ -40,11 +40,19 @@
                 @endif
             </div>
             @if(data_get(\Illuminate\Support\Facades\Auth::user(), 'data.role') === 'entitie')
-                <div class="container">
-                    <h3 class="fw-bold">Utilizadores associados à entidade</h3>
+                <div class="container border border-dark shadow py-4 mb-5 rounded-4 px-4">
+                    <!-- <h3 class="fw-bold">Utilizadores associados à entidade</h3
+                    <p class="text-center mt-3">Faça a Gestão dos seus Estudos</p> -->
+                    <h4 class="text-center fw-bold">Associar Utilizador ao seu Perfil</h4>
                     <livewire:add-users
                         :entitie="Auth::user()"
-                    />
+                    />             
+                    <div class="text-end btn-form mt-1 px-2">
+                        <button  class="btn-form" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fas fa-user-plus"></i>
+                            Adicionar
+                        </button>
+                    </div>
                 </div>
             @endif
         </div>
