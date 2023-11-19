@@ -42,7 +42,7 @@
                 </ul>
             @else
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
-            <ul class="">
+            <ul class="gap-3">
                 <li><a class="nav-link scrollto" href="/">Home</a></li>
                 @auth
                 @if(Auth::user()->data && Auth::user()->data->role)

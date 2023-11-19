@@ -42,6 +42,7 @@ class AddEntitieUsers extends Component
 
     public function addUser()
     {
+        $this->selectedUsers = str_replace(' ', '', $this->selectedUsers);
         $emails = explode(',', $this->selectedUsers);
         $users = $this->users->whereIn('email', $emails);
         if (!empty($this->entitie)) {
