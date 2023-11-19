@@ -18,7 +18,7 @@
 
             <b>
                 <x-form-textarea action="create" name="description" :label="'Introduza a Descrição'"
-                                 :placeholder="'Descrição'" class="form-control mb-3"
+                                 :placeholder="'Introduza a Descrição'" class="form-control mb-3"
                                  wire:model.lazy="inputs.description"/>
             </b>
 
@@ -33,7 +33,7 @@
                               :placeholder="'Introduza a Duração em Dias'" class="form-control"
                               wire:model.lazy="inputs.duration"/>
             </b>
-            <h4 class="text-center py-1"><b>Filtros</b></h4>
+            <h4 class="text-center py-1 mt-5"><b>Filtros</b></h4>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 gy-3 pb-5 justify-content-center">
                 <div class="col">
                     <b><label>{{'Dados'}}</label></b>
@@ -73,16 +73,19 @@
                     </select>
                 </div>
             </div>
-            <h4 class="text-center mt-2 mb-3"><b>Resultados</b></h4>
+            <h4 class="text-center mt-2 mb-3"><b>Resultados Encontrados</b></h4>
             <!-- Esta alnhado ao Centro, mas ha bug na pagina e parece mal.....
             <div class="chart-container" style="display: flex; justify-content: center; align-items: center; height: 40vh; width: 80vw;">
                 <canvas id="myChart"></canvas>
             </div> -->
-            <div class="chart-container" style="position: relative; height:25vh; width:25vw">
+            <!-- <div class="chart-container" style="position: relative; height:25vh; width:25vw">
                 <canvas id="myChart"></canvas>
-            </div>
-            <h5 class="mt-5 mb-2">{{ $allExams->count() . '/' . $allExamsOriginal->count() . ' Resultados
-                encontrados'}}</h5>
+            </div> 
+            <h5 class="mt-5 mb-2 text-center fs-4">{{ $allExams->count() . '/' . $allExamsOriginal->count() . ' '}}</h5>-->
+            <h5 class="fw-bold mt-5 mb-2 text-center fs-3">
+                <span class="text-success">{{ $allExams->count() }}</span><span> / {{ $allExamsOriginal->count() }}</span>
+            </h5>
+            
 
             <script>
                 const examsCount = {{ $allExams->count() }};
