@@ -20,6 +20,7 @@ class UserForm extends Component
     public $selectExamType = [];
     public $inputs = [];
     public $message;
+    public $obs = [];
 
     public function mount()
     {
@@ -63,7 +64,7 @@ class UserForm extends Component
                 $type = strtolower(data_get($examType, 'title'));
                 $data['exams_types_id'] = $value;
                 $data['user_id'] = empty($user) ? 0 : $user->id;
-                $data['parameters'] = [$type => $this->inputs[$value], 'name' => data_get($examType, 'title', '-')];
+                $data['parameters'] = [$type => $this->inputs[$value], 'name' => data_get($examType, 'title', '-'), 'observations' => data_get($this->obs[$value], 'observations', '-')];
                 array_push($dataExams, $data);
             }
 

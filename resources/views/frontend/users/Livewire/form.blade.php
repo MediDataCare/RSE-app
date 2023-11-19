@@ -6,16 +6,11 @@
         <div class="container">
             <div class="section-header">
                 <h2>Inserir Dados</h2>
-                <p>Aqui pode introduzir as suas informações e dados médicos para posteriormente receber recompensas monetárias pela
+                <p>Aqui pode introduzir as suas informações e dados médicos para posteriormente receber recompensas
+                    monetárias pela
                     partilha dos mesmos</p>
             </div>
             <div class="mb-3">
-                {{--                <x-form-select name="selectExamType"--}}
-                {{--                               :placeholder="'Tipo de dados'"--}}
-                {{--                               :options="$examsTypeOptions"--}}
-                {{--                               icon="chevron-down"--}}
-                {{--                               wire:model="selectExamType"--}}
-                {{--                />--}}
                 <select class="js-example-basic-multiple w-100" name="exams[]" multiple="multiple"
                         wire:model="selectExamType">
                     @foreach($examsTypeOptions as $key => $exam)
@@ -24,13 +19,13 @@
                                 <option value="{{$id}}">{{$value}}</option>
                             @endforeach
                         </optgroup>
+                        @if(!empty($selectExamType))
+                        @endif
                     @endforeach
                 </select>
             </div>
             @if($showForm)
-                <h4>Descrição</h4>
-                <p class="mb-5">{{data_get($examsType, 'description', 'Sem informação')}}</p>
-                @foreach($examsType ?? [] as $examType)
+                @foreach($examsType ?? [] as $key => $examType)
                     @php
                         $value = data_get($examType, 'parameters');
                     @endphp
@@ -78,14 +73,16 @@
                                                   readonly
                                     />
                                 </div>
-
-                                </div>
-                        </div>
-                        @if(!empty($message))
-                            <p class="text-danger">{{$message}}</p>
-                        @endif
+                            </div>
+                            @if(!empty($message))
+                                <p class="text-danger">{{$message}}</p>
+                            @endif
                         </div>
                     @endif
+                    <h4>Observações - {{data_get($examType, 'title')}}</h4>
+                    <x-form-textarea action="create" name="observations" :label="'Introduza as Observações'"
+                                     :placeholder="'Observações'" class="form-control mb-3"
+                                     wire:model.lazy="obs.{{Str::slug(data_get($examType, 'id'))}}.observations"/>
                 @endforeach
             @endif
             <div class="text-center btn-form mt-5">
@@ -102,20 +99,23 @@
         $('.js-example-basic-multiple').select2();
         $('.js-example-basic-multiple').on('change', function (e) {
             var data = $('.js-example-basic-multiple').select2("val");
-            @this.set('selectExamType', data);
+            @this.
+            set('selectExamType', data);
         });
         Livewire.hook('component.initialized', (component) => {
             $('.js-example-basic-multiple').select2();
             $('.js-example-basic-multiple').on('change', function (e) {
                 var data = $('.js-example-basic-multiple').select2("val");
-                @this.set('selectExamType', data);
+                @this.
+                set('selectExamType', data);
             });
         })
         Livewire.hook('message.processed', (message, component) => {
             $('.js-example-basic-multiple').select2();
             $('.js-example-basic-multiple').on('change', function (e) {
                 var data = $('.js-example-basic-multiple').select2("val");
-                @this.set('selectExamType', data);
+                @this.
+                set('selectExamType', data);
             });
         })
     });
