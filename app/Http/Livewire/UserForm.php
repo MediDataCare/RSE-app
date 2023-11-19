@@ -56,7 +56,7 @@ class UserForm extends Component
                 $type = strtolower(data_get($examType, 'title'));
                 $data['exams_types_id'] = $value;
                 $data['user_id'] = empty($user) ? 0 : $user->id;
-                $data['parameters'] = [$type => $this->inputs[$value]];
+                $data['parameters'] = [$type => $this->inputs[$value], 'name' => data_get($examType, 'title', '-')];
                 Exam::create($data);
             }
 

@@ -5,6 +5,7 @@
         <div class="container-fluid">
             <div class="container py-5">
                 <livewire:entitie-form
+                    :action="$action"
                 />
             </div>
         </div>

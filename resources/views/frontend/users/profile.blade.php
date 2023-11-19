@@ -55,11 +55,8 @@
                     @foreach($allData ?? [] as $study)
                         @foreach($study as $key => $value)
                             @foreach($value as $exam)
-                                @php
-                                    $examType = \App\Models\ExamType::find(data_get($exam, 'exams_types_id'));
-                                @endphp
                                 <tr>
-                                    <td>{{data_get($examType, 'title', '-')}}</td>
+                                    <td>{{data_get($exam, 'parameters.name', '-')}}</td>
                                     @php
                                         $state = 'Pendente';
                                             if( $key ==='pending'){
