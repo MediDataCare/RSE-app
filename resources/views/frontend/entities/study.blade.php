@@ -8,17 +8,24 @@
     @else
         <div class="container-fluid mt-5">
             <div class="container py-5">
-                @if(empty(data_get($study, 'data.accepted', [])) && empty(data_get($study, 'data.rejected', [])))
-                    <div class="btn-form mb-3">
-                        <button onclick="window.location.href='{{ route('edit-study', ['id' => $study->id]) }}'">
-                            {{ 'Editar Dado' }}
-                        </button>
-                    </div>
-                @endif
                 <div class="section-header">
                     <h2>Características do Estudo</h2>
                     <!-- <p>Todas as Entidades Registadas na Plataforma estão visíveis abaixo, o seu registo pode ser Aprovado ou Rejeitado
                         <br>Para observar os Estudos de uma Entidade por favor selecione a mesma</p> -->
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6 d-flex align-items-center ">
+                        <a href="#">
+                            <i class="fas fa-arrow-left fs-4"></i>
+                        </a>
+                    </div>
+                    @if(empty(data_get($study, 'data.accepted', [])) && empty(data_get($study, 'data.rejected', [])))
+                        <div class="col-6 text-end btn-form">
+                            <button onclick="window.location.href='{{ route('edit-study', ['id' => $study->id]) }}'">
+                                {{ 'Editar Estudo' }}
+                            </button>
+                        </div>
+                    @endif
                 </div>
                 <b>
                     <x-form-input action="show"

@@ -76,7 +76,11 @@ class ExamTypeManagement extends Component
         try {
             $data = [];
             $data['title'] = $this->title;
-            $data['group'] = $this->group;
+            if(empty($this->group)){
+                $data['group'] = "Outros";
+            } else {
+                $data['group'] = $this->group;
+            }
             $data['parameters'] = [];
             foreach (data_get($this->inputs, 'options') as $name => $input) {
                 data_set($data['parameters'], $name, $input);

@@ -1,6 +1,9 @@
+@php
+    use App\Models\User;
+@endphp
 @extends('theme.master')
 @section('content')
-    @if (Auth::check() && Auth::user()->data->role == 'entitie')
+    @if (Auth::check() && (Auth::user()->data->role == 'entitie' || !empty(Auth::user()->data->entitie)))
         <div class="container-fluid">
             <div class="section-header mt-5" style="margin-top:7rem!Important">
                 <h2>Perfil</h2>
@@ -13,7 +16,18 @@
                             <strong>Nome:</strong> {{ Auth::user()->name }}
                         </div>
                         <div class="">
-                            <strong>NIF:</strong> {{ Auth::user()->parameters->cae }}
+                            @if(Auth::user()->data && isset(Auth::user()->data->entitie))
+                                @php
+                                    $entityUser = User::find(Auth::user()->data->entitie);
+                                @endphp
+                        
+                                <strong>Entidade:</strong> {{ $entityUser ? $entityUser->name : 'Usuário da entidade não encontrado' }}
+                            @else
+                                <strong>NIF:</strong> {{ Auth::user()->parameters->cae }}
+                            @endif
+                        </div>
+                        <div class="">
+                            
                         </div>
                     </div>
                 </div>

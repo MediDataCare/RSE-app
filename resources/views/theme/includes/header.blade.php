@@ -53,14 +53,14 @@
                 @endauth
                 @auth
                     @if(Auth::user()->data && Auth::user()->data->role)
-                        @if(Auth::user()->data->role == 'user')
+                        @if(Auth::user()->data->role == 'user' && empty(Auth::user()->data->entitie))
                             <li><a class="nav-link scrollto" href="/user/form">Inserir Dados</a></li>
                         @endif
                     @endif
                 @endauth
                 @auth
                 @if(Auth::user()->data && Auth::user()->data->role)
-                    @if(Auth::user()->data->role == 'entitie')
+                    @if(Auth::user()->data->role == 'entitie' || !empty(Auth::user()->data->entitie))
                         <li><a href="/entitie/form">Criar Estudo</a></li>
                     @endif
                 @endif
@@ -90,9 +90,9 @@
                         </a>
                         <ul>
                             @if(Auth::user()->data && Auth::user()->data->role)
-                                @if(Auth::user()->data->role == 'entitie')
+                                @if(Auth::user()->data->role == 'entitie'|| !empty(Auth::user()->data->entitie))
                                     <li><a href="/entitie/profile">Perfil</a></li>
-                                @elseif(Auth::user()->data->role == 'user')
+                                @elseif(Auth::user()->data->role == 'user' && empty(Auth::user()->data->entitie))
                                     <li><a href="/user/profile">Perfil</a></li>
                                 @endif
                             @endif

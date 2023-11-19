@@ -19,17 +19,24 @@
                 </div>
             @endif
             @if($action === 'show')
-                <div class="btn-form mb-3">
-                    <button onclick="window.location.href='{{ route('exam-type-edit', ['id' => $examType->id]) }}'">
-                        {{ 'Editar Dado' }}
-                    </button>
+                <div class="row mb-3">
+                    <div class="col-6 d-flex align-items-center ">
+                        <a href="{{ route('exam-type-index') }}">
+                            <i class="fas fa-arrow-left fs-4"></i>
+                        </a>
+                    </div>
+                    <div class="col-6 text-end btn-form">
+                        <button onclick="window.location.href='{{ route('exam-type-edit', ['id' => $examType->id]) }}'">
+                            {{ 'Editar Dado' }}
+                        </button>
+                    </div>
                 </div>
             @endif
             <b><x-form-input action="{{$action}}"
                           name="title"
                           :label="'Título'"
                           :placeholder="'Introduza o Título'"
-                          class="form-control mb-3"
+                          class="form-control mb-3 border border-dark rounded px-1"
                           wire:model="title"
             /></b>
 
