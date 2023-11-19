@@ -7,99 +7,108 @@
             </div>
 
             <x-form class="pb-5" method="POST">
-                <x-form-input action="create"
-                              name="title"
-                              :label="'Title'"
-                              :placeholder="'Titulo'"
-                              class="form-control mb-3"
-                              wire:model.lazy="inputs.title"
-                              required
-                />
+                <b>
+                    <x-form-input action="create" name="title" :label="'Título'" :placeholder="'Introduza o Título'"
+                        class="form-control mb-3" wire:model.lazy="inputs.title" required />
+                </b>
 
-                <x-form-textarea
-                    action="create"
-                    name="description"
-                    :label="'Descrição'"
-                    :placeholder="'Descrição'"
-                    class="form-control mb-3"
-                    wire:model.lazy="inputs.description"
-                />
+                <b>
+                    <x-form-textarea action="create" name="description" :label="'Introduza a Descrição'"
+                        :placeholder="'Descrição'" class="form-control mb-3" wire:model.lazy="inputs.description" />
+                </b>
 
-                <x-form-input action="create"
-                              name="expected_Exams"
-                              type="number"
-                              :label="'Dados minimos esperados'"
-                              :placeholder="'Dados minimos esperados'"
-                              class="form-control mb-2"
-                              wire:model.lazy="inputs.expected_Exams"
-                />
+                <b>
+                    <x-form-input action="create" name="expected_Exams" type="number" :label="'Dados esperados'"
+                        :placeholder="'Introduza o nº mínimo de Dados esperados'" class="form-control mb-3"
+                        wire:model.lazy="inputs.expected_Exams" />
+                </b>
 
-                <x-form-input action="create"
-                      name="duration"
-                      type="number"
-                      :label="'Duração (dias)'"
-                      :placeholder="'Duração (dias)'"
-                      class="form-control mb-2"
-                      wire:model.lazy="inputs.duration"
-                />
+                <b>
+                    <x-form-input action="create" name="duration" type="number" :label="'Duração (dias)'"
+                        :placeholder="'Introduza a Duração em Dias'" class="form-control"
+                        wire:model.lazy="inputs.duration" />
+                </b>
 
             </x-form>
-            <h5 class="text-center py-3">Filtros</h5>
+            <h4 class="text-center py-1"><b>Filtros</b></h4>
             <div class="justify-content-center row row-cols-1 row-cols-lg-3 row-cols-md-2 gy-3 pb-5">
                 <div class="col">
-                    <label>{{'Dados'}}</label>
-                    <select class="exams-multiple w-100" name="exams[]" multiple="multiple"
-                            wire:model="filters.exams" data-placeholder="Dados">
+                    <b><label>{{'Dados'}}</label></b>
+                    <select class="exams-multiple w-100" name="exams[]" multiple="multiple" wire:model="filters.exams"
+                        data-placeholder="Tipo de Dados">
                         @foreach($examsTypeOptions as $key => $exam)
-                            <optgroup label="{{$key}}">
-                                @foreach($exam as $id => $value)
-                                    <option value="{{$id}}">{{$value}}</option>
-                                @endforeach
-                            </optgroup>
+                        <optgroup label="{{$key}}">
+                            @foreach($exam as $id => $value)
+                            <option value="{{$id}}">{{$value}}</option>
+                            @endforeach
+                        </optgroup>
                         @endforeach
                     </select>
 
                 </div>
                 <div class="col">
-                    <label>{{'Faixa etária'}}</label>
+                    <b><label>{{'Faixa etária'}}</label></b>
                     <div class="row row-cols-2">
                         <div class="col">
-                            <x-form-input name="age_min"
-                                          :placeholder="'Idade miníma'"
-                                          class="form-control mb-3"
-                                          wire:model.lazy="filters.age_min"
-                                          type="number"
-                            />
+                            <x-form-input name="age_min" :placeholder="'Idade Miníma'" class="form-control mb-3"
+                                wire:model.lazy="filters.age_min" type="number" />
                         </div>
                         <div class="col">
-                            <x-form-input name="age_max"
-                                          :placeholder="'Idade máxima'"
-                                          class="form-control mb-3"
-                                          wire:model.lazy="filters.age_max"
-                                          type="number"
-                            />
+                            <x-form-input name="age_max" :placeholder="'Idade Máxima'" class="form-control mb-3"
+                                wire:model.lazy="filters.age_max" type="number" />
                         </div>
                     </div>
 
                 </div>
                 <div class="col">
-                    <label>{{'Dados'}}</label>
-                    <select class="sex-multiple w-100" name="sexo[]" multiple="multiple"
-                            wire:model="filters.sex" data-placeholder="Dados">
+                    <b><label>{{'Sexo'}}</label></b>
+                    <select class="sex-multiple w-100" name="sexo[]" multiple="multiple" wire:model="filters.sex"
+                        data-placeholder="Selecione o Sexo">
                         @foreach($gender ?? [] as $key => $sex)
-                            <option value="{{$key}}">{{$sex}}</option>
+                        <option value="{{$key}}">{{$sex}}</option>
                         @endforeach
                     </select>
-{{--                    <x-form-select name="sexo"--}}
-{{--                                   :placeholder="'Sexo'"--}}
-{{--                                   :options=""--}}
-{{--                                   icon="chevron-down"--}}
-{{--                                   wire:model.lazy="filters.sex"--}}
-{{--                    />--}}
+                    {{--
+                    <x-form-select name="sexo" --}} {{-- :placeholder="'Sexo'" --}} {{-- :options="" --}} {{--
+                        icon="chevron-down" --}} {{-- wire:model.lazy="filters.sex" --}} {{-- />--}}
                 </div>
             </div>
-            <h5 class="text-center mt-5 mb-2">Resultados</h5>
-            <h5 class="text-center mt-5 mb-2">{{ $allExams->count() . '/' . $allExamsOriginal->count() . ' Resultados encontrados'}}</h5>
+            <h4 class="text-center mt-2 mb-3"><b>Resultados</b></h4>
+
+             
+            <!-- Esta alnhado ao Centro, mas ha bug na pagina e parece mal.....
+            <div class="chart-container" style="display: flex; justify-content: center; align-items: center; height: 40vh; width: 80vw;">
+                <canvas id="myChart"></canvas>
+            </div> -->
+            <div class="chart-container" style="position: relative; height:25vh; width:25vw">
+                <canvas id="myChart"></canvas>
+            </div>
+            <h5 class="mt-5 mb-2">{{ $allExams->count() . '/' . $allExamsOriginal->count() . ' Resultados
+                encontrados'}}</h5>     
+             
+             <script>
+                const examsCount = {{ $allExams->count() }};
+                const originalCount = {{ $allExamsOriginal->count() }};
+
+                const data = {
+                    labels: ['Exams', 'Remaining'],
+                    datasets: [{
+                        data: [examsCount, originalCount - examsCount],
+                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
+                        hoverOffset: 4,
+                    }],
+                };
+
+                const config = {
+                    type: 'doughnut',
+                    data: data,
+                };
+
+                const ctx = document.getElementById('myChart').getContext('2d');
+
+                const myChart = new Chart(ctx, config);
+            </script>
+
 
             <div class="text-center btn-form mt-5">
                 <button wire:click="storeStudy">
@@ -109,7 +118,6 @@
         </div>
     </div>
     <script type="module">
-
         document.addEventListener("DOMContentLoaded", () => {
             $('.exams-multiple').select2({
                 placeholder: function(){

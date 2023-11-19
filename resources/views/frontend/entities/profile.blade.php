@@ -13,7 +13,7 @@
                             <strong>Nome:</strong> {{ Auth::user()->name }}
                         </div>
                         <div class="">
-                            <strong>Cae:</strong> {{ Auth::user()->parameters->cae }}
+                            <strong>NIF:</strong> {{ Auth::user()->parameters->cae }}
                         </div>
                     </div>
                 </div>

@@ -4,12 +4,13 @@
             @if($action === 'create')
                 <div class="section-header">
                     <h2>Adicionar novo Tipo de Dados</h2>
-                    <p>Configure o Tipo de Dados que pretende adicionar à Plataforma, certifique-se de preencher o Título e o seu tipo de dados. <br>Pode ser editado mais tarde...</p>
+                    <p>Configure o Tipo de Dados que pretende adicionar à Plataforma, certifique-se de preencher o Título e o seu tipo de dados
+                        <br>Pode ser editado mais tarde...</p>
                 </div>
             @elseif($action === 'edit')
                 <div class="section-header">
                     <h2>Editar Dado</h2>
-                    <p>Pode alterar ou adicionar características neste Dado</p>
+                    <p>Pode alterar ou adicionar características para este Dado</p>
                 </div>
             @else
                 <div class="section-header">
@@ -20,7 +21,7 @@
             @if($action === 'show')
                 <div class="btn-form mb-3">
                     <button onclick="window.location.href='{{ route('exam-type-edit', ['id' => $examType->id]) }}'">
-                        {{ 'Editar formulário' }}
+                        {{ 'Editar Dado' }}
                     </button>         
                 </div>
             @endif
@@ -76,30 +77,33 @@
                            wire:model="inputs.type"
             /></b>
             @if(data_get($inputs, 'type') === 'select')
-                <h5 class="mt-3">Adicionar opções</h5>
+                <b><p class="mt-3">Adicionar Opções</p></b>
                 <div class="p-2">
                     @foreach(data_get($inputs, 'options.options') ?? [] as $opt => $option)
                         @php
                             $optName = 'opt-'.$opt;
                         @endphp
                         @if($action !== 'show')
-                            <button class="btn btm-white float-end" wire:click="removeInput({{ $opt }})">Remover dados
+                            <button class="btn btm-white float-end remove_dados" wire:click="removeInput({{ $opt }})"><i class="fas fa-minus"></i> Remover
                             </button>
                         @endif
-                        <x-form-input action="{{$action}}"
+                        <b><x-form-input action="{{$action}}"
                                       name="inputs.options.options.{{$opt}}"
                                       :label="'Opção ' . $opt + 1"
-                                      :placeholder="'Opção ' . $opt + 1"
+                                      :placeholder="'Introduza a Opção ' . $opt + 1"
                                       :class="'form-control mb-3'"
                                       wire:model.lazy="inputs.options.options.{{$opt}}"
-                        />
+                        /></b>
                     @endforeach
                     @if($action !== 'show')
-                        <div class="w-100 text-center btn-form mt-1">
-                            <button wire:click="addOptions">
-                                {{ 'Adicionar Opção' }}
-                            </button>
-                        </div>
+                        <div class="w-100 text-center mt-1">
+                            <div class=" text-center" class="add_dados" >
+                                <p class="add_dados" wire:click="addOptions">
+                                    <i class="fas fa-plus"></i>
+                                    {{ 'Adicionar Opção' }}
+                                </p>
+                            </div> 
+                        </div>           
                     @endif
                 </div>
             @elseif(data_get($inputs, 'type') === 'number')

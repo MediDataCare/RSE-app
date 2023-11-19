@@ -67,7 +67,7 @@
 
                                 <div class="row mb-3">
                                     <label for="cae"
-                                           class="col-md-4 col-form-label text-md-end">{{ __('Cae') }}</label>
+                                           class="col-md-4 col-form-label text-md-end">{{ __('NIF') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="cae" type="number"

@@ -8,12 +8,12 @@
         <div class="d-flex row row-cols-1 row-cols-sm-2">
             <div class="col">
                 <div class="w-100 text-center mt-5">
-                    <a class="btn-get-started scrollto" href="{{route('exam-type-index')}}">Listas</a>
+                    <a class="btn-get-started scrollto" href="{{route('exam-type-index')}}">Dados</a>
                 </div>
             </div>
             <div class="col">
                 <div class="w-100 text-center mt-5">
-                    <a class="btn-get-started scrollto" href="{{route('exam-type-create')}}">Criar</a>
+                    <a class="btn-get-started scrollto" href="{{route('entities')}}">Entidades</a>
                 </div>
             </div>
         </div>

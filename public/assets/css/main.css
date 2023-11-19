@@ -44,6 +44,26 @@ Alterado Por Gonçalo Santos, Se gostarem Adicionar Classe no CSS e Retirar da B
   color: aliceblue;
 }
 
+.add_dados {
+  color: black;
+  border: 0;
+}
+
+.add_dados:hover {
+  color: #0ea2bd;
+  cursor: pointer;
+}
+
+.remove_dados {
+  color: black;
+  border: 0;
+}
+
+.remove_dados:hover {
+  color: red;
+  cursor: pointer;
+}
+
 .fa-plus-circle {
   color: #0ea2bd;
   /* Change the color to your preferred medical theme color */

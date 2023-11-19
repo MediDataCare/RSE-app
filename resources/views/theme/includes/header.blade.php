@@ -13,8 +13,8 @@
                 <i class="bi bi-list mobile-nav-toggle d-none"></i>
                 <ul class="">
                     <li><a class="nav-link scrollto" href="/private">Home</a></li>
-                    <li><a class="nav-link scrollto" href="{{route('exam-type-index')}}">Lista de formulários</a></li>
-                    <li><a class="nav-link scrollto" href="{{route('exam-type-create')}}">Criar formulário</a></li>
+                    <li><a class="nav-link scrollto" href="{{route('exam-type-index')}}">Dados</a></li>
+                    <li><a class="nav-link scrollto"  href="{{route('entities')}}">Entidades</a></li>
                     <!-- <a class="btn-getstarted scrollto w-md-100" href="/login">Login <i class="fas fa-user"></i></a> -->
                     @guest
                         @if (Route::has('login'))
@@ -75,7 +75,7 @@
                         </li>
                     @endif
                 @endguest
-                <li><a class="nav-link scrollto" href="/contact">Contactos</a></li>
+                <!-- <li><a class="nav-link scrollto" href="/contact">Contactos</a></li> -->
                 <!-- <a class="btn-getstarted scrollto w-md-100" href="/login">Login <i class="fas fa-user"></i></a> -->
                 @guest
                     @if (Route::has('login'))
