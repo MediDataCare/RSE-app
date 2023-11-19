@@ -68,16 +68,22 @@
                                                   wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
                                     />
                                 </div>
-                                <x-form-input name="unit"
-                                              action="show"
-                                              :label="'Unidade'"
-                                              :value="data_get($value, 'unit', '-')"
-                                              :placeholder="'Unidade'"
-                                              class="form-control mb-2 form-control-plaintext border-0 text-center"
-                                              readonly
+                                <div class="col-1 text-center">
+                                    <x-form-input name="unit"
+                                                  action="show"
+                                                  :label="'Unidade'"
+                                                  :value="data_get($value, 'unit', '-')"
+                                                  :placeholder="'Unidade'"
+                                                  class="form-control mb-2 form-control-plaintext border-0 text-center"
+                                                  readonly
                                     />
                                 </div>
-                            </div>
+
+                                </div>
+                        </div>
+                        @if(!empty($message))
+                            <p class="text-danger">{{$message}}</p>
+                        @endif
                         </div>
                     @endif
                 @endforeach

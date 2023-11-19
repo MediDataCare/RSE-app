@@ -19,6 +19,7 @@ class UserForm extends Component
     public $showForm = false;
     public $selectExamType = [];
     public $inputs = [];
+    public $message;
 
     public function mount()
     {
@@ -45,28 +46,34 @@ class UserForm extends Component
     {
         try {
 
-
+            $this->message = null;
             $user = Auth::user();
 
             $parameters = [];
-
-            foreach ($this->selectExamType as $value){
+            $dataExams = [];
+            foreach ($this->selectExamType as $value) {
                 $data = [];
                 $examType = ExamType::where('id', $value)->first();
+                if (data_get($examType, 'parameters.type') === 'number') {
+                    if (data_get($this->inputs, $value) < data_get($examType, 'parameters.min-number') || data_get($this->inputs, $value) > data_get($examType, 'parameters.max-number')) {
+                        $this->message = "Insira um número entre" . data_get($examType, 'parameters.min-number') . " e" . data_get($examType, 'parameters.max-number');
+                        break;
+                    }
+                }
                 $type = strtolower(data_get($examType, 'title'));
                 $data['exams_types_id'] = $value;
                 $data['user_id'] = empty($user) ? 0 : $user->id;
                 $data['parameters'] = [$type => $this->inputs[$value], 'name' => data_get($examType, 'title', '-')];
-                Exam::create($data);
+                array_push($dataExams, $data);
             }
 
-//            $request = new Request($data);
-//
-//            $validated = $request->validate([
-//                'title' => 'required|unique:posts|max:255',
-//                'body' => 'required',
-//            ]);
-            return redirect()->action([FrontEndController::class, 'userProfile']);
+            if (empty($this->message)){
+                foreach ($dataExams as $data){
+                    Exam::create($data);
+                }
+                return redirect()->action([FrontEndController::class, 'userProfile']);
+            }
+
         } catch (\Exception $e) {
             throw new Exception('Error');
         }
