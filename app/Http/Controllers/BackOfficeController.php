@@ -57,7 +57,8 @@ class BackOfficeController extends Controller
     }
 
     public function showAllStudies($entitiesId){
-        return view('backend.entities.all-studies', ['entitiesId' => $entitiesId]);
+        $entitie = User::find($entitiesId);
+        return view('backend.entities.all-studies', ['entitiesId' => $entitie->id, 'title'=> $entitie->name]);
     }
 
     public function aproveStudy($entitiesId, $id){

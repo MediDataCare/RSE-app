@@ -34,6 +34,14 @@ class StudyTable extends DataTableComponent
                 ->hideIf(Auth::user()->data->role != 'manager')
                 ->sortable()
                 ->searchable(),
+            Column::make(__('Nome'), 'user_id')
+                ->format(function ($value, $column, $model) {
+                    $user = User::find($value);
+                    return data_get($user, 'name','-');
+                })
+                ->html()
+                ->sortable()
+                ->searchable(),
             Column::make(__('Estudo'), 'title')
                 ->format(function ($value, $column, $model) {
                     $route = route('show-study', ['id' => $column->id]);
@@ -64,7 +72,7 @@ class StudyTable extends DataTableComponent
                 ->format(function ($value, $column, $model) {
                     $study = Study::find($value);
                     if(data_get($study, 'state') === 'rejected'){
-                        $html[] = '<a href="' . route('aprove-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-success ms-2"><i class="fa fa-check-circle" aria-hidden="true"></i></a>';
+                        $html[] = '<a href="' . route('aprove-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-success ms-5"><i class="fa fa-check-circle" aria-hidden="true"></i></a>';
                     }elseif(data_get($study, 'state') === 'approved'){
                         if(empty(data_get($study, 'data.accepted', [])) && empty(data_get($study, 'data.rejected', []))){
                             $html[] = '<a href="' . route('reject-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-danger ms-5"><i class="fa fa-ban" aria-hidden="true"></i></a>';
@@ -72,7 +80,7 @@ class StudyTable extends DataTableComponent
                             $html[] = '<a title="Não é possivel rejeitar este estudo" class="text-secondary ms-5"><i class="fa fa-ban" aria-hidden="true"></i></a>';
                         }
                     }else{
-                        $html[] = '<a href="' . route('aprove-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-success ms-2"><i class="fa fa-check-circle" aria-hidden="true"></i></a>';
+                        $html[] = '<a href="' . route('aprove-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-success ms-5"><i class="fa fa-check-circle" aria-hidden="true"></i></a>';
                         $html[] = '<a href="' . route('reject-study', ['entitiesId' => $this->entitiesId ,'id' => $value]) . '" class="text-danger ms-2"><i class="fa fa-ban" aria-hidden="true"></i></a>';
                     }
 
