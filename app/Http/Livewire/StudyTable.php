@@ -17,8 +17,20 @@ class StudyTable extends DataTableComponent
     public function builder(): Builder
     {
         $query = Study::query();
+        $users = User::all();
+        if(data_get($this->user, 'data.role') != 'entitie'){
+            $entitie = $users->find(data_get($this->user, 'data.entitie'));
+        }else{
+            $entitie = $this->user;
+        }
+        $entitieUsers = $users->filter(function ($item) use ($entitie) {
+                if(data_get($item, 'data.entitie') === $entitie->id){
+                    return $item;
+                }
+        })->pluck('id')->toArray();
+        array_push($entitieUsers, $entitie->id);
         if(!empty($this->user))
-            $query =  $query->where('user_id', $this->user->id);
+            $query =  $query->whereIn('user_id', $entitieUsers);
         return $query;
     }
 
