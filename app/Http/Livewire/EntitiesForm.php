@@ -163,7 +163,6 @@ class EntitiesForm extends Component
             $data = [];
             $data['title'] = data_get($this->inputs, 'title');
             $data['description'] = data_get($this->inputs, 'description');
-            $data['state'] = 'pending';
             $data['user_id'] = empty($user) ? 0 : $user->id;;
             $data['data'] = [];
             $data['data'] = data_get($this->study, 'data');
