@@ -42,7 +42,7 @@
 
             <div class="{{$addGroup ? 'd-none' : 'd-block'}}">
                 <div class="row">
-                    <div class="col-11">
+                    <div class="{{$action ==='show' ? 'col-12' : 'col-11'}}">
                         <b><x-form-select action="{{$action}}"
                                        name="group"
                                        :label="'Grupo'"
