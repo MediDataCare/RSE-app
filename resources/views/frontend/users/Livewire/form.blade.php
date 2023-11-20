@@ -26,63 +26,65 @@
             </div>
             @if($showForm)
                 @foreach($examsType ?? [] as $key => $examType)
-                    @php
-                        $value = data_get($examType, 'parameters');
-                    @endphp
-                    @if(data_get($value, 'type') === 'text')
-                        <div class="mb-3">
-                            <x-form-input action="create"
-                                          name="{{Str::slug(data_get($examType, 'title'))}}"
-                                          :label="data_get($examType, 'title')"
-                                          :placeholder="data_get($examType, 'title')"
-                                          class="form-control mb-2"
-                                          wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
-                            />
-                        </div>
-                    @elseif(data_get($value, 'type') === 'select')
-                        <div class="mb-3">
-                            <x-form-select name="{{Str::slug(data_get($examType, 'title'))}}"
-                                           :placeholder="data_get($examType, 'title')"
-                                           :label="data_get($examType, 'title')"
-                                           :options="data_get($value, 'options', [])"
-                                           icon="chevron-down"
-                                           wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
-                            />
-                        </div>
-                    @elseif(data_get($value, 'type') === 'number')
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-11">
-                                    <x-form-input action="create"
-                                                  name="{{Str::slug(data_get($examType, 'title'))}}"
-                                                  type="number"
-                                                  step="0.01"
-                                                  :label="data_get($examType, 'title')"
-                                                  :placeholder="data_get($examType, 'title')"
-                                                  class="form-control mb-2"
-                                                  wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
-                                    />
-                                </div>
-                                <div class="col-1 text-center">
-                                    <x-form-input name="unit"
-                                                  action="show"
-                                                  :label="'Unidade'"
-                                                  :value="data_get($value, 'unit', '-')"
-                                                  :placeholder="'Unidade'"
-                                                  class="form-control mb-2 form-control-plaintext border-0 text-center"
-                                                  readonly
-                                    />
-                                </div>
+                    <div wire:key="{{Str::random(40)}}">
+                        @php
+                            $value = data_get($examType, 'parameters');
+                        @endphp
+                        @if(data_get($value, 'type') === 'text')
+                            <div class="mb-3">
+                                <x-form-input action="create"
+                                              name="{{Str::slug(data_get($examType, 'title'))}}"
+                                              :label="data_get($examType, 'title')"
+                                              :placeholder="data_get($examType, 'title')"
+                                              class="form-control mb-2"
+                                              wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
+                                />
                             </div>
-                            @if(!empty($message))
-                                <p class="text-danger">{{$message}}</p>
-                            @endif
-                        </div>
-                    @endif
-                    <h4>Observações - {{data_get($examType, 'title')}}</h4>
-                    <x-form-textarea action="create" name="observations" :label="'Introduza as Observações'"
-                                     :placeholder="'Observações'" class="form-control mb-3"
-                                     wire:model.lazy="obs.{{Str::slug(data_get($examType, 'id'))}}.observations"/>
+                        @elseif(data_get($value, 'type') === 'select')
+                            <div class="mb-3">
+                                <x-form-select name="{{Str::slug(data_get($examType, 'title'))}}"
+                                               :placeholder="data_get($examType, 'title')"
+                                               :label="data_get($examType, 'title')"
+                                               :options="data_get($value, 'options', [])"
+                                               icon="chevron-down"
+                                               wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
+                                />
+                            </div>
+                        @elseif(data_get($value, 'type') === 'number')
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <x-form-input action="create"
+                                                      name="{{Str::slug(data_get($examType, 'title'))}}"
+                                                      type="number"
+                                                      step="0.01"
+                                                      :label="data_get($examType, 'title')"
+                                                      :placeholder="data_get($examType, 'title')"
+                                                      class="form-control mb-2"
+                                                      wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
+                                        />
+                                    </div>
+                                    <div class="col-1 text-center">
+                                        <x-form-input name="unit"
+                                                      action="show"
+                                                      :label="'Unidade'"
+                                                      :value="data_get($value, 'unit', '-')"
+                                                      :placeholder="'Unidade'"
+                                                      class="form-control mb-2 form-control-plaintext border-0 text-center"
+                                                      readonly
+                                        />
+                                    </div>
+                                </div>
+                                @if(!empty($message))
+                                    <p class="text-danger">{{$message}}</p>
+                                @endif
+                            </div>
+                        @endif
+                        <h4>Observações - {{data_get($examType, 'title')}}</h4>
+                        <x-form-textarea action="create" name="observations" :label="'Introduza as Observações'"
+                                         :placeholder="'Observações'" class="form-control mb-3"
+                                         wire:model.lazy="obs.{{Str::slug(data_get($examType, 'id'))}}.observations"/>
+                    </div>
                 @endforeach
             @endif
             <div class="text-center btn-form mt-5">

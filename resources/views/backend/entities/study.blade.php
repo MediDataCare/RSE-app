@@ -9,7 +9,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-6 d-flex align-items-center ">
-                    <a href="#">
+                    <a href="{{route('all-studies', ['entitiesId' => $entitieId])}}">
                         <i class="fas fa-arrow-left fs-4"></i>
                     </a>
                 </div>
@@ -44,7 +44,7 @@
             </b>
             <h4 class="text-center mt-5 mb-3 fw-bold">Dados escolhidos</h4>
             <h5 class="text-center mt-4 mb-2">
-                {{ ' Resultados encontrados: ' }} 
+                {{ ' Resultados encontrados: ' }}
                 <span class="text-success fw-bold">{{ $allExams->count() }}</span>
             </h5>
         </div>

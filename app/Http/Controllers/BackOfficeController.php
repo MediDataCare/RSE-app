@@ -62,10 +62,10 @@ class BackOfficeController extends Controller
         return view('backend.entities.all-studies', ['entitiesId' => $entitie->id, 'title'=> $entitie->name]);
     }
 
-    public function showStudy($entitiesId, $studyId){
+    public function showStudy($entitieId, $studyId){
         $study = Study::find($studyId);
         $allExams = Exam::whereIn('id', data_get($study, 'data.pending'))->get();
-        return view('backend.entities.study', ['study' => $study, 'allExams' => $allExams, 'action' => 'show']);
+        return view('backend.entities.study', ['study' => $study, 'allExams' => $allExams, 'action' => 'show', 'entitieId' => $entitieId]);
     }
 
 

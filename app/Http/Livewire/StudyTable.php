@@ -20,6 +20,7 @@ class StudyTable extends DataTableComponent
     {
         $query = Study::query();
         if(data_get(Auth::user(), 'data.role') === 'manager'){
+            $query =  $query->where('user_id', $this->entitiesId);
             return $query;
         }else{
             $users = User::all();
