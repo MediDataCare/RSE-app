@@ -36,7 +36,7 @@
                           name="title"
                           :label="'Título'"
                           :placeholder="'Introduza o Título'"
-                          class="form-control mb-3 border border-dark rounded px-1"
+                          class="form-control mb-3"
                           wire:model="title"
             /></b>
 

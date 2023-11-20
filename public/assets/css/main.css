@@ -72,6 +72,28 @@ Alterado Por Gonçalo Santos, Se gostarem Adicionar Classe no CSS e Retirar da B
    Add the beat animation */
 }
 
+.associa_user{
+  max-width: 35%;;
+}
+
+@media (max-width: 1024px) {
+  .associa_user {
+      max-width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .associa_user {
+      max-width: 65%;
+  }
+}
+
+@media (max-width: 576px) {
+  .associa_user {
+      max-width: 85%;
+  }
+}
+
 @keyframes beat {
   0% {
     transform: scale(0.7);

@@ -31,14 +31,14 @@
                 </div>
                 <div class="modal-body">
                     <x-form-input action="create" name="selectedUsers" :label="'E-mail'"
-                                  :placeholder="'email@email.pt, emails2@email.pt'"
+                                  :placeholder="'Introduza o email de Utilizador'"
                                   class="form-control mb-3" wire:model.lazy="selectedUsers"/>
-                    <span class="fw-medium fw-bold">{{'Nota:'}}</span>
-                    <span class="fw-medium">{{'Para adicionar vários utilizadores separe com vírgula: email1@email1.pt, email2@email2.pt'}}</span>
+                    <span class="fw-medium fw-bold">{{'Exemplo:'}}</span>
+                    <span class="fw-medium">{{'email1@email1.pt, email2@email2.pt'}}</span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" wire:click="addUser">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success" wire:click="addUser">Guardar</button>
                 </div>
             </div>
         </div>

@@ -18,6 +18,8 @@
                     </div>
                 </div>
             </div>
+            <hr class="my-4">
+            <h4 class="text-center mt-5 mb-4 fw-bold">Histórico de Dados</h4>
             <div class="container mt-5 mb-5">
                 @if(!empty(\Illuminate\Support\Facades\Auth::user()))
                     <livewire:exam-table
@@ -43,6 +45,8 @@
 
                 });
             @endphp
+            <hr class="my-4">
+            <h4 class="text-center mt-5 mb-4 fw-bold">Lista de Pedidos</h4>
             <div class="container mt-5 mb-5">
                 <table class="table">
                     <thead>
