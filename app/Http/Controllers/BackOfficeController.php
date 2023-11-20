@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Exam;
 use App\Models\ExamType;
 use App\Models\Study;
 use App\Models\User;
@@ -60,6 +61,13 @@ class BackOfficeController extends Controller
         $entitie = User::find($entitiesId);
         return view('backend.entities.all-studies', ['entitiesId' => $entitie->id, 'title'=> $entitie->name]);
     }
+
+    public function showStudy($entitiesId, $studyId){
+        $study = Study::find($studyId);
+        $allExams = Exam::whereIn('id', data_get($study, 'data.pending'))->get();
+        return view('backend.entities.study', ['study' => $study, 'allExams' => $allExams, 'action' => 'show']);
+    }
+
 
     public function aproveStudy($entitiesId, $id){
         $study = Study::find($id);

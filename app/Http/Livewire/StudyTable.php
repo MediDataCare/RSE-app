@@ -63,7 +63,11 @@ class StudyTable extends DataTableComponent
                 ->searchable(),
             Column::make(__('Estudo'), 'title')
                 ->format(function ($value, $column, $model) {
-                    $route = route('show-study', ['id' => $column->id]);
+                    if(data_get(Auth::user(), 'data.role') === 'manager'){
+                        $route = route('bo-show-study', ['entitiesId' => $this->entitiesId, 'studyId' => $column->id]);
+                    }else{
+                        $route = route('show-study', ['id' => $column->id]);
+                    }
                     return '<a href="' . $route . '">' . data_get($column, 'title') ?? '-' . '</a>';
                 })
                 ->html()

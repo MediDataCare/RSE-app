@@ -63,6 +63,7 @@ Route::group([
     Route::get('/entities/{id}/aprove', [BackOfficeController::class, 'aproveEntitie'])->name('aproveEntitie');
     Route::get('/entities/{id}/reject', [BackOfficeController::class, 'rejectEntitie'])->name('rejectEntitie');
     Route::get('/entities/{entitiesId}/all-studies', [BackOfficeController::class, 'showAllStudies'])->name('all-studies');
+    Route::get('/entities/{entitiesId}/all-studies/{studyId}', [BackOfficeController::class, 'showStudy'])->name('bo-show-study');
     Route::get('/entities/{entitiesId}/all-studies/{id}/aprove', [BackOfficeController::class, 'aproveStudy'])->name('aprove-study');
     Route::get('/entities/{entitiesId}/all-studies/{id}/reject', [BackOfficeController::class, 'rejectStudy'])->name('reject-study');
 });
