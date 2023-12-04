@@ -17,6 +17,7 @@ class ExamTypeManagement extends Component
     public $examType;
     public $action;
     public $addGroup = false;
+    public $addUnit = false;
 
     public function mount()
     {
@@ -53,6 +54,11 @@ class ExamTypeManagement extends Component
         $this->allExamsParams = ExamType::pluck('group', 'group')->unique();
     }
 
+    public function updating($property, $value){
+        if($property === 'inputs.type'){
+            $this->addUnit = false;
+        }
+    }
 
     public function render()
     {
@@ -64,6 +70,10 @@ class ExamTypeManagement extends Component
         $options = data_get($this->inputs,'options.options', []);
         array_push($options, '');
         data_set($this->inputs, 'options.options', $options);
+    }
+
+    public function addUnit(){
+        $this->addUnit = true;
     }
 
     public function addGroup()
@@ -85,7 +95,11 @@ class ExamTypeManagement extends Component
             foreach (data_get($this->inputs, 'options') as $name => $input) {
                 data_set($data['parameters'], $name, $input);
             }
-            data_set($data['parameters'], 'type', data_get($this->inputs, 'type'));
+            if(data_get($this->inputs, 'type') === 'mutiple-number'){
+                data_set($data['parameters'], 'type', 'number');
+            }else{
+                data_set($data['parameters'], 'type', data_get($this->inputs, 'type'));
+            }
             $this->examType = ExamType::create($data);
             return redirect()->action([BackOfficeController::class, 'showExamType'], ['id' => data_get($this->examType, 'id')]);
 

@@ -80,12 +80,12 @@
             </div> -->
             <!-- <div class="chart-container" style="position: relative; height:25vh; width:25vw">
                 <canvas id="myChart"></canvas>
-            </div> 
+            </div>
             <h5 class="mt-5 mb-2 text-center fs-4">{{ $allExams->count() . '/' . $allExamsOriginal->count() . ' '}}</h5>-->
             <h5 class="fw-bold mt-5 mb-2 text-center fs-3">
                 <span class="text-success">{{ $allExams->count() }}</span><span> / {{ $allExamsOriginal->count() }}</span>
             </h5>
-            
+
 
             <script>
                 const examsCount = {{ $allExams->count() }};

@@ -4,7 +4,8 @@
             @if($action === 'create')
                 <div class="section-header">
                     <h2>Adicionar novo Tipo de Dados</h2>
-                    <p>Configure o Tipo de Dados que pretende adicionar à Plataforma, certifique-se de preencher o Título e o seu tipo de dados
+                    <p>Configure o Tipo de Dados que pretende adicionar à Plataforma, certifique-se de preencher o
+                        Título e o seu tipo de dados
                         <br>Pode ser editado mais tarde...</p>
                 </div>
             @elseif($action === 'edit')
@@ -32,27 +33,31 @@
                     </div>
                 </div>
             @endif
-            <b><x-form-input action="{{$action}}"
-                          name="title"
-                          :label="'Título'"
-                          :placeholder="'Introduza o Título'"
-                          class="form-control mb-3"
-                          wire:model="title"
-            /></b>
+            <b>
+                <x-form-input action="{{$action}}"
+                              name="title"
+                              :label="'Título'"
+                              :placeholder="'Introduza o Título'"
+                              class="form-control mb-3"
+                              wire:model="title"
+                />
+            </b>
 
             <div class="{{$addGroup ? 'd-none' : 'd-block'}}">
                 <div class="row">
                     <div class="{{$action ==='show' ? 'col-12' : 'col-11'}}">
-                        <b><x-form-select action="{{$action}}"
-                                       name="group"
-                                       :label="'Grupo'"
-                                       :placeholder="'Grupos'"
-                                       :value="$group"
-                                       :options="$allExamsParams"
-                                       :class="'mb-3'"
-                                       icon="chevron-down"
-                                       wire:model="group"
-                        /></b>
+                        <b>
+                            <x-form-select action="{{$action}}"
+                                           name="group"
+                                           :label="'Grupo'"
+                                           :placeholder="'Grupos'"
+                                           :value="$group"
+                                           :options="$allExamsParams"
+                                           :class="'mb-3'"
+                                           icon="chevron-down"
+                                           wire:model="group"
+                            />
+                        </b>
                     </div>
                     @if($action !== 'show')
                         <div class="col-1 border border-0 bg-white">
@@ -65,24 +70,28 @@
             </div>
 
             <div class="{{$addGroup ? 'd-block' : 'd-none'}}">
-                <b><x-form-input action="{{$action}}"
-                              name="group"
-                              :label="'Grupo'"
-                              :placeholder="'Introduza o novo Grupo'"
-                              :class="'form-control mb-3'"
-                              wire:model="group"
-                /></b>
+                <b>
+                    <x-form-input action="{{$action}}"
+                                  name="group"
+                                  :label="'Grupo'"
+                                  :placeholder="'Introduza o novo Grupo'"
+                                  :class="'form-control mb-3'"
+                                  wire:model="group"
+                    />
+                </b>
             </div>
-            <b><x-form-select action="{{$action}}"
-                           name="inputs.type"
-                           :label="'Tipo de Dados'"
-                           :value="data_get($inputs, 'type')"
-                           :placeholder="'Selecione o Tipo de dados'"
-                           :options="['select' => 'Várias opções', 'number' => 'Número', 'text' => 'Texto']"
-                           :class="'mb-3'"
-                           icon="chevron-down"
-                           wire:model="inputs.type"
-            /></b>
+            <b>
+                <x-form-select action="{{$action}}"
+                               name="inputs.type"
+                               :label="'Tipo de Dados'"
+                               :value="data_get($inputs, 'type')"
+                               :placeholder="'Selecione o Tipo de dados'"
+                               :options="['select' => 'Várias opções', 'number' => 'Valores númericos entre dois valores', 'text' => 'Texto', 'mutiple-number' => 'Vários valores númericos']"
+                               :class="'mb-3'"
+                               icon="chevron-down"
+                               wire:model="inputs.type"
+                />
+            </b>
             @if(data_get($inputs, 'type') === 'select')
                 <b><p class="mt-3">Adicionar Opções</p></b>
                 <div class="p-2">
@@ -91,20 +100,23 @@
                             $optName = 'opt-'.$opt;
                         @endphp
                         @if($action !== 'show')
-                            <button class="btn btm-white float-end remove_dados" wire:click="removeInput({{ $opt }})"><i class="fas fa-minus"></i> Remover
+                            <button class="btn btm-white float-end remove_dados" wire:click="removeInput({{ $opt }})"><i
+                                    class="fas fa-minus"></i> Remover
                             </button>
                         @endif
-                        <b><x-form-input action="{{$action}}"
-                                      name="inputs.options.options.{{$opt}}"
-                                      :label="'Opção ' . $opt + 1"
-                                      :placeholder="'Introduza a Opção ' . $opt + 1"
-                                      :class="'form-control mb-3'"
-                                      wire:model.lazy="inputs.options.options.{{$opt}}"
-                        /></b>
+                        <b>
+                            <x-form-input action="{{$action}}"
+                                          name="inputs.options.options.{{$opt}}"
+                                          :label="'Opção ' . $opt + 1"
+                                          :placeholder="'Introduza a Opção ' . $opt + 1"
+                                          :class="'form-control mb-3'"
+                                          wire:model.lazy="inputs.options.options.{{$opt}}"
+                            />
+                        </b>
                     @endforeach
                     @if($action !== 'show')
                         <div class="w-100 text-center mt-1">
-                            <div class=" text-center" class="add_dados" >
+                            <div class=" text-center" class="add_dados">
                                 <p class="add_dados" wire:click="addOptions">
                                     <i class="fas fa-plus"></i>
                                     {{ 'Adicionar Opção' }}
@@ -113,30 +125,75 @@
                         </div>
                     @endif
                 </div>
+            @elseif(data_get($inputs, 'type') === 'mutiple-number')
+                @if($action !== 'show' && empty($addUnit))
+                    @foreach(data_get($inputs, 'options.options') ?? [] as $opt => $option)
+                        @php
+                            $optName = 'opt-'.$opt;
+                        @endphp
+                        @if($action !== 'show')
+                            <button class="btn btm-white float-end remove_dados" wire:click="removeInput({{ $opt }})"><i
+                                    class="fas fa-minus"></i> Remover
+                            </button>
+                        @endif
+                        <b>
+                            <x-form-input action="{{$action}}"
+                                          name="inputs.options.options.{{$opt}}"
+                                          :label="'Opção ' . $opt + 1"
+                                          :placeholder="'Introduza a Opção ' . $opt + 1"
+                                          :class="'form-control mb-3'"
+                                          wire:model.lazy="inputs.options.options.{{$opt}}"
+                            />
+                        </b>
+                    @endforeach
+                @endif
+                    <div class="w-100 text-center mt-1">
+                        <div class=" text-center" class="add_dados">
+                            <p class="add_dados" wire:click="addOptions">
+                                <i class="fas fa-plus"></i>
+                                {{ 'Adicionar Valor' }}
+                            </p>
+                        </div>
+                    </div>
+                @if($addUnit)
+                    <b>
+                        <x-form-input action="{{$action}}"
+                                      name="inputs.options.unit"
+                                      :label="'Unidade'"
+                                      :placeholder="'Defina a Unidade'"
+                                      :class="'form-control mb-3'"
+                                      wire:model.lazy="inputs.options.unit"
+                        />
+                    </b>
+                @endif
             @elseif(data_get($inputs, 'type') === 'number')
-                <b><x-form-input action="{{$action}}"
-                              type="number"
-                              name="inputs.options.min-number"
-                              :label="'Valor mínimo'"
-                              :placeholder="'Introduza o valor minimo'"
-                              :class="'form-control mb-3'"
-                              wire:model.lazy="inputs.options.min-number"
-                /></b>
-                <b><x-form-input action="{{$action}}"
-                              type="number"
-                              name="inputs.options.max-number"
-                              :label="'Valor máximo'"
-                              :placeholder="'Introduza o valor máximo'"
-                              :class="'form-control mb-3'"
-                              wire:model.lazy="inputs.options.max-number"
-                /></b>
-                <b><x-form-input action="{{$action}}"
-                              name="inputs.options.unit"
-                              :label="'Unidade'"
-                              :placeholder="'Defina a Unidade'"
-                              :class="'form-control mb-3'"
-                              wire:model.lazy="inputs.options.unit"
-                /></b>
+                <b>
+                    <x-form-input action="{{$action}}"
+                                  type="number"
+                                  name="inputs.options.min-number"
+                                  :label="'Valor mínimo'"
+                                  :placeholder="'Introduza o valor minimo'"
+                                  :class="'form-control mb-3'"
+                                  wire:model.lazy="inputs.options.min-number"
+                    />
+                </b>
+                <b>
+                    <x-form-input action="{{$action}}"
+                                  type="number"
+                                  name="inputs.options.max-number"
+                                  :label="'Valor máximo'"
+                                  :placeholder="'Introduza o valor máximo'"
+                                  :class="'form-control mb-3'"
+                                  wire:model.lazy="inputs.options.max-number"
+                    />
+                </b>
+                @if($action !== 'show' && empty($addUnit))
+                    <div class="col border border-0 bg-white">
+                        <a wire:click="addUnit">
+                            <i class="fas fa-plus-circle" style="margin-top: 36px;"></i><span class="mb-3">Adicionar Unidade</span>
+                        </a>
+                    </div>
+                @endif
             @endif
 
             @if($action !== 'show')
