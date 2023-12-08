@@ -18,8 +18,11 @@ class CheckAuthBO
     public function handle(Request $request, Closure $next)
     {
         if (str_contains($request->url(), 'private')) {
-            if(!empty(Auth::user()))
-                return $next($request);
+            if (auth()->check()) {
+                if ((Auth::user()->data->role == 'manager' || Auth::user()->data->role == 'admin')) {
+                    return $next($request);
+                }
+            }
         }
         return abort(403, 'No permissions to access this page.');
     }

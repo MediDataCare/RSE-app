@@ -13,6 +13,9 @@
                 <i class="bi bi-list mobile-nav-toggle d-none"></i>
                 <ul class="">
                     <li><a class="nav-link scrollto" href="/private">Home</a></li>
+                    @if(Auth::user()->data->role == 'admin')
+                        <li><a class="nav-link scrollto" href="{{route('users-index')}}">Utilizadores</a></li>
+                    @endif
                     <li><a class="nav-link scrollto" href="{{route('exam-type-index')}}">Dados</a></li>
                     <li><a class="nav-link scrollto"  href="{{route('entities')}}">Entidades</a></li>
                     <!-- <a class="btn-getstarted scrollto w-md-100" href="/login">Login <i class="fas fa-user"></i></a> -->
@@ -46,7 +49,7 @@
                 <li><a class="nav-link scrollto" href="/">Home</a></li>
                 @auth
                 @if(Auth::user()->data && Auth::user()->data->role)
-                    @if(Auth::user()->data->role == 'manager')
+                    @if(Auth::user()->data->role == 'manager' || Auth::user()->data->role == 'admin')
                         <li><a class="nav-link scrollto" href="/private">Backoffice</a></li>
                     @endif
                 @endif

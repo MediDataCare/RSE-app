@@ -4,6 +4,7 @@ use App\Http\Controllers\BackOfficeController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +60,14 @@ Route::group([
         Route::get('/{id}/remove', [BackOfficeController::class, 'removeExamType'])->name('remove');
     });
 
+    Route::group([
+        'prefix' => 'users',
+        'as' => 'users-',
+    ], function () {
+        Route::get('/', [UserController::class, 'indexUsers'])->name('index');
+        Route::get('/{id}', [UserController::class, 'showUser'])->name('show');
+        Route::get('/{id}/edit', [UserController::class, 'editUserType'])->name('edit');
+    });
 
     Route::get('/entities', [BackOfficeController::class, 'entities'])->name('entities');
     Route::get('/entities/{id}/aprove', [BackOfficeController::class, 'aproveEntitie'])->name('aproveEntitie');
