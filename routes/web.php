@@ -61,6 +61,7 @@ Route::group([
     });
 
     Route::group([
+        'middleware' => ['checkAuthAdmin'],
         'prefix' => 'users',
         'as' => 'users-',
     ], function () {
