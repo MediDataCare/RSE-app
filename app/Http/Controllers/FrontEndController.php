@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class FrontEndController extends Controller
 {
@@ -65,6 +67,20 @@ class FrontEndController extends Controller
         $study = Study::find($id);
         $allExams = Exam::whereIn('id', data_get($study, 'data.pending'))->get();
         return view('frontend.entities.study', ['study' => $study, 'allExams' => $allExams, 'action' => 'edit']);
+    }
+
+    public function export($studyId)
+    {
+        $name = 'export_study.xlsx';
+
+        return Excel::download(new InvoicesExport($studyId), $name);
+
+
+//        $excel = Excel::loadView($view, [
+//            'study' => $study
+//
+//        ])->setOptions(['defaultFont' => 'sans-serif', 'enable_php' => true]);
+//        return response()->streamDownload(fn() => print($excel->output()), $name);
     }
 
 }
