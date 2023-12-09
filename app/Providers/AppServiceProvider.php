@@ -8,6 +8,7 @@ use App\Http\Livewire\EntitiesTable;
 use App\Http\Livewire\ExamTable;
 use App\Http\Livewire\ExamTypeManagement;
 use App\Http\Livewire\ExamTypeTable;
+use App\Http\Livewire\PurchaseData;
 use App\Http\Livewire\StudyTable;
 use App\Http\Livewire\UserForm;
 use App\Http\Livewire\UserTable;
@@ -42,5 +43,6 @@ class AppServiceProvider extends ServiceProvider
         Livewire::component('entitie-table', EntitiesTable::class);
         Livewire::component('add-users', AddEntitieUsers::class);
         Livewire::component('user-table', UserTable::class);
+        Livewire::component('purchase-data', PurchaseData::class);
     }
 }

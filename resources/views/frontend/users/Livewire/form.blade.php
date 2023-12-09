@@ -64,7 +64,7 @@
                                                               :label="$opt"
                                                               :placeholder="$opt"
                                                               class="form-control mb-2"
-                                                              wire:model.lazy="inputs.{{Str::slug($opt)}}"
+                                                              wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}.{{($opt)}}"
                                                 />
                                            @endforeach
                                         @else

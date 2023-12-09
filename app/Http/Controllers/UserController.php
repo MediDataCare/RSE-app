@@ -7,6 +7,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
     public function indexUsers(){
         return view('backend.users.table');
     }

@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Exception;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 
 class EntitiesForm extends Component
@@ -25,11 +27,14 @@ class EntitiesForm extends Component
     public $action = '';
     public $gender = ['male' => 'Masculino', 'female' => 'Feminino', 'other' => 'Outro'];
     public $study;
+    public $selectExam;
+    public $selectOption;
+    public $selectMinMax;
 
     public function mount()
     {
 
-        if(!empty($this->study)){
+        if (!empty($this->study)) {
             //Filters
             data_set($this->filters, 'exams', data_get($this->study, 'data.filters.exams'));
             data_set($this->filters, 'age_min', data_get($this->study, 'data.filters.age_min'));
@@ -63,88 +68,153 @@ class EntitiesForm extends Component
         $this->setFilters();
     }
 
-    public function updated($property, $value)
+    public function saveFilter()
     {
-        $this->resetList();
-        $explode = explode('.', $property);
-        if ($explode[0] === 'filters') {
-            if(!empty(data_get($this->filters, 'exams'))){
-                $this->examsType = $this->examsType->whereIn('id', data_get($this->filters, 'exams'));
-                $this->allExams = $this->allExams->whereIn('exams_types_id', $this->examsType->pluck('id')->toArray());
-            }
-            if(!empty(data_get($this->filters, 'age_min'))){
-                $users = $this->users->where('parameters.age', '>=', data_get($this->filters, 'age_min'));
-                $userIds = $users->pluck('id');
-                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-            }
-            if(!empty(data_get($this->filters, 'age_max'))){
-                $users = $this->users->where('parameters.age', '<=', data_get($this->filters, 'age_max'));
-                $userIds = $users->pluck('id');
-                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-            }
-            if (!empty(data_get($this->filters, 'sex'))) {
-                $users = $this->users->whereIn('parameters.sex', data_get($this->filters, 'sex'));
-                $userIds = $users->pluck('id');
-                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-            }
+        $this->filters[$this->selectExam]['exams']['id'] = $this->selectExam;
+        foreach ($this->examsTypeOptions as $key => $exam) {
+            unset($exam[$this->selectExam]);
+            $this->examsTypeOptions[$key] = $exam;
         }
+        $this->examsType = $this->examsType->whereIn('id', data_get($this->filters, 'exams'));
+        $this->allExams = $this->allExams->whereIn('exams_types_id', $this->examsType->pluck('id')->toArray());
+        if (!empty($this->selectOption)) {
+            $this->filters[$this->selectExam]['exams']['options'] = $this->selectOption;
+        }
+
+        if (is_array($this->selectMinMax)) {
+            $this->filters[$this->selectExam]['exams']['options'] = $this->selectMinMax;
+        }
+//        $this->dispatchBrowserEvent('closeModal');
+        $this->resetList();
+        $this->selectExam = '';
+        $this->selectOption = '';
+        $this->selectMinMax = '';
+    }
+
+    public function removeFromFilter($id)
+    {
+        unset($this->filters[$id]);
+        $this->resetList();
+    }
+
+    public function updating($property, $value){
+        $this->resetList();
     }
 
     public function setFilters()
     {
-        if (!empty($examType = data_get($this->filters, 'exam_type_id'))) {
-            $this->examsType = $this->examsType->find($examType);
-            $this->allExams = $this->allExams->where('exams_types_id', $examType);
-        }
-        if (!empty($age = data_get($this->filters, 'age'))) {
-            if ($age == 'young') {
-                $users = $this->users->whereBetween('parameters.age', [0, 19]);
-                $userIds = $users->pluck('id');
-                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+
+        if (!empty($this->filters)) {
+            $ids = [];
+            foreach ($this->filters as $filter) {
+                array_push($ids, data_get($filter, 'exams.id'));
             }
-            if ($age == 'adult') {
-                $users = $this->users->whereBetween('parameters.age', [20, 59]);
-                $userIds = $users->pluck('id');
-                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+            if (!empty(array_filter($ids))) {
+                $this->examsType = $this->examsType->whereIn('id', $ids);
+                $this->allExams = $this->allExams->whereIn('exams_types_id', $this->examsType->pluck('id')->toArray());
             }
-            if ($age == 'old') {
-                $users = $this->users->where('parameters.age', '>=', 60);
-                $userIds = $users->pluck('id');
-                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-            }
-        }
-        if (!empty($age = data_get($this->filters, 'sex'))) {
-            if ($age == 'male') {
-                $users = $this->users->where('parameters.sex', 'male');
-                $userIds = $users->pluck('id');
-                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-            }
-            if ($age == 'female') {
-                $users = $this->users->where('parameters.sex', 'female');
-                $userIds = $users->pluck('id');
-                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-            }
-            if ($age == 'other') {
-                $users = $this->users->where('parameters.sex', 'other');
-                $userIds = $users->pluck('id');
-                $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+            $examsIds = [];
+            foreach ($this->filters as $filter) {
+                if (empty(data_get($filter, 'exam'))) {
+                    if (!empty($filter) && !empty($age = data_get($this->filters, 'sex'))) {
+                        $age = $age[0];
+                        if ($age == 'male') {
+                            $users = $this->users->where('parameters.sex', 'male');
+                            $userIds = $users->pluck('id');
+                            $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                        }
+                        if ($age == 'female') {
+                            $users = $this->users->where('parameters.sex', 'female');
+                            $userIds = $users->pluck('id');
+                            $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                        }
+                        if ($age == 'other') {
+                            $users = $this->users->where('parameters.sex', 'other');
+                            $userIds = $users->pluck('id');
+                            $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                        }
+                    }
+//                    if (!empty(data_get($filter, 'age_min'))) {
+//                        $users = $this->users->where('parameters.age', '>=', data_get($this->filters, 'age_min'));
+//                        $userIds = $users->pluck('id');
+//                        $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+//                    } elseif (!empty(data_get($filter, 'age_max'))) {
+//                        $users = $this->users->where('parameters.age', '<=', data_get($this->filters, 'age_max'));
+//                        $userIds = $users->pluck('id');
+//                        $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+//                    }
+                } else {
+                    $options = data_get($filter, 'exams.options');
+                    if (!is_array($options)) {
+                        if (!empty($options)) {
+                            $opt = $options;
+                            $examsIds = $this->allExams->filter(function ($item) use ($opt) {
+                                $explode = explode('-', $opt);
+                                if (data_get($item, 'parameters.' . Str::slug($explode[0])) === $explode[1]) {
+                                    return $item;
+                                }
+                            })->pluck('id')->toArray();
+                            $this->allExams = $this->allExams->whereIn('id', $examsIds);
+                        }
+                    }
+                    if (is_array($options)) {
+                        if (!empty(array_filter($options))) {
+                            $opts = $options;
+                            $id = data_get($filter, 'exams.id');
+                            $examsTypes = $this->examsType;
+                            $pluckIds = $this->allExams->filter(function ($item) use ($opts, $examsTypes, $id) {
+                                if (data_get($item, 'exams_types_id') === $id) {
+                                    $examType = $examsTypes->where('id', $id)->first();
+                                    $return = false;
+                                    $itemParams = data_get($item, 'parameters.' . strtolower(data_get($examType, 'title')));
+                                    if (is_array($itemParams)) {
+                                        foreach ($itemParams ?? [] as $paramName => $param) {
+                                            $min = data_get($opts, $paramName . '_min');
+                                            $max = data_get($opts, $paramName . '_max');
+                                            if (data_get($itemParams, $paramName) >= $min && data_get($itemParams, $paramName) <= $max) {
+                                                $return = true;
+                                            } else {
+                                                $return = false;
+                                            }
+                                        }
+                                    } else {
+                                        $min = data_get($opts, strtolower(data_get($examType, 'title')) . '_min');
+                                        $max = data_get($opts, strtolower(data_get($examType, 'title')) . '_max');
+                                        if ($itemParams >= $min && $itemParams <= $max) {
+                                            $return = true;
+                                        } else {
+                                            $return = false;
+                                        }
+                                    }
+                                    if ($return) {
+                                        return $item;
+                                    }
+                                }
+                            })->pluck('id')->toArray();
+                            $examsIds = array_merge($examsIds, $pluckIds);
+                            $this->allExams = $this->allExams->whereIn('id', $examsIds);
+                        }
+                    }
+                }
             }
         }
     }
 
-    public function storeStudy()
+    public
+    function storeStudy()
     {
         try {
             $user = Auth::user();
 
             $data = [];
-            $data['title'] = data_get($this->inputs, 'title');
-            $data['description'] = data_get($this->inputs, 'description');
+            $data['title'] = data_get($this->inputs, 'title', '-');
+            $data['description'] = data_get($this->inputs, 'description', '-');
             $data['state'] = 'pending';
             $data['user_id'] = empty($user) ? 0 : $user->id;;
             $data['data'] = [];
             data_set($data, 'data.filters', $this->filters);
-            data_set($data, 'data.duration', data_get($this->inputs, 'duration'));
+            data_set($data, 'data.duration', data_get($this->inputs, 'duration', 0));
+            data_set($data, 'data.duration_created', Carbon::now());
             data_set($data, 'data.expected_Exams', data_get($this->inputs, 'expected_Exams'));
             data_set($data, 'data.pending', $this->allExams->pluck('id')->toArray());
             Study::create($data);
@@ -155,7 +225,8 @@ class EntitiesForm extends Component
         }
     }
 
-    public function updateStudy()
+    public
+    function updateStudy()
     {
         try {
             $user = Auth::user();
@@ -167,7 +238,10 @@ class EntitiesForm extends Component
             $data['data'] = [];
             $data['data'] = data_get($this->study, 'data');
             data_set($data, 'data.filters', $this->filters);
-            data_set($data, 'data.duration', data_get($this->inputs, 'duration'));
+            if (data_get($this->study, 'data.duration') != data_get($this->inputs, 'duration')) {
+                data_set($data, 'data.duration', data_get($this->inputs, 'duration', 0));
+                data_set($data, 'data.duration_created', Carbon::now());
+            }
             data_set($data, 'data.expected_Exams', data_get($this->inputs, 'expected_Exams'));
             data_set($data, 'data.pending', $this->allExams->pluck('id')->toArray());
             $this->study->update($data);

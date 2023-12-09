@@ -41,44 +41,15 @@
                         return in_array($exam->id, data_get($study, 'data.rejected', []));
                     });
 
-                    return ['pending' => $studyPendingExams->toArray(), 'approved' => $studyApprovedExams->toArray(), 'rejected' => $studyRejectedExams->toArray()];
+                    return ['pending' => $studyPendingExams->toArray(), 'approved' => $studyApprovedExams->toArray(), 'rejected' => $studyRejectedExams->toArray(), 'study' => $study];
 
                 });
             @endphp
             <hr class="my-4">
             <h4 class="text-center mt-5 mb-4 fw-bold">Lista de Pedidos</h4>
-            <div class="container mt-5 mb-5">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Dado</th>
-                        <th scope="col">Estado</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($allData ?? [] as $study)
-                        @foreach($study as $key => $value)
-                            @foreach($value as $exam)
-                                <tr>
-                                    <td>{{data_get($exam, 'parameters.name', '-')}}</td>
-                                    @php
-                                        $state = 'Pendente';
-                                            if( $key ==='pending'){
-                                                $state = 'Pendente';
-                                            }elseif( $key ==='approved'){
-                                                $state = 'Aprovado';
-                                            }elseif( $key ==='rejected'){
-                                                $state = 'Rejeitado';
-                                            }
-                                    @endphp
-                                    <td>{{ $state }}</td>
-                                </tr>
-                            @endforeach
-                        @endforeach
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+            <livewire:purchase-data
+                :allData="$allData"
+            />
         </div>
     @else
         <script>window.location = "/";</script>

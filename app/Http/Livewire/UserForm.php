@@ -55,19 +55,18 @@ class UserForm extends Component
             foreach ($this->selectExamType as $value) {
                 $data = [];
                 $examType = ExamType::where('id', $value)->first();
-                if (data_get($examType, 'parameters.type') === 'number') {
-                    if (data_get($this->inputs, $value) < data_get($examType, 'parameters.min-number') || data_get($this->inputs, $value) > data_get($examType, 'parameters.max-number')) {
-                        $this->message = "Insira um número entre" . data_get($examType, 'parameters.min-number') . " e" . data_get($examType, 'parameters.max-number');
-                        break;
-                    }
-                }
+//                if (data_get($examType, 'parameters.type') === 'number') {
+//                    if (data_get($this->inputs, $value) < data_get($examType, 'parameters.min-number') || data_get($this->inputs, $value) > data_get($examType, 'parameters.max-number')) {
+//                        $this->message = "Insira um número entre" . data_get($examType, 'parameters.min-number') . " e" . data_get($examType, 'parameters.max-number');
+//                        break;
+//                    }
+//                }
                 $type = strtolower(data_get($examType, 'title'));
                 $data['exams_types_id'] = $value;
                 $data['user_id'] = empty($user) ? 0 : $user->id;
-                $data['parameters'] = [$type => $this->inputs[$value], 'name' => data_get($examType, 'title', '-'), 'observations' => data_get($this->obs[$value], 'observations', '-')];
+                $data['parameters'] = [$type => $this->inputs[$value], 'name' => data_get($examType, 'title', '-'), 'observations' => data_get($this->obs, $value.'.observations', '-')];
                 array_push($dataExams, $data);
             }
-
             if (empty($this->message)){
                 foreach ($dataExams as $data){
                     Exam::create($data);
@@ -80,4 +79,7 @@ class UserForm extends Component
         }
     }
 
+    public function purchaseData(/*$study, */$state){
+        dd($state);
+    }
 }

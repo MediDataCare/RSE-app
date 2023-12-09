@@ -36,33 +36,54 @@
             <h4 class="text-center py-1 mt-5"><b>Filtros</b></h4>
             <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 gy-3 pb-5 justify-content-center">
                 <div class="col">
-                    <b><label>{{'Dados'}}</label></b>
-                    <select class="exams-multiple w-100" name="exams[]" multiple="multiple" wire:model="filters.exams"
-                            data-placeholder="Tipo de Dados">
-                        @foreach($examsTypeOptions as $key => $exam)
-                            <optgroup label="{{$key}}">
-                                @foreach($exam as $id => $value)
-                                    <option value="{{$id}}">{{$value}}</option>
-                                @endforeach
-                            </optgroup>
-                        @endforeach
-                    </select>
-
-                </div>
-                <div class="col">
-                    <b><label>{{'Faixa etária'}}</label></b>
-                    <div class="row row-cols-2">
-                        <div class="col">
-                            <x-form-input name="age_min" :placeholder="'Idade Miníma'" class="form-control mb-3"
-                                          wire:model.lazy="filters.age_min" type="number"/>
+                    <div class="row">
+                        <div class="col-12">
+                            <b><label class="text-center w-100">{{'Dados'}}</label></b>
                         </div>
-                        <div class="col">
-                            <x-form-input name="age_max" :placeholder="'Idade Máxima'" class="form-control mb-3"
-                                          wire:model.lazy="filters.age_max" type="number"/>
+                        <div class="col-12">
+                            <div class="row row-cols-2">
+                                <div class="col-5">
+                                    <!-- Button trigger modal -->
+                                    <a data-bs-toggle="modal"
+                                       data-bs-target="#exampleModal">
+                                        <i class="fas fa-plus-circle"></i><span>Adicionar filtro</span>
+                                    </a>
+                                </div>
+                                <div class="col-7">
+                                    @if(!empty($filters))
+                                        <h5 class="fw-bold">Filtros Selecionados</h5>
+                                    @endif
+                                    @foreach($filters as $value)
+                                        @if(data_get($value, 'exams.id'))
+                                            @php
+                                                $examType = \App\Models\ExamType::find(data_get($value, 'exams.id'));
+                                            @endphp
+                                            <p>{{data_get($examType, 'title')}}<i class="fa fa-times ms-2 text-danger"
+                                                                                  aria-hidden="true"
+                                                                                  wire:click="removeFromFilter('{{ data_get($value, 'exams.id') }}')"></i>
+                                            </p>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
+{{--                <div class="col">--}}
+{{--                    <b><label>{{'Faixa etária'}}</label></b>--}}
+{{--                    <div class="row row-cols-2">--}}
+{{--                        <div class="col">--}}
+{{--                            <x-form-input name="age_min[]" :placeholder="'Idade Miníma'" class="form-control mb-3"--}}
+{{--                                          wire:model.lazy="filters.age_min" type="number"/>--}}
+{{--                        </div>--}}
+{{--                        <div class="col">--}}
+{{--                            <x-form-input name="age_max[]" :placeholder="'Idade Máxima'" class="form-control mb-3"--}}
+{{--                                          wire:model.lazy="filters.age_max" type="number"/>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                </div>--}}
                 <div class="col">
                     <b><label>{{'Sexo'}}</label></b>
                     <select class="sex-multiple w-100" name="sexo[]" multiple="multiple" wire:model="filters.sex"
@@ -73,43 +94,77 @@
                     </select>
                 </div>
             </div>
-            <h4 class="text-center mt-2 mb-3"><b>Resultados Encontrados</b></h4>
-            <!-- Esta alnhado ao Centro, mas ha bug na pagina e parece mal.....
-            <div class="chart-container" style="display: flex; justify-content: center; align-items: center; height: 40vh; width: 80vw;">
-                <canvas id="myChart"></canvas>
-            </div> -->
-            <!-- <div class="chart-container" style="position: relative; height:25vh; width:25vw">
-                <canvas id="myChart"></canvas>
+            <!-- Modal -->
+            <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar filtro</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <select class="w-100 form-control" id="examType" name="exams[]"
+                                    data-placeholder="Tipo de Dados">
+                                @foreach($examsTypeOptions as $key => $exam)
+                                    <option value="default">{{'Dado'}}</option>
+                                    <optgroup label="{{$key}}">
+                                        @foreach($exam as $id => $value)
+                                            <option value="{{$id}}">{{$value}}</option>
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
+                            </select>
+                            @php
+                                $examType = \App\Models\ExamType::find($selectExam);
+                            @endphp
+                            @if(!empty($examType))
+                                <h3 class="my-3">{{data_get($examType, 'title')}}</h3>
+
+                                @if(data_get($examType, 'parameters.type') === 'select')
+                                    <select class="w-100 form-control" id="examOptions" name="options[]">
+                                        <option value="default">{{'Opção'}}</option>
+                                        @foreach(data_get($examType, 'parameters.options') ?? [] as $key => $exam)
+                                            <option value="{{data_get($examType, 'title').'-'.$key}}">{{$exam}}</option>
+                                        @endforeach
+                                    </select>
+                                @elseif(data_get($examType, 'parameters.type') === 'number' && !empty(data_get($examType, 'parameters.options') ))
+                                    @foreach(data_get($examType, 'parameters.options') ?? [] as $key => $exam)
+                                        <p>{{$exam}}</p>
+                                        <x-form-input name="{{$exam.'_min'}}" id="min" :placeholder="'Minimo'"
+                                                      class="form-control mb-3"
+                                                      type="number"/>
+                                        <x-form-input name="{{$exam.'_max'}}" id="max" :placeholder="'Máximo'"
+                                                      class="form-control mb-3"
+                                                      type="number"/>
+                                    @endforeach
+                                @elseif(data_get($examType, 'parameters.type') === 'number' && empty(data_get($examType, 'parameters.options') ))
+                                    <p>{{ data_get($examType, 'title') }}</p>
+                                    <x-form-input name="{{ strtolower(data_get($examType, 'title').'_min') }}" id="min"
+                                                  :placeholder="'Minimo'" class="form-control mb-3"
+                                                  type="number"/>
+                                    <x-form-input name="{{ strtolower(data_get($examType, 'title').'_max') }}" id="max"
+                                                  :placeholder="'Máximo'" class="form-control mb-3"
+                                                  type="number"/>
+                                @endif
+                            @endif
+                            {{--                                                        @dump($examType)--}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                    wire:click="saveFilter()">Save changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h5 class="mt-5 mb-2 text-center fs-4">{{ $allExams->count() . '/' . $allExamsOriginal->count() . ' '}}</h5>-->
+
+            <h4 class="text-center mt-2 mb-3"><b>Resultados Encontrados</b></h4>
             <h5 class="fw-bold mt-5 mb-2 text-center fs-3">
-                <span class="text-success">{{ $allExams->count() }}</span><span> / {{ $allExamsOriginal->count() }}</span>
+                <span
+                    class="text-success">{{ $allExams->count() }}</span><span> / {{ $allExamsOriginal->count() }}</span>
             </h5>
-
-
-            <script>
-                const examsCount = {{ $allExams->count() }};
-                const originalCount = {{ $allExamsOriginal->count() }};
-
-                const data = {
-                    labels: ['Exams', 'Remaining'],
-                    datasets: [{
-                        data: [examsCount, originalCount - examsCount],
-                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
-                        hoverOffset: 4,
-                    }],
-                };
-
-                const config = {
-                    type: 'doughnut',
-                    data: data,
-                };
-
-                const ctx = document.getElementById('myChart').getContext('2d');
-
-                const myChart = new Chart(ctx, config);
-            </script>
-
 
             <div class="text-center btn-form mt-5">
                 <button wire:click="{{$action === 'create' ? "storeStudy" : "updateStudy"}}">
@@ -119,23 +174,35 @@
         </div>
     </div>
     <script type="module">
+
+        var mySelect = document.getElementById('examType');
+        if (mySelect != null) {
+
+            mySelect.onchange = (event) => {
+                var inputText = event.target.value;
+                @this.
+                set('selectExam', inputText);
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
-            $('.exams-multiple').select2({
-                placeholder: function () {
-                    $(this).data('placeholder');
-                }
-            });
+
+            // $('.exams-multiple').select2({
+            //     placeholder: function () {
+            //         $(this).data('placeholder');
+            //     }
+            // });
             $('.sex-multiple').select2({
                 placeholder: function () {
                     return $(this).data('placeholder');
                 }
             });
-
-            $('.exams-multiple').on('change', function (e) {
-                var data = $('.exams-multiple').select2("val");
-                @this.
-                set('filters.exams', data);
-            });
+            console.log(@json($examType));
+            {{--$('.exams-multiple').on('change', function (e) {--}}
+            {{--    var data = $('.exams-multiple').select2("val");--}}
+            {{--    @this.--}}
+            {{--    set('filters.exams', data);--}}
+            {{--});--}}
 
             $('.sex-multiple').on('change', function (e) {
                 var data = $('.sex-multiple').select2("val");
@@ -145,12 +212,12 @@
 
 
             Livewire.hook('component.initialized', (component) => {
-                $('.exams-multiple').select2();
-                $('.exams-multiple').on('change', function (e) {
-                    var data = $('.exams-multiple').select2("val");
-                    @this.
-                    set('filters.exams', data);
-                });
+                {{--$('.exams-multiple').select2();--}}
+                {{--$('.exams-multiple').on('change', function (e) {--}}
+                {{--    var data = $('.exams-multiple').select2("val");--}}
+                {{--    @this.--}}
+                {{--    set('filters.exams', data);--}}
+                {{--});--}}
 
                 $('.sex-multiple').select2();
                 $('.sex-multiple').on('change', function (e) {
@@ -161,12 +228,38 @@
             })
 
             Livewire.hook('message.processed', (message, component) => {
-                $('.exams-multiple').select2();
-                $('.exams-multiple').on('change', function (e) {
-                    var data = $('.exams-multiple').select2("val");
+                var myOption = document.getElementById('examOptions');
+                if (myOption != null) {
+                    myOption.onchange = (event) => {
+                        var inputOption = event.target.value;
+                        @this.
+                        set('selectOption', inputOption);
+                    }
+                }
+
+                {{--var myNumber = document.getElementById('number-input');--}}
+                {{--if (myNumber != null) {--}}
+                {{--    myNumber.onchange = (event) => {--}}
+                {{--        var inputOption = event.target.value;--}}
+                {{--        @this.--}}
+                {{--        set('selectMinMax', inputOption);--}}
+                {{--    }--}}
+                {{--}--}}
+
+
+                const minInputs = document.querySelectorAll('input[name$="_min"]');
+                const maxInputs = document.querySelectorAll('input[name$="_max"]');
+
+
+                minInputs.forEach(function (min) {
                     @this.
-                    set('filters.exams', data);
+                    set('selectMinMax.' + min.name, min.value);
                 });
+                maxInputs.forEach(function (max) {
+                    @this.
+                    set('selectMinMax.' + max.name, max.value);
+                });
+
 
                 $('.sex-multiple').select2();
                 $('.sex-multiple').on('change', function (e) {
@@ -177,5 +270,12 @@
 
             })
         });
+
+        // window.addEventListener('closeModal', event => {
+        //     $('#exampleModal').modal('hide');
+        //     // $('body').removeClass('modal-open');
+        //     $('.modal-backdrop').remove();
+        // });
+
     </script>
 </div>
