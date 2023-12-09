@@ -26,15 +26,25 @@ Route::get('/about', function () {
     return view('theme.about');
 });
 
-Route::get('/entitie/form', [FrontEndController::class, 'entitiesForm']);
-Route::get('/entitie/profile', [FrontEndController::class, 'entitiesProfile']);
-Route::delete('/entitie/profile/study/{id}', [FrontEndController::class, 'removeStudy'])->name('remove-study');
-Route::get('/entitie/profile/study/{id}', [FrontEndController::class, 'showStudy'])->name('show-study');
-Route::get('/entitie/profile/study/{id}/edit', [FrontEndController::class, 'editStudy'])->name('edit-study');
-Route::get('/user/form', [FrontEndController::class, 'usersForm']);
-Route::get('/user/profile', [FrontEndController::class, 'userProfile']);
-Route::get('/entitie/profile/study/{id}/export', [FrontEndController::class, 'export'])->name('export');
 
+Route::group([
+    'prefix' => 'entitie',
+    'middleware' => ['checkAuthEntitie']
+], function () {
+    Route::get('/form', [FrontEndController::class, 'entitiesForm'])->middleware('checkEntitieStatus');
+    Route::get('/profile', [FrontEndController::class, 'entitiesProfile']);
+    Route::delete('/profile/study/{id}', [FrontEndController::class, 'removeStudy'])->name('remove-study');
+    Route::get('/profile/study/{id}', [FrontEndController::class, 'showStudy'])->name('show-study');
+    Route::get('/profile/study/{id}/edit', [FrontEndController::class, 'editStudy'])->name('edit-study');
+});
+
+Route::group([
+    'prefix' => 'user',
+    'middleware' => ['checkAuthUser']
+], function () {
+    Route::get('/form', [FrontEndController::class, 'usersForm']);
+    Route::get('/profile', [FrontEndController::class, 'userProfile']);
+});
 
 Route::get('/resgiter-entitie', function () {
     return view('auth.entitie');
