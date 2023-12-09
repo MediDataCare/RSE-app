@@ -36,6 +36,7 @@ Route::group([
     Route::delete('/profile/study/{id}', [FrontEndController::class, 'removeStudy'])->name('remove-study');
     Route::get('/profile/study/{id}', [FrontEndController::class, 'showStudy'])->name('show-study');
     Route::get('/profile/study/{id}/edit', [FrontEndController::class, 'editStudy'])->name('edit-study');
+    Route::get('/profile/study/{id}/export', [FrontEndController::class, 'export'])->name('export');
 });
 
 Route::group([
