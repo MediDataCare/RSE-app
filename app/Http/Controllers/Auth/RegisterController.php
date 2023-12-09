@@ -75,6 +75,7 @@ class RegisterController extends Controller
             'parameters' => [
                 'sex' => data_get($data, 'sex'),
                 'age' => (int)data_get($data, 'age'),
+                'local' => data_get($data, 'local')
             ],
             'data' => [
                 'role' => data_get($data, 'role')

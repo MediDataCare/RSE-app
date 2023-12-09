@@ -85,7 +85,41 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="row mb-3">
+                                    <label for="local"
+                                           class="col-md-4 col-form-label text-md-end">{{ __('Distrito') }}</label>
 
+                                    <div class="col-md-6">
+                                        <select id="local" class="form-control @error('local') is-invalid @enderror"
+                                                name="local" required>
+                                            <option value="">Selecione um distrito</option>
+                                            <option value="Aveiro">Aveiro</option>
+                                            <option value="Beja">Beja</option>
+                                            <option value="Braga">Braga</option>
+                                            <option value="Bragança">Bragança</option>
+                                            <option value="Castelo Branco">Castelo Branco</option>
+                                            <option value="Coimbra">Coimbra</option>
+                                            <option value="Évora">Évora</option>
+                                            <option value="Faro">Faro</option>
+                                            <option value="Guarda">Guarda</option>
+                                            <option value="Leiria">Leiria</option>
+                                            <option value="Lisboa">Lisboa</option>
+                                            <option value="Madeira">Madeira</option>
+                                            <option value="Portalegre">Portalegre</option>
+                                            <option value="Porto">Porto</option>
+                                            <option value="Santarém">Santarém</option>
+                                            <option value="Setúbal">Setúbal</option>
+                                            <option value="Viana do Castelo">Viana do Castelo</option>
+                                            <option value="Vila Real">Vila Real</option>
+                                            <option value="Viseu">Viseu</option>
+                                        </select>
+                                        @error('local')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="row mb-3">
                                     <label for="password"

@@ -5,7 +5,14 @@
     <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
         <img src="{{asset('assets/img/t3/backoffice.svg')}}" class="img-fluid animated">
         <h2>Bem-Vindo ao <span>Backoffice</span></h2>
-        <div class="d-flex row row-cols-1 row-cols-sm-2">
+        <div class="d-flex row row-cols-1 row-cols-sm-3">
+            @if(Auth::user()->data->role == 'admin')
+                <div class="col">
+                    <div class="w-100 text-center mt-5">
+                        <a class="btn-get-started scrollto" href="{{route('users-index')}}">Utilizadores</a>
+                    </div>
+                </div>
+            @endif
             <div class="col">
                 <div class="w-100 text-center mt-5">
                     <a class="btn-get-started scrollto" href="{{route('exam-type-index')}}">Dados</a>
