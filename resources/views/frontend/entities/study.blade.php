@@ -10,11 +10,6 @@
             <div class="container py-5">
                 <div class="section-header">
                     <h2>Características do Estudo</h2>
-                    <a href="{{route('export', ['id' => $study])}}">
-                        EXPORT
-                    </a>
-                    <!-- <p>Todas as Entidades Registadas na Plataforma estão visíveis abaixo, o seu registo pode ser Aprovado ou Rejeitado
-                        <br>Para observar os Estudos de uma Entidade por favor selecione a mesma</p> -->
                 </div>
                 <div class="row mb-3">
                     <div class="col-6 d-flex align-items-center ">
@@ -52,10 +47,22 @@
                     />
                 </b>
                 <h4 class="text-center mt-5 mb-3 fw-bold">Dados escolhidos</h4>
+               <!-- Meter o status...
+                    If acabdo -> verde...
+                -->
+                <h5 class="text-center mt-4 mb-2">
+                    {{ ' Status: ' }}
+                    <span class="text-success fw-bold">{{ $study->state }}</span>
+                </h5>
                 <h5 class="text-center mt-4 mb-2">
                     {{ ' Resultados encontrados: ' }}
-                    <span class="text-success fw-bold">{{ $allExams->count() }}</span>
+                    <span class="text-success fw-bold">{{ $allExams->count()}}</span>
                 </h5>
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="{{ route('export', ['id' => $study]) }}" class="btn btn-success mt-4 mb-2">
+                        <i class="fas fa-file-excel"></i> Descarregar Ficheiro
+                    </a>
+                </div>
             </div>
         </div>
     @endif
