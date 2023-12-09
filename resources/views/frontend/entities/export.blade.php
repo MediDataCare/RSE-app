@@ -1,82 +1,101 @@
 <table>
+    @php
+        $exams = \App\Models\Exam::whereIn('id', data_get($study, 'data.pending'))->get();
+        $columns = [];
+    @endphp
     <thead>
     <tr>
         <th colspan="{{ $totalColumns }}" style="border: 1px solid black;">{{ data_get($study, 'title') }}</th>
     </tr>
     <tr>
         <th colspan="{{ $totalColumns }}" style="font-size: 13px;">{{ data_get($study, 'description') }}</th>
-    </tr> 
-    <tr></tr>          
+    </tr>
+    <tr></tr>
     <tr>
-        <!-- 
-            - Como adicionar informação proveniente de outras tabelas? Idade, etc.
-            -  
-        -->
+        <th>Identificação do Utilizador</th>
         <th>Idade</th>
         <th>Sexo</th>
         <th>Distrito</th>
-        <th>DIABETES</th>
-        <th>Tipo de Diabetes</th>
-        <th>FUMADOR</th>
-        <th>Fumador</th>
-        <th>Fumador(Obs.)</th>
+        @php
+            $examsTypes = \App\Models\ExamType::whereIn('id', \App\Models\Exam::whereIn('id', data_get($study, 'data.pending'))->pluck('exams_types_id')->unique()->toArray())->get();
+        @endphp
+        @foreach($examsTypes as $type)
+            <th>{{data_get($type, 'title')}}</th>
+            @php
+                $params = data_get($type, 'parameters', []);
+            @endphp
+            @if(data_get($params, 'type') === 'select')
+                <th>Resposta</th>
+                @php
+                    array_push($columns, data_get($type, 'title'));
+                    array_push($columns, 'respostas');
+                @endphp
+            @elseif(data_get($params, 'type') === 'number' && !empty($options = data_get($params, 'options', [])))
+                @php
+                    array_push($columns, data_get($type, 'title'));
+                @endphp
+                @foreach($options as $value)
+                    @php
+                        array_push($columns, $value);
+                    @endphp
+                    <th>{{$value}}</th>
+                @endforeach
+
+            @else
+                <th>Resposta</th>
+                @php
+                    array_push($columns, data_get($type, 'title'));
+                    array_push($columns, 'respostas');
+                @endphp
+            @endif
+        @endforeach
     </tr>
     </thead>
     <tbody>
-        <!-- 
-            - Adicionar FOR para criar linhas Consoante o nº de dados partilhados
-            - Como adicionar informação proveniente de outras tabelas? Idade, etc.
-            -  
-        -->
+    @foreach($exams as $exam)
         <tr>
-            <td>71</td>
-            <td>Female</td>
-            <td>Faro</td>
+            @php
+                $user = \App\Models\User::find(data_get($exam, 'user_id'));
+                $age = data_get($user, 'parameters.age', '-');
+                $gender = data_get($user, 'parameters.sex', '-');
+                if($gender === 'male'){
+                    $gender = 'Masculino';
+                }elseif ($gender === 'female'){
+                    $gender = 'Feminino';
+                }elseif($gender === 'other'){
+                    $gender = 'Outro';
+                }
+                $local = data_get($user, 'parameters.local', '-');
+                $params = data_get($exam, 'parameters', []);
+                $resposta = data_get($params, strtolower(data_get($params, 'name')));
+            @endphp
+            <td>{{'Utilizador_'.data_get($user, 'id')}}</td>
+            <td>{{$age}}</td>
+            <td>{{$gender}}</td>
+            <td>{{$local}}</td>
             <td></td>
-            <td>Gestational Diabetes</td>
-            <td></td>
-            <td>Sim</td>
-            <td>Sim</td>
+            @foreach($columns as $column)
+                @if($column === data_get($params, 'name'))
+                    @if(is_object($resposta) || is_array($resposta))
+                        @foreach($resposta as $value)
+                            <td>{{$value}}</td>
+                        @endforeach
+                    @else
+                        @php
+                            $examType = \App\Models\ExamType::find(data_get($exam, 'exams_types_id'));
+                            $paramsType = data_get($examType, 'parameters');
+                        @endphp
+                        @if(data_get($paramsType, 'type') === 'select')
+                            <td>{{data_get($paramsType, 'options.'.$resposta)}}</td>
+                        @else
+                            <td>{{$resposta}}</td>
+                        @endif
+                    @endif
+                @else
+                    <td></td>
+                @endif
+            @endforeach
         </tr>
-        <tr>
-            <td>64</td>
-            <td>Male</td>
-            <td>Lisbon</td>
-            <td></td>
-            <td>Type 1 Diabetes</td>
-            <td></td>
-            <td>Não</td>
-            <td>Não</td>
-        </tr>
-        <tr>
-            <td>82</td>
-            <td>Female</td>
-            <td>Viseu</td>
-            <td></td>
-            <td>Type 2 Diabetes</td>
-            <td></td>
-            <td>Sim</td>
-            <td>Ocasionalmente</td>
-        </tr>
-        <tr>
-            <td>24</td>
-            <td>Male</td>
-            <td>Lisbon</td>
-            <td></td>
-            <td>Type 1 Diabetes</td>
-            <td></td>
-            <td>Sim</td>
-            <td>Sim</td>
-        </tr>
-        <tr>
-            <td>42</td>
-            <td>Male</td>
-            <td>Faro</td>
-            <td></td>
-            <td>Gestational Diabetes</td>
-            <td></td>
-            <td>Sim</td>
-            <td>Ex-Fumador</td>
-        </tr>
+    @endforeach
     </tbody>
 </table>

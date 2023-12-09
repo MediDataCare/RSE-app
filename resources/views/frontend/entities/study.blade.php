@@ -47,22 +47,17 @@
                     />
                 </b>
                 <h4 class="text-center mt-5 mb-3 fw-bold">Dados escolhidos</h4>
-               <!-- Meter o status...
-                    If acabdo -> verde...
-                -->
-                <h5 class="text-center mt-4 mb-2">
-                    {{ ' Status: ' }}
-                    <span class="text-success fw-bold">{{ $study->state }}</span>
-                </h5>
                 <h5 class="text-center mt-4 mb-2">
                     {{ ' Resultados encontrados: ' }}
                     <span class="text-success fw-bold">{{ $allExams->count()}}</span>
                 </h5>
+                @if(\Carbon\Carbon::parse(data_get($study, 'data.duration_created'))->addDays(data_get($study, 'data.duration')) <= \Carbon\Carbon::now())
                 <div class="d-flex align-items-center justify-content-center">
                     <a href="{{ route('export', ['id' => $study]) }}" class="btn btn-success mt-4 mb-2">
                         <i class="fas fa-file-excel"></i> Descarregar Ficheiro
                     </a>
                 </div>
+                @endif
             </div>
         </div>
     @endif

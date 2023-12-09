@@ -33,7 +33,7 @@ Route::get('/entitie/profile/study/{id}', [FrontEndController::class, 'showStudy
 Route::get('/entitie/profile/study/{id}/edit', [FrontEndController::class, 'editStudy'])->name('edit-study');
 Route::get('/user/form', [FrontEndController::class, 'usersForm']);
 Route::get('/user/profile', [FrontEndController::class, 'userProfile']);
-    Route::get('/entitie/profile/study/{id}/export', [FrontEndController::class, 'export'])->name('export');
+Route::get('/entitie/profile/study/{id}/export', [FrontEndController::class, 'export'])->name('export');
 
 
 Route::get('/resgiter-entitie', function () {

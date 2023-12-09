@@ -26,12 +26,27 @@ class InvoicesExport implements FromView, WithStyles, ShouldAutoSize
         $study = Study::find($this->study);
 
         // TEMOS DE DEFINIR O Nº TOTAL DE COLUNAS
-        // NAO SEI COMO
-        $this->totalColumns = 8;
-
+        $columns = ['Identificação do Utilizador', 'Idade', 'Sexo', 'Distrito'];
+        $exams = \App\Models\Exam::whereIn('id', data_get($study, 'data.pending'))->get();
+        $examsTypes = \App\Models\ExamType::whereIn('id', \App\Models\Exam::whereIn('id', data_get($study, 'data.pending'))->pluck('exams_types_id')->unique()->toArray())->get();
+        foreach($examsTypes as $type){
+            $params = data_get($type, 'parameters', []);
+            if(data_get($params, 'type') === 'select'){
+                array_push($columns, data_get($type, 'title'));
+                array_push($columns, 'respostas');
+            }elseif(data_get($params, 'type') === 'number' && !empty($options = data_get($params, 'options', []))){
+                array_push($columns, data_get($type, 'title'));
+                foreach ($options as $value){
+                    array_push($columns, $value);
+                }
+            }else{
+                array_push($columns, data_get($type, 'title'));
+                array_push($columns, 'respostas');
+            }
+        }
         return view('frontend.entities.export', [
             'study' => $study,
-            'totalColumns' => $this->totalColumns,
+            'totalColumns' => count($columns),
         ]);
     }
 
@@ -94,39 +109,3 @@ class InvoicesExport implements FromView, WithStyles, ShouldAutoSize
     }
 
 }
-
-
-class InvoicesController extends Controller
-{
-    public function export(Request $request)
-    {
-        $study = Study::find($request->study_id);
-
-        $export = new InvoicesExport($study);
-
-        $styles = $export->styles();
-
-        return Excel::download($invoices, $filename, $styles);
-    }
-}
-
-/*
-class InvoicesExport implements FromView
-{
-    protected $study;
-
-    public function __construct($study)
-    {
-        $this->study = $study;
-    }
-
-    public function view(): View
-    {
-        $study = Study::find($this->study);
-
-        return view('frontend.entities.export', [
-            'study' => $study
-        ]);
-    }
-}
-*/

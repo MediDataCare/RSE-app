@@ -79,7 +79,4 @@ class UserForm extends Component
         }
     }
 
-    public function purchaseData(/*$study, */$state){
-        dd($state);
-    }
 }
