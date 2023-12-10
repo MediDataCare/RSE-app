@@ -19,7 +19,7 @@ class StudyTable extends DataTableComponent
     public function builder(): Builder
     {
         $query = Study::query();
-        if(data_get(Auth::user(), 'data.role') === 'manager'){
+        if(data_get(Auth::user(), 'data.role') === 'manager' || data_get(Auth::user(), 'data.role') === 'admin'){
             $query =  $query->where('user_id', $this->entitiesId);
             return $query;
         }else{

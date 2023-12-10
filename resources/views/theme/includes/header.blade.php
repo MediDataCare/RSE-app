@@ -93,19 +93,10 @@
                         </a>
                         <ul>
                             @if(Auth::user()->data && Auth::user()->data->role)
-                                @if(Auth::user()->data->role == 'entitie'|| !empty(Auth::user()->data->entitie) || Auth::user()->data->role == 'admin')
-                                    @if(Auth::user()->data->role == 'admin')
-                                        <li><a href="/entitie/profile">Perfil Entidade</a></li>
-                                    @else
-                                        <li><a href="/entitie/profile">Perfil</a></li>
-                                    @endif
-                                @endif
-                                @if(Auth::user()->data->role == 'user' && empty(Auth::user()->data->entitie) || Auth::user()->data->role == 'admin')
-                                    @if(Auth::user()->data->role == 'admin')
-                                        <li><a href="/user/profile">Perfil User</a></li>
-                                    @else
-                                        <li><a href="/user/profile">Perfil</a></li>
-                                    @endif
+                                @if(Auth::user()->data->role == 'entitie'|| !empty(Auth::user()->data->entitie))
+                                    <li><a href="/entitie/profile">Perfil</a></li>
+                                @elseif(Auth::user()->data->role == 'user' && empty(Auth::user()->data->entitie))
+                                    <li><a href="/user/profile">Perfil</a></li>
                                 @endif
                             @endif
                             <li><a href="{{ route('logout') }}"
