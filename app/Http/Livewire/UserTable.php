@@ -40,11 +40,11 @@ class UserTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make(__('Role'), 'data')
-            ->format(function ($value, $column, $model) {
-                return data_get($column, 'data.role') ?? '-';
-            })
-            ->sortable()
-            ->searchable()
+                ->format(function ($value, $column, $model) {
+                    return data_get($column, 'data.role') ?? '-';
+                })
+                ->sortable()
+                ->searchable()
         ];
 
         return $columns;

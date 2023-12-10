@@ -18,7 +18,7 @@ class CheckAuthEntitie
     public function handle(Request $request, Closure $next)
     {
         if (auth()->check()) {
-            if (Auth::user()->data->role == 'entitie' || Auth::user()->data->role == 'admin') {
+            if (Auth::user()->data->role == 'entitie' || !empty(Auth::user()->data->entitie) || Auth::user()->data->role == 'admin') {
                 return $next($request);
             }
         }

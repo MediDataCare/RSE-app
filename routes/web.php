@@ -78,7 +78,8 @@ Route::group([
     ], function () {
         Route::get('/', [UserController::class, 'indexUsers'])->name('index');
         Route::get('/{id}', [UserController::class, 'showUser'])->name('show');
-        Route::get('/{id}/edit', [UserController::class, 'editUserType'])->name('edit');
+        Route::get('/{id}/edit', [UserController::class, 'editUserRole'])->name('edit');
+        Route::post('/{id}/update', [UserController::class, 'updateUserRole'])->name('update');
     });
 
     Route::get('/entities', [BackOfficeController::class, 'entities'])->name('entities');

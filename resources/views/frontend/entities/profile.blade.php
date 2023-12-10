@@ -3,7 +3,6 @@
 @endphp
 @extends('theme.master')
 @section('content')
-    @if (Auth::check() && (Auth::user()->data->role == 'entitie' || !empty(Auth::user()->data->entitie)))
         <div class="container-fluid">
             <div class="section-header mt-5" style="margin-top:7rem!Important">
                 <h2>Perfil</h2>
@@ -24,7 +23,7 @@
                         
                                 <strong>Entidade:</strong> {{ $entityUser ? $entityUser->name : 'Usuário da entidade não encontrado' }}
                             @else
-                                <strong>NIF:</strong> {{ Auth::user()->parameters->cae }}
+                                <strong>NIF:</strong> {{ optional(Auth::user()->parameters)->cae }}
                             @endif
                         </div>
                         <div class="">
@@ -61,8 +60,4 @@
                 </div>
             @endif
         </div>
-
-    @else
-        <script>window.location = "/";</script>
-    @endif
 @endsection

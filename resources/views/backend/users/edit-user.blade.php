@@ -21,6 +21,7 @@
                     </div>
                 @endif
             </div>
+            
             <b>
                 <x-form-input action="show"
                               name="name"
@@ -43,15 +44,29 @@
                 />
             </b>
             <b>
-                <x-form-input
-                    action="show"
-                    name="role"
-                    :label="'Role'"
-                    :placeholder="'Role'"
-                    class="form-control mb-3"
-                    :value="data_get($user->data, 'role')"
-                    readonly
-                />
+                <x-form method="POST" action="{{ route('users-update', ['id' => $user->id]) }}">
+                    <x-form-select
+                        action="show"
+                        name="new_role"
+                        :label="'Role'"
+                        :options="[
+                            'admin' => 'Administrador',
+                            'manager' => 'Manager',
+                            'entitie' => 'Entidade',
+                            'user' => 'Utilizador',
+                        ]"
+                        :selected="old('new_role', $user->data->role)"
+                        class="form-control mb-3"
+                    />
+                    <p>{{ $user->data->role }}</p>
+                    <div class="col">
+                        <div class="w-100 text-center btn-form mt-5">
+                            <button type="submit">
+                                {{ 'Guardar' }}
+                            </button>
+                        </div>
+                    </div>
+                </x-form>
             </b>
         </div>
     </div>
