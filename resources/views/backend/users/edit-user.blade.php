@@ -13,13 +13,6 @@
                         <i class="fas fa-arrow-left fs-4"></i>
                     </a>
                 </div>
-                @if(empty(data_get($user, 'data.accepted', [])) && empty(data_get($user, 'data.rejected', [])))
-                    <div class="col-6 text-end btn-form">
-                        <button onclick="window.location.href='{{ route('users-edit', ['id' => $user->id]) }}'">
-                            {{ 'Editar User' }}
-                        </button>
-                    </div>
-                @endif
             </div>
             
             <b>
