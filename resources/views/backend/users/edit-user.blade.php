@@ -55,10 +55,9 @@
                             'entitie' => 'Entidade',
                             'user' => 'Utilizador',
                         ]"
-                        :selected="old('new_role', $user->data->role)"
+                        :default="old('new_role', $user->data->role)"
                         class="form-control mb-3"
                     />
-                    <p>{{ $user->data->role }}</p>
                     <div class="col">
                         <div class="w-100 text-center btn-form mt-5">
                             <button type="submit">
