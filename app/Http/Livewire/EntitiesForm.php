@@ -31,6 +31,28 @@ class EntitiesForm extends Component
     public $selectOption;
     public $selectMinMax;
 
+    public $locals = [
+        "Aveiro" => "Aveiro",
+        "Beja" => "Beja",
+        "Braga" => "Braga",
+        "Bragança" => "Bragança",
+        "Castelo Branco" => "Castelo Branco",
+        "Coimbra" => "Coimbra",
+        "Évora" => "Évora",
+        "Faro" => "Faro",
+        "Guarda" => "Guarda",
+        "Leiria" => "Leiria",
+        "Lisboa" => "Lisboa",
+        "Madeira" => "Madeira",
+        "Portalegre" => "Portalegre",
+        "Porto" => "Porto",
+        "Santarém" => "Santarém",
+        "Setúbal" => "Setúbal",
+        "Viana do Castelo" => "Viana do Castelo",
+        "Vila Real" => "Vila Real",
+        "Viseu" => "Viseu"
+    ];
+
     public function mount()
     {
 
@@ -94,16 +116,21 @@ class EntitiesForm extends Component
     public function removeFromFilter($id)
     {
         unset($this->filters[$id]);
+        $this->selectExam = 'default';
         $this->resetList();
     }
 
-    public function updating($property, $value){
+    public function updating($property, $value)
+    {
+        $explode = explode('.', $property);
+        if ($explode[0] === 'filters') {
+            data_set($this->filters, $explode[1], $value);
+        }
         $this->resetList();
     }
 
     public function setFilters()
     {
-
         if (!empty($this->filters)) {
             $ids = [];
             foreach ($this->filters as $filter) {
@@ -115,35 +142,40 @@ class EntitiesForm extends Component
             }
             $examsIds = [];
             foreach ($this->filters as $filter) {
-                if (empty(data_get($filter, 'exam'))) {
-                    if (!empty($filter) && !empty($age = data_get($this->filters, 'sex'))) {
-                        $age = $age[0];
-                        if ($age == 'male') {
-                            $users = $this->users->where('parameters.sex', 'male');
-                            $userIds = $users->pluck('id');
-                            $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                if (!empty($filter) && !empty($gender = data_get($this->filters, 'sex'))) {
+                    $userIds = [];
+                    foreach ($gender as $value) {
+                        if ($value == 'male') {
+                            $userIds = array_merge($userIds, $this->users->where('parameters.sex', 'male')->pluck('id')->toArray());
                         }
-                        if ($age == 'female') {
-                            $users = $this->users->where('parameters.sex', 'female');
-                            $userIds = $users->pluck('id');
-                            $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                        if ($value == 'female') {
+                            $userIds = array_merge($userIds, $this->users->where('parameters.sex', 'female')->pluck('id')->toArray());
                         }
-                        if ($age == 'other') {
-                            $users = $this->users->where('parameters.sex', 'other');
-                            $userIds = $users->pluck('id');
-                            $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                        if ($value == 'other') {
+                            $userIds = array_merge($userIds, $this->users->where('parameters.sex', 'other')->pluck('id')->toArray());
                         }
                     }
-//                    if (!empty(data_get($filter, 'age_min'))) {
-//                        $users = $this->users->where('parameters.age', '>=', data_get($this->filters, 'age_min'));
-//                        $userIds = $users->pluck('id');
-//                        $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-//                    } elseif (!empty(data_get($filter, 'age_max'))) {
-//                        $users = $this->users->where('parameters.age', '<=', data_get($this->filters, 'age_max'));
-//                        $userIds = $users->pluck('id');
-//                        $this->allExams = $this->allExams->whereIn('user_id', $userIds);
-//                    }
-                } else {
+                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                }
+                if (!empty($filter) && !empty($locals = data_get($this->filters, 'local'))) {
+                    $userIds = [];
+                    foreach ($locals as $value) {
+                        $userIds = array_merge($userIds, $this->users->where('parameters.local', $value)->pluck('id')->toArray());
+                    }
+                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                }
+                if (!empty($filter) && !empty(data_get($this->filters, 'age_min'))) {
+                    $users = $this->users->where('parameters.age', '>=', data_get($this->filters, 'age_min'));
+                    $userIds = $users->pluck('id');
+                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                }
+                if ((!empty($filter) && !empty(data_get($this->filters, 'age_max')))) {
+                    $users = $this->users->where('parameters.age', '<=', data_get($this->filters, 'age_max'));
+                    $userIds = $users->pluck('id');
+                    $this->allExams = $this->allExams->whereIn('user_id', $userIds);
+                }
+
+                if (!empty(data_get($filter, 'exams'))) {
                     $options = data_get($filter, 'exams.options');
                     if (!is_array($options)) {
                         if (!empty($options)) {

@@ -34,7 +34,7 @@
                               wire:model.lazy="inputs.duration"/>
             </b>
             <h4 class="text-center py-1 mt-5"><b>Filtros</b></h4>
-            <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 gy-3 pb-5 justify-content-center">
+            <div class="row row-cols-1 row-cols-lg-4 row-cols-md-2 gy-3 pb-5 justify-content-center">
                 <div class="col">
                     <div class="row">
                         <div class="col-12">
@@ -70,26 +70,34 @@
                     </div>
 
                 </div>
-{{--                <div class="col">--}}
-{{--                    <b><label>{{'Faixa etária'}}</label></b>--}}
-{{--                    <div class="row row-cols-2">--}}
-{{--                        <div class="col">--}}
-{{--                            <x-form-input name="age_min[]" :placeholder="'Idade Miníma'" class="form-control mb-3"--}}
-{{--                                          wire:model.lazy="filters.age_min" type="number"/>--}}
-{{--                        </div>--}}
-{{--                        <div class="col">--}}
-{{--                            <x-form-input name="age_max[]" :placeholder="'Idade Máxima'" class="form-control mb-3"--}}
-{{--                                          wire:model.lazy="filters.age_max" type="number"/>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                </div>--}}
+                <div class="col">
+                    <b><label>{{'Faixa etária'}}</label></b>
+                    <div class="row row-cols-2">
+                        <div class="col">
+                            <x-form-input name="age_min[]" :placeholder="'Idade Miníma'" class="form-control mb-3"
+                                          wire:model.lazy="filters.age_min" type="number"/>
+                        </div>
+                        <div class="col">
+                            <x-form-input name="age_max[]" :placeholder="'Idade Máxima'" class="form-control mb-3"
+                                          wire:model.lazy="filters.age_max" type="number"/>
+                        </div>
+                    </div>
+                </div>
                 <div class="col">
                     <b><label>{{'Sexo'}}</label></b>
                     <select class="sex-multiple w-100" name="sexo[]" multiple="multiple" wire:model="filters.sex"
                             data-placeholder="Selecione o Sexo">
                         @foreach($gender ?? [] as $key => $sex)
                             <option value="{{$key}}">{{$sex}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col">
+                    <b><label>{{'Distrito'}}</label></b>
+                    <select class="local-multiple w-100" name="local[]" multiple="multiple" wire:model="filters.local"
+                            data-placeholder="Selecione o distrito">
+                        @foreach($locals ?? [] as $key => $local)
+                            <option value="{{$key}}">{{$local}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -186,23 +194,11 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-
-            // $('.exams-multiple').select2({
-            //     placeholder: function () {
-            //         $(this).data('placeholder');
-            //     }
-            // });
             $('.sex-multiple').select2({
                 placeholder: function () {
                     return $(this).data('placeholder');
                 }
             });
-            console.log(@json($examType));
-            {{--$('.exams-multiple').on('change', function (e) {--}}
-            {{--    var data = $('.exams-multiple').select2("val");--}}
-            {{--    @this.--}}
-            {{--    set('filters.exams', data);--}}
-            {{--});--}}
 
             $('.sex-multiple').on('change', function (e) {
                 var data = $('.sex-multiple').select2("val");
@@ -210,20 +206,33 @@
                 set('filters.sex', data);
             });
 
+            $('.local-multiple').select2({
+                placeholder: function () {
+                    return $(this).data('placeholder');
+                }
+            });
+
+            $('.local-multiple').on('change', function (e) {
+                var data = $('.local-multiple').select2("val");
+                @this.
+                set('filters.local', data);
+            });
+
 
             Livewire.hook('component.initialized', (component) => {
-                {{--$('.exams-multiple').select2();--}}
-                {{--$('.exams-multiple').on('change', function (e) {--}}
-                {{--    var data = $('.exams-multiple').select2("val");--}}
-                {{--    @this.--}}
-                {{--    set('filters.exams', data);--}}
-                {{--});--}}
 
                 $('.sex-multiple').select2();
                 $('.sex-multiple').on('change', function (e) {
                     var data = $('.sex-multiple').select2("val");
                     @this.
                     set('filters.sex', data);
+                });
+
+                $('.local-multiple').select2();
+                $('.local-multiple').on('change', function (e) {
+                    var data = $('.local-multiple').select2("val");
+                    @this.
+                    set('filters.local', data);
                 });
             })
 
@@ -236,16 +245,6 @@
                         set('selectOption', inputOption);
                     }
                 }
-
-                {{--var myNumber = document.getElementById('number-input');--}}
-                {{--if (myNumber != null) {--}}
-                {{--    myNumber.onchange = (event) => {--}}
-                {{--        var inputOption = event.target.value;--}}
-                {{--        @this.--}}
-                {{--        set('selectMinMax', inputOption);--}}
-                {{--    }--}}
-                {{--}--}}
-
 
                 const minInputs = document.querySelectorAll('input[name$="_min"]');
                 const maxInputs = document.querySelectorAll('input[name$="_max"]');
@@ -268,14 +267,15 @@
                     set('filters.sex', data);
                 });
 
+                $('.local-multiple').select2();
+                $('.local-multiple').on('change', function (e) {
+                    var data = $('.local-multiple').select2("val");
+                    @this.
+                    set('filters.local', data);
+                });
+
             })
         });
-
-        // window.addEventListener('closeModal', event => {
-        //     $('#exampleModal').modal('hide');
-        //     // $('body').removeClass('modal-open');
-        //     $('.modal-backdrop').remove();
-        // });
 
     </script>
 </div>
