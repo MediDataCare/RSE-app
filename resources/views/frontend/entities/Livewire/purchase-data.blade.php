@@ -65,4 +65,9 @@
             </tbody>
         </table>
     </div>
+    <script>
+        document.addEventListener('refreshtable', () => {
+            location.reload();
+        });
+    </script>
 </div>

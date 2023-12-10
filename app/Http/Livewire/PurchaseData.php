@@ -10,6 +10,8 @@ use Livewire\Component;
 class PurchaseData extends Component
 {
     public $allData;
+
+
     public function mount()
     {
     }
@@ -23,7 +25,7 @@ class PurchaseData extends Component
         $study = Study::find($studyId);
         $exam = Exam::find($examId);
         $data = data_get($study, 'data', []);
-        $pending = data_get($data, 'pending', []);
+        $pending = (array)data_get($data, 'pending', []);
         $index = array_search(data_get($exam, 'id'), $pending);
         unset($pending[$index]);
         data_set($data, 'pending', $pending);
@@ -40,7 +42,7 @@ class PurchaseData extends Component
             array_push($rejected, data_get($exam, 'id'));
             data_set($data, 'rejected', $rejected);
         }
-
         $study->update(['data' => $data]);
+        $this->dispatchBrowserEvent('refreshtable');
     }
 }

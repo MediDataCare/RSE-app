@@ -31,13 +31,13 @@
 
                 $allData = $studies->map(function ($study) use ($exams) {
                     $studyPendingExams = $exams->filter(function ($exam) use ($study) {
-                        return in_array($exam->id, data_get($study, 'data.pending', []));
+                        return in_array($exam->id, (array)data_get($study, 'data.pending', []));
                     });
                     $studyApprovedExams = $exams->filter(function ($exam) use ($study) {
-                        return in_array($exam->id, data_get($study, 'data.approved', []));
+                        return in_array($exam->id, (array)data_get($study, 'data.approved', []));
                     });
                     $studyRejectedExams = $exams->filter(function ($exam) use ($study) {
-                        return in_array($exam->id, data_get($study, 'data.rejected', []));
+                        return in_array($exam->id, (array)data_get($study, 'data.rejected', []));
                     });
 
                     return ['pending' => $studyPendingExams->toArray(), 'approved' => $studyApprovedExams->toArray(), 'rejected' => $studyRejectedExams->toArray(), 'study' => $study];
