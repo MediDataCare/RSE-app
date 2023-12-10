@@ -54,9 +54,10 @@
                         @elseif(data_get($value, 'type') === 'number')
                             <div class="mb-3">
                                 <div class="row">
-                                    <div class="{{empty(data_get($examType, 'parameters.unit')) ? 'col-12' : 'col-11'}}">
-                                       @if(!empty(data_get($examType, 'parameters.options')) && is_array(data_get($examType, 'parameters.options')))
-                                           @foreach(data_get($examType, 'parameters.options') as $opt)
+                                    <div
+                                        class="{{empty(data_get($examType, 'parameters.unit')) ? 'col-12' : 'col-11'}}">
+                                        @if(!empty(data_get($examType, 'parameters.options')) && is_array(data_get($examType, 'parameters.options')))
+                                            @foreach(data_get($examType, 'parameters.options') as $opt)
                                                 <x-form-input action="create"
                                                               name="{{Str::slug($opt)}}"
                                                               type="number"
@@ -66,17 +67,17 @@
                                                               class="form-control mb-2"
                                                               wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}.{{($opt)}}"
                                                 />
-                                           @endforeach
+                                            @endforeach
                                         @else
-                                        <x-form-input action="create"
-                                                      name="{{Str::slug(data_get($examType, 'title'))}}"
-                                                      type="number"
-                                                      step="0.01"
-                                                      :label="data_get($examType, 'title')"
-                                                      :placeholder="data_get($examType, 'title')"
-                                                      class="form-control mb-2"
-                                                      wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
-                                        />
+                                            <x-form-input action="create"
+                                                          name="{{Str::slug(data_get($examType, 'title'))}}"
+                                                          type="number"
+                                                          step="0.01"
+                                                          :label="data_get($examType, 'title')"
+                                                          :placeholder="data_get($examType, 'title')"
+                                                          class="form-control mb-2"
+                                                          wire:model.lazy="inputs.{{Str::slug(data_get($examType, 'id'))}}"
+                                            />
                                         @endif
                                     </div>
                                     @if(!empty(data_get($examType, 'parameters.unit')))
@@ -93,7 +94,16 @@
                                     @endif
                                 </div>
                                 @if(!empty($message))
-                                    <p class="text-danger">{{$message}}</p>
+                                    @php
+                                        if(array_key_exists($examType->id, $message)){
+                                          $messageByExam = $message[$examType->id];
+                                        }else{
+                                            $messageByExam = null;
+                                        }
+                                    @endphp
+                                    @if(!empty($messageByExam))
+                                        <p class="text-danger">{{$messageByExam}}</p>
+                                    @endif
                                 @endif
                             </div>
                         @endif

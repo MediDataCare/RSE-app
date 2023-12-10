@@ -112,11 +112,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <select class="w-100 form-control" id="examType" name="exams[]"
-                                    data-placeholder="Tipo de Dados">
+                            <select class="w-100 form-control" id="examType" name="exams[]" placeholder="Tipo de Dados">
                                 @foreach($examsTypeOptions as $key => $exam)
-                                    <option value="default">{{'Dado'}}</option>
                                     <optgroup label="{{$key}}">
+                                        <option value="" disabled selected hidden>Tipo de Dados</option>
                                         @foreach($exam as $id => $value)
                                             <option value="{{$id}}">{{$value}}</option>
                                         @endforeach
@@ -130,7 +129,8 @@
                                 <h3 class="my-3">{{data_get($examType, 'title')}}</h3>
 
                                 @if(data_get($examType, 'parameters.type') === 'select')
-                                    <select class="w-100 form-control" id="examOptions" name="options[]">
+                                    <select class="w-100 form-control" id="examOptions" name="options[]"
+                                            placeholder="Valor">
                                         <option value="default">{{'Opção'}}</option>
                                         @foreach(data_get($examType, 'parameters.options') ?? [] as $key => $exam)
                                             <option value="{{data_get($examType, 'title').'-'.$key}}">{{$exam}}</option>

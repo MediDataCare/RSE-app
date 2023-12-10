@@ -147,25 +147,14 @@
                         </b>
                     @endforeach
                 @endif
-                    <div class="w-100 text-center mt-1">
-                        <div class=" text-center" class="add_dados">
-                            <p class="add_dados" wire:click="addOptions">
-                                <i class="fas fa-plus"></i>
-                                {{ 'Adicionar Valor' }}
-                            </p>
-                        </div>
+                <div class="w-100 text-center mt-1">
+                    <div class=" text-center" class="add_dados">
+                        <p class="add_dados" wire:click="addOptions">
+                            <i class="fas fa-plus"></i>
+                            {{ 'Adicionar Valor' }}
+                        </p>
                     </div>
-                @if($addUnit)
-                    <b>
-                        <x-form-input action="{{$action}}"
-                                      name="inputs.options.unit"
-                                      :label="'Unidade'"
-                                      :placeholder="'Defina a Unidade'"
-                                      :class="'form-control mb-3'"
-                                      wire:model.lazy="inputs.options.unit"
-                        />
-                    </b>
-                @endif
+                </div>
             @elseif(data_get($inputs, 'type') === 'number')
                 <b>
                     <x-form-input action="{{$action}}"
@@ -193,6 +182,17 @@
                             <i class="fas fa-plus-circle" style="margin-top: 36px;"></i><span class="mb-3">Adicionar Unidade</span>
                         </a>
                     </div>
+                @endif
+                @if($addUnit)
+                    <b>
+                        <x-form-input action="{{$action}}"
+                                      name="inputs.options.unit"
+                                      :label="'Unidade'"
+                                      :placeholder="'Defina a Unidade'"
+                                      :class="'form-control mb-3'"
+                                      wire:model.lazy="inputs.options.unit"
+                        />
+                    </b>
                 @endif
             @endif
 

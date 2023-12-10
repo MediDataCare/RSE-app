@@ -48,6 +48,7 @@ class FrontEndController extends Controller
                 'file' => data_get($data, 'file'),
                 'cae' => (int)data_get($data, 'cae'),
             ],
+            'state' => 'pending',
             'data' => [
                 'role' => data_get($data, 'role')
             ]

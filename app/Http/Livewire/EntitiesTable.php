@@ -63,7 +63,10 @@ class EntitiesTable extends DataTableComponent
                     $entitie = User::find($value);
                     if(data_get($entitie, 'state') === 'rejected')
                         $html[] = '<a href="' . route('aproveEntitie', ['id' => $value]) . '" class="text-success ms-2"><i class="fa fa-check-circle" aria-hidden="true"></i></a>';
+                    elseif(data_get($entitie, 'state') === 'approved')
+                        $html[] = '<a href="' . route('rejectEntitie', ['id' => $value]) . '" class="text-danger ms-2"><i class="fa fa-ban" aria-hidden="true"></i></a>';
                     else
+                        $html[] = '<a href="' . route('aproveEntitie', ['id' => $value]) . '" class="text-success ms-2"><i class="fa fa-check-circle" aria-hidden="true"></i></a>';
                         $html[] = '<a href="' . route('rejectEntitie', ['id' => $value]) . '" class="text-danger ms-2"><i class="fa fa-ban" aria-hidden="true"></i></a>';
                     return implode($html);
                 })

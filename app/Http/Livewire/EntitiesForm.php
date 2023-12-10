@@ -58,11 +58,7 @@ class EntitiesForm extends Component
 
         if (!empty($this->study)) {
             //Filters
-            data_set($this->filters, 'exams', data_get($this->study, 'data.filters.exams'));
-            data_set($this->filters, 'age_min', data_get($this->study, 'data.filters.age_min'));
-            data_set($this->filters, 'age_max', data_get($this->study, 'data.filters.age_max'));
-            data_set($this->filters, 'sex', data_get($this->study, 'data.filters.sex'));
-
+            $this->filters = (array)data_get($this->study,'data.filters', []);
             //Inputs
             data_set($this->inputs, 'title', data_get($this->study, 'title'));
             data_set($this->inputs, 'description', data_get($this->study, 'description'));
