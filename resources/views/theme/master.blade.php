@@ -4,7 +4,7 @@
 <head>
     <!--ChartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -62,7 +62,7 @@
     ======================================================== -->
 </head>
 
-<body>
+<body class="overflow-x-hidden">
 @include('theme.includes.header')
 <!-- ======= Header ======= -->
 <!-- End Header -->
