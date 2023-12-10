@@ -25,13 +25,7 @@ class UserController extends Controller
     public function updateUserRole($id, Request $request)
     {
         $new_role = $request->input('new_role');
-       
-
-        User::where('id', $id)
-        ->update(['data->role' => $new_role]);
-
-    
-
+        User::where('id', $id)->update(['data->role' => $new_role]);
         return redirect()->action([UserController::class, 'indexUsers']);
     }
 

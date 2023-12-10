@@ -30,7 +30,7 @@ class UserTable extends DataTableComponent
                 ->searchable(),
             Column::make(__('Nome'), 'name')
                 ->format(function ($value, $column, $model) {
-                    $route = route('users-show', ['id' => $column->id]);
+                    $route = route('users-edit', ['id' => $column->id]);
                     return '<a href="' . $route . '">' . data_get($column, 'name') ?? '-' . '</a>';
                 })
                 ->html()
