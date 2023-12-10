@@ -32,7 +32,7 @@
                             @endphp
                             <td>{{ $state }}</td>
                             <td>
-                                @if(\Carbon\Carbon::parse(data_get($studyModel, 'data.duration_created'))->addDays(data_get($studyModel, 'data.duration')) <= \Carbon\Carbon::now())
+                                @if(\Carbon\Carbon::parse(data_get($studyModel, 'data.duration_created'))->addDays(data_get($studyModel, 'data.duration')) >= \Carbon\Carbon::now())
                                     @if($state === 'Pendente')
                                         <span class="text-success ms-5">
                                         <i class="fa fa-check-circle"
