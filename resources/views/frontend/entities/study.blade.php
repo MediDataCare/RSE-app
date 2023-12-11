@@ -42,7 +42,7 @@
                 </b>
                 <h4 class="text-center mt-5 mb-3 fw-bold">Dados escolhidos</h4>
                 @php
-                    $examsIds = array_merge(data_get($study, 'data.pending', []), data_get($study, 'data.approved', []), data_get($study, 'data.rejected', []));
+                    $examsIds = array_merge((array)data_get($study, 'data.pending', []), (array)data_get($study, 'data.approved', []), (array)data_get($study, 'data.rejected', []));
                     $allExams = \App\Models\Exam::whereIn('id', $examsIds)->get();
                 @endphp
                 <h5 class="text-center mt-4 mb-2">
