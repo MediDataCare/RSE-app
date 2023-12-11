@@ -36,13 +36,14 @@
                     />
                 </b>
                 <b>
-                    <x-form-input
+                    <x-form-textarea
                         action="show"
                         name="description"
                         :label="'Descrição'"
                         :placeholder="'Descrição'"
                         class="form-control mb-3"
-                        :value="data_get($study, 'description')"
+                        :default="data_get($study, 'description')"
+                        style="resize: none;"
                         readonly
                     />
                 </b>
