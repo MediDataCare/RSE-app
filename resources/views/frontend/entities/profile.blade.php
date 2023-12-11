@@ -21,9 +21,9 @@
                                     $entityUser = User::find(Auth::user()->data->entitie);
                                 @endphp
                         
-                                <strong>Entidade:</strong> {{ $entityUser ? $entityUser->name : 'Usuário da entidade não encontrado' }}
+                                <strong>NIF da Entidade:</strong> {{ $entityUser ? $entityUser->parameters->cae : 'NIF da entidade não encontrado' }}
                             @else
-                                <strong>NIF:</strong> {{ optional(Auth::user()->parameters)->cae }}
+                                <strong>NIF da Entidade:</strong> {{ optional(Auth::user()->parameters)->cae }}
                             @endif
                         </div>
                         <div class="">

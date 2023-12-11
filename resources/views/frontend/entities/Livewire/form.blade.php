@@ -38,30 +38,27 @@
                 <div class="col">
                     <div class="row">
                         <div class="col-12">
-                            <b><label class="text-center w-100">{{'Dados'}}</label></b>
+                            <b><label class="text-center w-100">Selecionar {{'Dados'}}</label></b>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 mt-2">
                             <div class="row row-cols-2">
                                 <div class="col-5">
                                     <!-- Button trigger modal -->
                                     <a data-bs-toggle="modal"
                                        data-bs-target="#exampleModal">
-                                        <i class="fas fa-plus-circle"></i><span>Adicionar filtro</span>
+                                        <i style="cursor: pointer;" class="fas fa-plus-circle fs-5"></i><span> Adicionar</span>
                                     </a>
                                 </div>
                                 <div class="col-7">
-                                    @if(!empty($filters))
-                                        <h5 class="fw-bold">Filtros Selecionados</h5>
-                                    @endif
                                     @foreach($filters as $value)
                                         @if(data_get($value, 'exams.id'))
                                             @php
                                                 $examType = \App\Models\ExamType::find(data_get($value, 'exams.id'));
                                             @endphp
-                                            <p>{{data_get($examType, 'title')}}<i class="fa fa-times ms-2 text-danger"
+                                            <a>{{data_get($examType, 'title')}}<i style="cursor: pointer;" class="fa fa-times ms-2 text-danger"
                                                                                   aria-hidden="true"
                                                                                   wire:click="removeFromFilter('{{ data_get($value, 'exams.id') }}')"></i>
-                                            </p>
+                                            </a>
                                         @endif
                                     @endforeach
                                 </div>
@@ -159,9 +156,9 @@
                             {{--                                                        @dump($examType)--}}
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                    wire:click="saveFilter()">Save changes
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                                    wire:click="saveFilter()">Guardar
                             </button>
                         </div>
                     </div>
