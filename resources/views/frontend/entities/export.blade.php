@@ -17,7 +17,7 @@
         <th>Sexo</th>
         <th>Distrito</th>
         @php
-            $examsTypes = \App\Models\ExamType::whereIn('id', \App\Models\Exam::whereIn('id', (array)data_get($study, 'data.pending', []))->pluck('exams_types_id')->unique()->toArray())->get();
+            $examsTypes = \App\Models\ExamType::whereIn('id', \App\Models\Exam::whereIn('id', (array)data_get($study, 'data.approved', []))->pluck('exams_types_id')->unique()->toArray())->get();
         @endphp
         @foreach($examsTypes as $type)
             <th>{{data_get($type, 'title')}}</th>
