@@ -27,8 +27,8 @@ class InvoicesExport implements FromView, WithStyles, ShouldAutoSize
 
         // TEMOS DE DEFINIR O Nº TOTAL DE COLUNAS
         $columns = ['Identificação do Utilizador', 'Idade', 'Sexo', 'Distrito'];
-        $exams = \App\Models\Exam::whereIn('id', data_get($study, 'data.pending'))->get();
-        $examsTypes = \App\Models\ExamType::whereIn('id', \App\Models\Exam::whereIn('id', data_get($study, 'data.pending'))->pluck('exams_types_id')->unique()->toArray())->get();
+        $exams = \App\Models\Exam::whereIn('id', data_get($study, 'data.pending', []))->get();
+        $examsTypes = \App\Models\ExamType::whereIn('id', \App\Models\Exam::whereIn('id', data_get($study, 'data.pending', []))->pluck('exams_types_id')->unique()->toArray())->get();
         foreach($examsTypes as $type){
             $params = data_get($type, 'parameters', []);
             if(data_get($params, 'type') === 'select'){

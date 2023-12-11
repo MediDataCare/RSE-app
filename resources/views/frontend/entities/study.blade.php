@@ -45,7 +45,7 @@
                     {{ ' Resultados encontrados: ' }}
                     <span class="text-success fw-bold">{{ $allExams->count()}}</span>
                 </h5>
-                @if(\Carbon\Carbon::parse(data_get($study, 'data.duration_created'))->addDays(data_get($study, 'data.duration')) <= \Carbon\Carbon::now())
+                @if(\Carbon\Carbon::parse(data_get($study, 'data.duration_created'))->addDays(data_get($study, 'data.duration')) <= \Carbon\Carbon::now() && (data_get($study, 'data.expected_Exams') <= data_get($study, 'data.approved')))
                 <div class="d-flex align-items-center justify-content-center">
                     <a href="{{ route('export', ['id' => $study]) }}" class="btn btn-success mt-4 mb-2">
                         <i class="fas fa-file-excel"></i> Descarregar Ficheiro
