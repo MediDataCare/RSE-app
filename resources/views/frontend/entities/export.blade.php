@@ -1,6 +1,6 @@
 <table>
     @php
-        $exams = \App\Models\Exam::whereIn('id', data_get($study, 'data.pending'))->get();
+        $exams = \App\Models\Exam::whereIn('id', data_get($study, 'data.approved'))->get();
         $columns = [];
     @endphp
     <thead>
@@ -23,7 +23,7 @@
             <th>{{data_get($type, 'title')}}</th>
             @php
                 $params = data_get($type, 'parameters', []);
-            @endphp
+            @endphp 
             @if(data_get($params, 'type') === 'select')
                 <th>Resposta</th>
                 @php
