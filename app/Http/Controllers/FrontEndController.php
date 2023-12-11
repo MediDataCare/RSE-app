@@ -66,7 +66,7 @@ class FrontEndController extends Controller
 
     public function editStudy($id){
         $study = Study::find($id);
-        $allExams = Exam::whereIn('id', data_get($study, 'data.pending'))->get();
+        $allExams = Exam::whereIn('id', data_get($study, 'data.pending', []))->get();
         return view('frontend.entities.study', ['study' => $study, 'allExams' => $allExams, 'action' => 'edit']);
     }
 

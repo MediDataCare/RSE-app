@@ -58,7 +58,7 @@ class EntitiesForm extends Component
 
         if (!empty($this->study)) {
             //Filters
-            $this->filters = (array)data_get($this->study,'data.filters', []);
+            $this->filters = (array)data_get($this->study, 'data.filters', []);
             //Inputs
             data_set($this->inputs, 'title', data_get($this->study, 'title'));
             data_set($this->inputs, 'description', data_get($this->study, 'description'));
@@ -175,7 +175,7 @@ class EntitiesForm extends Component
                     $options = data_get($filter, 'exams.options');
                     if (!is_array($options)) {
                         if (!empty($options)) {
-                            $opt = $options;
+                            $opt = (array)$options;
                             $examsIds = $this->allExams->filter(function ($item) use ($opt) {
                                 $explode = explode('-', $opt);
                                 if (data_get($item, 'parameters.' . Str::slug($explode[0])) === $explode[1]) {
@@ -187,7 +187,7 @@ class EntitiesForm extends Component
                     }
                     if (is_array($options)) {
                         if (!empty(array_filter($options))) {
-                            $opts = $options;
+                            $opts = (array)$options;
                             $id = data_get($filter, 'exams.id');
                             $examsTypes = $this->examsType;
                             $pluckIds = $this->allExams->filter(function ($item) use ($opts, $examsTypes, $id) {

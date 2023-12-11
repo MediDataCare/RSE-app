@@ -17,13 +17,6 @@
                             <i class="fas fa-arrow-left fs-4"></i>
                         </a>
                     </div>
-                    @if(empty(data_get($study, 'data.approved', [])) && empty(data_get($study, 'data.rejected', [])) && (\Carbon\Carbon::parse(data_get($study, 'data.duration_created'))->addDays(data_get($study, 'data.duration')) <= \Carbon\Carbon::now()))
-                        <div class="col-6 text-end btn-form">
-                            <button onclick="window.location.href='{{ route('edit-study', ['id' => $study->id]) }}'">
-                                {{ 'Editar Estudo' }}
-                            </button>
-                        </div>
-                    @endif
                 </div>
                 <b>
                     <x-form-input action="show"
