@@ -41,7 +41,14 @@ class UserTable extends DataTableComponent
                 ->searchable(),
             Column::make(__('Role'), 'data')
                 ->format(function ($value, $column, $model) {
-                    return data_get($column, 'data.role') ?? '-';
+                    $roleKey = data_get($column, 'data.role');
+                    $rolesTranslations = [
+                        'admin' => __('Administrador'),
+                        'manager' => __('Gestor'),
+                        'entitie' => __('Entidade'),
+                        'user' => __('Utilizador'),
+                    ];
+                    return $rolesTranslations[$roleKey] ?? '-';
                 })
                 ->sortable()
                 ->searchable()

@@ -3,9 +3,8 @@
     <div class="container-fluid mt-5">
         <div class="container py-5">
             <div class="section-header">
-                <h2>Características do Utilizador</h2>
-                <!-- <p>Todas as Entidades Registadas na Plataforma estão visíveis abaixo, o seu registo pode ser Aprovado ou Rejeitado
-                    <br>Para observar os Estudos de uma Entidade por favor selecione a mesma</p> -->
+                <h2>Editar Role do Utilizador</h2>
+                <p>Pode alterar a Role associada ao Utilizador</p>
             </div>
             <div class="row mb-3">
                 <div class="col-6 d-flex align-items-center ">
@@ -44,7 +43,7 @@
                         :label="'Role'"
                         :options="[
                             'admin' => 'Administrador',
-                            'manager' => 'Manager',
+                            'manager' => 'Gestor',
                             'entitie' => 'Entidade',
                             'user' => 'Utilizador',
                         ]"
