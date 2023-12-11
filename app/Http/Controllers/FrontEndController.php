@@ -60,9 +60,7 @@ class FrontEndController extends Controller
 
     public function showStudy($id){
         $study = Study::find($id);
-        $examsIds = array_merge(data_get($study, 'data.pending', []), data_get($study, 'data.approved', []), data_get($study, 'data.rejected', []));
-        $allExams = Exam::whereIn('id', $examsIds)->get();
-        return view('frontend.entities.study', ['study' => $study, 'allExams' => $allExams, 'action' => 'show']);
+        return view('frontend.entities.study', ['study' => $study, 'action' => 'show']);
     }
 
     public function editStudy($id){

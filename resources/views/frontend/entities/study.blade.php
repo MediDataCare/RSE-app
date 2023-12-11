@@ -41,9 +41,20 @@
                     />
                 </b>
                 <h4 class="text-center mt-5 mb-3 fw-bold">Dados escolhidos</h4>
+                @php
+                    $examsIds = array_merge(data_get($study, 'data.pending', []), data_get($study, 'data.approved', []), data_get($study, 'data.rejected', []));
+                    $allExams = \App\Models\Exam::whereIn('id', $examsIds)->get();
+                @endphp
                 <h5 class="text-center mt-4 mb-2">
                     {{ ' Resultados encontrados: ' }}
                     <span class="text-success fw-bold">{{ $allExams->count()}}</span>
+                </h5>
+                @php
+                    $approved = \App\Models\Exam::whereIn('id', data_get($study, 'data.approved', []))->get();
+                @endphp
+                <h5 class="text-center mt-4 mb-2">
+                    {{ ' Resultados Aceites: ' }}
+                    <span class="text-success fw-bold">{{ $approved->count()}}</span>
                 </h5>
                 @if(\Carbon\Carbon::parse(data_get($study, 'data.duration_created'))->addDays(data_get($study, 'data.duration')) <= \Carbon\Carbon::now() && (data_get($study, 'data.expected_Exams') <= data_get($study, 'data.approved')))
                 <div class="d-flex align-items-center justify-content-center">
