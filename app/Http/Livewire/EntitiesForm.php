@@ -121,8 +121,8 @@ class EntitiesForm extends Component
         $explode = explode('.', $property);
         if ($explode[0] === 'filters') {
             data_set($this->filters, $explode[1], $value);
+            $this->resetList();
         }
-        $this->resetList();
     }
 
     public function setFilters()
