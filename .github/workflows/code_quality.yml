@@ -1,24 +1,35 @@
-name: Qodana
-on:
-  workflow_dispatch:
-  pull_request:
-  push:
-    branches:
-      - dev
-
-jobs:
-  qodana:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      checks: write
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
-          fetch-depth: 0  # a full history is required for pull request analysis
-      - name: 'Qodana Scan'
-        uses: JetBrains/qodana-action@v2023.2
-        env:
-          QODANA_TOKEN: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb24iOiJBWXhHaiIsInByb2plY3QiOiJBTjBueSIsInRva2VuIjoiQUc0ZFIifQ.PE3oLVtJZfDGCHY3URH_edqa5gLNX6cGW2B3KZBNu3Q
+version: "1.0"
+# Specify inspection profile for code analysis
+profile:
+  name: qodana
+# Enable inspections
+# include:
+#   - name: <SomeEnabledInspectionId>
+# Disable inspections
+# exclude:
+#   - name: <SomeDisabledInspectionId>
+#     paths:
+#       - <path/where/not/run/inspection>
+php:
+  version: 8.1 # (Applied in CI/CD pipeline)
+# Execute shell command before Qodana execution (Applied in CI/CD pipeline)
+# bootstrap: sh ./prepare-qodana.sh
+# Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
+# plugins:
+#   - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
+# Specify Qodana linter for analysis (Applied in CI/CD pipeline)
+linter: jetbrains/qodana-php:latest
+include:
+  - name: PhpInconsistentReturnPointsInspection
+  - name: PhpRedundantOptionalArgumentInspection
+  - name: PhpTernaryExpressionCanBeReplacedWithConditionInspection
+  - name: PhpFullyQualifiedNameUsageInspection
+  - name: PhpUnnecessaryFullyQualifiedNameInspection
+  - name: DuplicatedCode
+  - name: PhpReturnDocTypeMismatchInspection
+  - name: PhpMissingParamTypeInspection
+  - name: PhpMissingFieldTypeInspection
+  - name: PhpMissingReturnTypeInspection
+  - name: PhpDynamicFieldDeclarationInspection
+  - name: PhpUnusedAliasInspection
+  - name: PhpUnusedLocalVariableInspection
